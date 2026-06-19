@@ -1,0 +1,20 @@
+{
+  "name": "mcts-mem",
+  "version": "0.1.0",
+  "description": "Build, verify, and explore an MCTS-Mem design tree — a structured, linter-checked memory of how a project was decided.",
+  "type": "module",
+  "bin": {
+    "mcts-mem": "bin/mcts-mem.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}
