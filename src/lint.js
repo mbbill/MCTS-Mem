@@ -177,12 +177,16 @@ export function lint(root, opts = {}) {
         for (const b of [...n.facts, ...n.moves]) treeEntries.add(b.replace(/\s+/g, ' '));
       }
       for (const p of ctx.nodeFiles) {
-        // git pathspecs (HEAD:<path>) use '/', but path.relative yields '\' on
-        // Windows — without normalizing, every `git show` misses and R-append is
-        // silently skipped for the whole tree.
-        const rel = path.relative(repoRoot, p).split(path.sep).join('/');
+        // Resolve each node against the tree root (which is git's cwd) and let
+        // git map it to the worktree root via the `HEAD:./<path>` form. Deriving
+        // the path from `rev-parse --show-toplevel` is fragile on Windows, where
+        // the toplevel git reports and the realpath'd root can differ (short vs
+        // long names, drive-letter case): path.relative then yields a bogus
+        // ../.. chain, every lookup misses, and R-append silently never runs.
+        // Forward-slash because git pathspecs always use '/'.
+        const rel = path.relative(ctx.root, p).split(path.sep).join('/');
         let old;
-        try { old = git('show', `HEAD:${rel}`); } catch { continue; } // new file
+        try { old = git('show', `HEAD:./${rel}`); } catch { continue; } // new file
         const on = parseNode(old);
         const oldEntries = [...on.facts, ...on.moves].map((b) => b.replace(/\s+/g, ' '));
         const gone = oldEntries.filter((e) => !treeEntries.has(e));
