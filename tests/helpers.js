@@ -96,7 +96,9 @@ Under the ingest benchmark, write-through spent 71% of wall time blocked on sync
 // Convenience: lint a files-map directly (programmatic), auto-cleanup.
 export async function lintFiles(files, opts) {
   const t = tmpTree(files);
-  const { lint } = await import(path.join(ROOT_DIR, 'src', 'lint.js'));
+  // Relative specifier (not an absolute path) so the ESM loader accepts it on
+  // Windows too — an absolute `D:\...` path is read as a URL scheme and rejected.
+  const { lint } = await import('../src/lint.js');
   try {
     const r = lint(t.root, opts);
     return { ...r, rules: r.errors.map((e) => e.rule) };

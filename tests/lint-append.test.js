@@ -17,7 +17,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import * as h from './helpers.js';
 
-const { lint } = await import(path.join(h.ROOT_DIR, 'src', 'lint.js'));
+// Relative specifier (not an absolute path) so the ESM loader accepts it on
+// Windows too — an absolute `D:\...` path is read as a URL scheme and rejected.
+const { lint } = await import('../src/lint.js');
 
 // --- local helpers -----------------------------------------------------------
 
