@@ -144,3 +144,4 @@ vite.config.ts.timestamp-*
 
 # Local Claude Code settings (personal; includes a permission-bypass hook)
 .claude/
+/.mcts-extraction/
