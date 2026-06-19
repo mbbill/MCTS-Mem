@@ -1,6 +1,6 @@
 {
   "name": "mcts-mem",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build, verify, and explore an MCTS-Mem design tree — a structured, linter-checked memory of how a project was decided.",
   "type": "module",
   "bin": {
