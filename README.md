@@ -1,153 +1,247 @@
 # MCTS-Mem
 
-> MCTS-Mem is a structured, verifiable memory of *how a project was decided* — every
-> choice that stuck, every alternative that was tried, and the recorded reason each one
-> won or lost. You read it by **following its structure**, not by searching it, and a
-> linter checks it the way a compiler checks code — so the knowledge stays consistent
-> and trustworthy instead of becoming a pile of notes that might quietly contradict
-> itself. Built once from a project's history, kept current as it evolves, and read by
-> humans and AI agents before they change anything.
+Projects forget why the code is the way it is.
 
-## Remember how you got here, not the code
+MCTS-Mem records that missing layer as a decision tree. The main tree is the design that
+currently won. Rejected or superseded designs stay beside it in `.alt/` folders. Facts
+and re-decisions are dated, tagged with provenance, and checked by a linter.
 
-On a large project, people don't carry the code in their heads — they carry **how it
-got there**: the decisions that worked, the ones that failed, and the facts that drove
-each. The current code is only the latest path; the durable asset is the knowledge
-accumulated reaching it, and that knowledge — not the source — is what lets someone
-change the system confidently, or even understand it. Today it lives in people's heads
-and in chat logs that evaporate.
+It does not replace code, git, or design docs. It keeps the reasoning that usually falls
+between them: what was tried, what failed, what evidence mattered, and which old branch
+should not be revived unless its old reason has changed.
 
-MCTS-Mem takes that knowledge out of individual brains and puts it in one place,
-organized by a model of how it accumulates: every decision, fact, failure, and
-contradiction sits at the point in the design it bears on. Thousands of commits' worth
-of reasoning — normally scattered across diffs, dead branches, and deleted files —
-becomes one artifact a newcomer or an agent can read in minutes, share, and build on.
+It does not generate code. It narrows future work by making old constraints, failed
+branches, and decision boundaries explicit.
 
-## Structure is the point
+## The Claims
 
-A pile of notes — however well written — can hold contradictions and errors that are
-never found. You retrieve a passage but can't be sure it's complete, current, or
-consistent with what's filed elsewhere, and deciding on knowledge you only *probably*
-have is a risk you can't measure. That is the ceiling a free-text or embedding-based
-memory hits: it can recall, but it can't guarantee the recalled set is consistent — so
-every answer carries a residue of doubt.
+- The current code is only the surviving branch, not the whole design history.
+- Project memory should be organized around decisions, not around time, files, or search
+  keywords.
+- Rejected alternatives matter. A dead end can be more valuable than the winning branch if
+  it stops the team from paying for the same lesson twice.
+- Unrecorded design intent becomes debt: the project relies on a rule, but no durable
+  artifact tells a future human or agent to respect it.
+- The record should be mechanically checkable. A linter cannot prove a benchmark or source
+  is true, but it can check links, replacement pairs, provenance tags, entry shape, and
+  append-only history.
+- Agents need an explicit record because they do not carry the team's tacit context. Before
+  an agent changes a project, it needs a way to read the decisions that shaped the area it
+  is about to touch.
 
-Structure removes the doubt. You don't search the tree, you **follow** it: each node
-leads to its alternatives, its supporting evidence, and the decisions made downstream,
-so the shape itself is the index and tells you where to look next. And because a
-decision lives at one node with its evidence and alternatives beside it, **what you see
-at that node is everything you need to decide** — not a sample that might be missing the
-contradicting fact two hops away. The gain isn't just speed; the answer is **accurate,
-deterministic, and verifiable**, and you reason *with confidence*, because anything that
-could make you wrong would itself be at the node.
+## Why "MCTS"?
 
-## Verified like source code
+MCTS-Mem does not run Monte Carlo Tree Search over your codebase.
 
-Structure is only trustworthy if it's *enforced*, so the rules are executable.
-`npx mcts-mem lint` runs a set of mechanical, deterministic checks over the whole tree —
-each the executable form of a rule the skills specify — and passes only when every
-invariant holds:
+The name describes the history being recorded. Building software often works like an
+expensive search: try a design, learn from it, keep or reject it, then let that result
+shape the next branch. MCTS-Mem records that search after it happens: the chosen branch,
+the abandoned branches, and the facts that changed the choice.
 
-- **Links resolve.** Every cross-reference points at a real node; nothing dangles.
-- **Re-decisions can't contradict themselves.** A replacement and the alternative it
-  superseded must record the *same* reason, **verbatim** on both sides — a tree whose
-  two halves tell different stories won't pass.
-- **History is append-only.** No recorded fact or move can be silently edited or
-  deleted; corrections are *new, dated* entries, so the record of what was believed and
-  when stays auditable.
-- **Every claim is sourced.** Each fact and move ends with one tag answering *what could
-  prove it wrong* — `(code)` (checkable against the code), `(sourced)` (resting on a human
-  record: commit message, doc, paper, chat log, author), or `(uncertain)` (an unbacked
-  reading of intent). Evidence, record, and guess are never confused.
-- **Every node earns its place.** A node that records no decision, evidence, or
-  alternative is rejected; reading a node is never noise.
+For the longer argument, see [`rationale.md`](rationale.md).
 
-Lint checks *consistency*, not truth — whether a measurement is correct is a separate
-matter — but when it passes, those guarantees are *proven*, not hoped for. The memory is
-checked the way code is checked by a compiler and a test suite, which is what most
-memory systems cannot offer: its **logical consistency is a property of the artifact**,
-not of how carefully someone wrote it down.
+## Concepts
 
-Because the record is append-only and every fact carries its origin, it can also be
-**re-checked**. History can be wrong — an early bad measurement can drive a decision
-that was reasonable on the data but wrong in fact. You reproduce the fact, append the
-corrected one, and **re-decide**: the solution is re-found under updated knowledge,
-without erasing the record of how it was first reached.
+An MCTS-Mem tree is a directory of Markdown files. The shape is the model:
 
-## A remembered search — why "MCTS"
+- **Node**: one design decision. A node is not a module summary unless the module boundary
+  itself was the decision.
+- **Child node**: a more specific decision made under a parent decision. For example, a
+  cache node might have child nodes for invalidation, memory budget, and key format.
+- **Sibling node**: another decision under the same parent. Siblings should be decisions
+  that can mostly be read independently.
+- **Main tree**: the current design. If you ignore every `.alt/` directory, you are looking
+  at what the project currently believes.
+- **`.alt/` directory**: rejected, replaced, or superseded alternatives for a node. These
+  are kept because the reason they lost may matter later.
+- **`.fact/` directory**: larger supporting evidence for a node, such as a recovered design
+  note or benchmark summary.
+- **Facts**: dated observations that changed or support a decision.
+- **Moves**: dated decision changes: replaced, replaced by, revived, removed.
+- **Provenance tags**: every fact and move ends in `(code)`, `(sourced)`, or `(uncertain)`.
+  The tag says what could check or falsify the claim.
+- **Lint**: `npx mcts-mem lint <path>` checks the tree grammar and internal consistency.
 
-Building the system *was* a search over a space of possible designs: you try a branch,
-learn something (a fact), and that result shapes where you look next. Like Monte-Carlo
-Tree Search, MCTS-Mem records that search — the branches taken and abandoned, and the
-evidence (the **value**) on each — so the next exploration starts from the accumulated
-result instead of from scratch. New or re-validated facts update that value, and that is
-what **improves the policy**: stronger evidence revives a branch pruned on bad data, or
-retires one that only looked good on thin data. This is the one sense in which "search"
-applies — the exploration that *produced* the tree, never how you read it.
+The intended reading style is structural. You do not ask "what text matches this topic?"
+first. You find the decision node, then read its facts, moves, child decisions, and
+alternatives.
 
-## Beyond software
+## A Small Example
 
-Anything that advances by trying things and learning fits the same model. A team on a
-hard task records what it learned, what failed, what succeeded, and the decisions that
-followed. Research does it explicitly: run an experiment, record the facts, decide how
-to improve the method — which is exactly *refining the search policy* for the next
-experiment.
+This is not from a real project. It shows the shape.
 
-And because every memory shares one model, **memories merge**. Separate trees combine
-into a single prior for a whole topic — for instance, general JIT-engine knowledge that
-unifies what was learned building JSC and V8 — turning the accumulated reasoning of many
-independent efforts into one thing you can consult.
+Suppose a service once cached each endpoint separately, then moved to one resource-keyed
+cache because invalidation kept leaking through endpoint-specific behavior.
 
-## How to use it
+The tree might contain:
 
-MCTS-Mem ships as two **skills** plus a small helper CLI. You don't run a program against
-your codebase — you point your AI coding agent at a skill, and it follows the method:
+```text
+mcts_mem/
+  service.md
+  service/
+    request-cache.md
+    request-cache.alt/
+      per-endpoint-cache.md
+    request-cache.fact/
+      cache-benchmark.md
+```
 
-- **`mcts-mem-use`** — consult a tree before you plan a change, and update it when you
-  re-decide something. Reach for it before any non-trivial design, refactor, or rewrite in
-  a repo that has an `mcts_mem/` folder.
-- **`mcts-mem-build`** — the one-time job of reconstructing a tree from a project's history
-  (git, design docs, the author). Run it once per repository; `mcts-mem-use` keeps it
-  current afterward.
+The live decision:
 
-Each skill is a single self-contained `SKILL.md` — the tree format and the full method are
-written inside it, so any agent that can load a skill can read and maintain a tree with no
-other setup. See [Installation](#installation) to add them to your agent.
+```text
+mcts_mem/service/request-cache.md
+```
 
-The one piece of running code is the linter: `npx mcts-mem lint <path-to-mcts_mem>`
-validates a tree the way a compiler validates source — links resolve, re-decisions agree,
-history is append-only, every claim is tagged. Run it after any edit; a clean lint is a
-cheap, mechanical guarantee that the structure holds.
+```md
+- Responses are cached by resource id, with one invalidation path shared by every
+  endpoint that exposes the resource.
+
+## Facts
+
+- 2024-05-02 benchmark: endpoint-local caches gave faster hit paths, but used more
+  memory and left stale entries after writes that reached the same resource through a
+  different endpoint (sourced).
+
+## Moves
+
+- 2024-05-03 replaced [[per-endpoint-cache]]: per-endpoint caches made invalidation depend
+  on endpoint-specific behavior; a resource-keyed cache keeps invalidation at the data
+  boundary, even though it gives up a few hit-path shortcuts (sourced).
+```
+
+The rejected alternative:
+
+```text
+mcts_mem/service/request-cache.alt/per-endpoint-cache.md
+```
+
+```md
+- Each endpoint owns its own response cache and invalidates it from endpoint handlers.
+
+## Moves
+
+- 2024-05-03 replaced by [[request-cache]]: per-endpoint caches made invalidation depend
+  on endpoint-specific behavior; a resource-keyed cache keeps invalidation at the data
+  boundary, even though it gives up a few hit-path shortcuts (sourced).
+```
+
+The mechanics are the point:
+
+- The current design is easy to read without losing the old one.
+- The losing branch is not deleted, so a future change can inspect why it lost.
+- The replacement reason is copied on both sides, so lint can catch drift.
+- The fact is dated and tagged, so a later reader knows what kind of evidence it was.
+
+If the benchmark was later found to be wrong, you would not edit it away. You would add a
+new dated fact, then re-decide from the corrected record.
+
+## Quickstart
+
+For a repository that already has `mcts_mem/`:
+
+```sh
+npx mcts-mem view mcts_mem --depth 2
+npx mcts-mem view mcts_mem --alt --depth 2
+npx mcts-mem show request-cache mcts_mem
+npx mcts-mem uncertain mcts_mem
+npx mcts-mem lint mcts_mem
+```
+
+Use `view` to scan the tree, `show` to read one decision in full, `uncertain` to find
+entries that still need better evidence, and `lint` after any edit.
+
+For a repository without a tree, use the `mcts-mem-build` skill to reconstruct the first
+version from git history, design docs, old branches, and author input. The skills are
+installed below. After that, use `mcts-mem-use` before non-trivial changes so the agent
+reads the relevant decisions and updates the tree when a decision changes.
+
+The build/use workflows are agent skills, not CLI subcommands. The CLI handles inspection
+and linting; the skills tell an agent how to build and maintain the tree.
+
+You can create a tree manually, but the build skill is the safer path for an existing
+project because the hard part is not making files; it is reconstructing what the old
+decisions meant. For a manual experiment, keep exactly one top-level node under
+`mcts_mem/`, make each file one decision, put rejected alternatives in `.alt/`, and run
+`npx mcts-mem lint mcts_mem` early.
+
+When updating a decision by hand:
+
+1. Find or create the node for the decision.
+2. Add dated Facts for new evidence.
+3. If the decision replaced an older design, move or create the older design under the
+   node's `.alt/` directory.
+4. Add matching `replaced [[old]]:` and `replaced by [[new]]:` Moves with the same reason.
+5. Run `npx mcts-mem lint mcts_mem`.
+
+## What Lint Checks
+
+`npx mcts-mem lint <path-to-mcts_mem>` checks consistency, not truth.
+
+It currently checks that:
+
+- cross-references resolve to real nodes
+- replacement pairs agree on the same reason
+- committed Facts and Moves were not edited or removed instead of corrected append-only
+- Facts and Moves carry provenance tags
+- entries use the expected shape
+- `.alt/` members end as replaced, removed, or otherwise frozen
+- finished trees do not contain files that only name a component without recording a
+  decision, fact, alternative, or child decision
+
+The compact entry shape is:
+
+```md
+- YYYY-MM-DD kind: claim (code).
+- YYYY-MM-DD kind: claim (sourced).
+- YYYY-MM-DD kind: claim (uncertain).
+- YYYY-MM-DD (abc12345) replaced [[old-node]]: reason (code).
+- YYYY-MM-DD (abc12345) replaced by [[new-node]]: same reason (code).
+```
+
+The commit hash is optional, but if present it is eight hex characters. Move entries use
+one of the boundary verbs the linter recognizes: `replaced`, `replaced by`, `dropped`,
+`removed`, or `revived`. For Facts, `kind` is a free-form lowercase label such as
+`benchmark`, `rationale`, `pitfall`, or `statement`.
+
+Append-only checking is based on git. When the tree is inside a git repository, lint
+compares committed Facts and Moves against `HEAD`; new entries are allowed, but committed
+entries should not be edited or removed. If you intentionally migrate the tree format in
+bulk, commit that migration so `HEAD` becomes the new baseline.
+
+A clean lint means the tree is structurally sound under these rules. It does not mean every
+measurement, source, or inference is correct. Lint cannot catch a bad benchmark method, a
+stale source, or a wrong human interpretation. The value is that uncertainty is visible and
+the record can be corrected without erasing what was believed before.
 
 ## Installation
 
-MCTS-Mem is **two skills** plus a helper **CLI**. Only the skills are "installed" — the CLI
-needs nothing, because the skills call it via `npx mcts-mem` on demand.
+There is no global CLI install step. Run the CLI with `npx`:
 
-### Install the skills
+```sh
+npx mcts-mem --help
+```
 
-Paste this to your coding agent (Claude Code, Cursor, Codex, Gemini CLI, …):
+The memory workflow itself lives in two agent skills:
+
+- `skills/mcts-mem-build/SKILL.md`
+- `skills/mcts-mem-use/SKILL.md`
+
+Ask your coding agent to install them:
 
 > Install the MCTS-Mem skills. Fetch these two files from
-> https://github.com/mbbill/MCTS-Mem — `skills/mcts-mem-build/SKILL.md` and
-> `skills/mcts-mem-use/SKILL.md` — and save each into your agent's skills directory,
-> preserving the folder names (`mcts-mem-build/`, `mcts-mem-use/`).
+> https://github.com/mbbill/MCTS-Mem: `skills/mcts-mem-build/SKILL.md` and
+> `skills/mcts-mem-use/SKILL.md`. Save each one into the agent's skills directory,
+> preserving the folder names `mcts-mem-build/` and `mcts-mem-use/`.
 
-Your agent already knows where its skills live, so this works in any of them. The two skills
-are the open [Agent Skills](https://agentskills.io) format, so the same files work across
-agents — nothing here is specific to one tool.
+Manual install is also fine: copy the two folders under `skills/` into your agent's
+skills directory. For Claude Code, that can be `~/.claude/skills/` for personal skills or
+`.claude/skills/` for project-local skills.
 
-Prefer to do it by hand? Copy the two folders under `skills/` into your agent's skills path
-— e.g. `~/.claude/skills/` (personal) or `.claude/skills/` (project) for Claude Code.
+The skills use the open [Agent Skills](https://agentskills.io) format, so the same files
+can be used by agents that support that format.
 
-### The CLI
+## Further Reading
 
-No install step. The skills run the linter as `npx mcts-mem lint <path>`, which fetches the
-published package on demand.
-
-## The deeper idea
-
-Why a design memory is shaped like a *search* — and why that matters more as AI makes
-building cheap enough to explore the solution space in earnest — is in
-[`rationale.md`](rationale.md): the MCTS framing, the model's own evolution (including the
-dead ends it discarded), and the honest constraints on what it can do.
+[`rationale.md`](rationale.md) is the longer argument: why project history looks like a
+search, how MCTS-Mem lowers future change cost, why this is not just ADRs plus retrieval,
+where the MCTS analogy helps, and where it stops.
