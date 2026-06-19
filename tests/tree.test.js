@@ -295,7 +295,7 @@ test('resolve: a unique stem resolves regardless of frm', () => {
   const t = h.tmpTree(h.validFiles());
   try {
     const ctx = loadTree(t.root);
-    const fromPC = ctx.nodeFiles.find((p) => p.endsWith('/page-cache.md'));
+    const fromPC = ctx.nodeFiles.find((p) => h.posix(p).endsWith('/page-cache.md'));
     assert.equal(logical(ctx.root, ctx.resolve('acorn', fromPC)), 'acorn');
   } finally {
     t.cleanup();
@@ -317,7 +317,7 @@ test('resolve: an explicit [[x.fact/slug]] link resolves to the fact file', () =
   const t = h.tmpTree(h.validFiles());
   try {
     const ctx = loadTree(t.root);
-    const fromPC = ctx.nodeFiles.find((p) => p.endsWith('/page-cache.md'));
+    const fromPC = ctx.nodeFiles.find((p) => h.posix(p).endsWith('/page-cache.md'));
     const r = ctx.resolve('page-cache.fact/stall', fromPC);
     assert.ok(r);
     assert.equal(logical(ctx.root, r), 'acorn/page-cache.fact/stall');
@@ -343,8 +343,8 @@ test('resolve: an ambiguous stem is disambiguated by directory nearness', () => 
   const t = h.tmpTree(files);
   try {
     const ctx = loadTree(t.root);
-    const fromX = ctx.nodeFiles.find((p) => p.endsWith('/x/sub/from.md'));
-    const fromY = ctx.nodeFiles.find((p) => p.endsWith('/y/sub/from.md'));
+    const fromX = ctx.nodeFiles.find((p) => h.posix(p).endsWith('/x/sub/from.md'));
+    const fromY = ctx.nodeFiles.find((p) => h.posix(p).endsWith('/y/sub/from.md'));
     assert.equal(logical(ctx.root, ctx.resolve('dup', fromX)), 'root/x/dup');
     assert.equal(logical(ctx.root, ctx.resolve('dup', fromY)), 'root/y/dup');
   } finally {
@@ -356,7 +356,7 @@ test('resolve: a stem ref with a path prefix resolves on the last segment', () =
   const t = h.tmpTree(h.validFiles());
   try {
     const ctx = loadTree(t.root);
-    const fromPC = ctx.nodeFiles.find((p) => p.endsWith('/page-cache.md'));
+    const fromPC = ctx.nodeFiles.find((p) => h.posix(p).endsWith('/page-cache.md'));
     // "anything/acorn" resolves on the "acorn" tail.
     assert.equal(logical(ctx.root, ctx.resolve('whatever/acorn', fromPC)), 'acorn');
   } finally {
@@ -368,7 +368,7 @@ test('resolve (module export) callable directly with a ctx', () => {
   const t = h.tmpTree(h.validFiles());
   try {
     const ctx = loadTree(t.root);
-    const fromPC = ctx.nodeFiles.find((p) => p.endsWith('/page-cache.md'));
+    const fromPC = ctx.nodeFiles.find((p) => h.posix(p).endsWith('/page-cache.md'));
     assert.equal(resolve(ctx, 'acorn', fromPC), ctx.resolve('acorn', fromPC));
   } finally {
     t.cleanup();
@@ -383,11 +383,11 @@ test('relatives: returns children, alts, and fact files of a node', () => {
   const t = h.tmpTree(h.validFiles());
   try {
     const ctx = loadTree(t.root);
-    const acorn = ctx.nodeFiles.find((p) => p.endsWith('/acorn.md'));
+    const acorn = ctx.nodeFiles.find((p) => h.posix(p).endsWith('/acorn.md'));
     const rel = relatives(ctx, acorn);
     // acorn/ has page-cache.md as a child
     assert.equal(rel.children.length, 1);
-    assert.ok(rel.children[0].endsWith('/acorn/page-cache.md'));
+    assert.ok(h.posix(rel.children[0]).endsWith('/acorn/page-cache.md'));
     // acorn itself has no .alt/ and no .fact/
     assert.deepEqual(rel.alts, []);
     assert.deepEqual(rel.factFiles, []);
@@ -400,13 +400,13 @@ test('relatives: a node with an .alt member and a .fact file lists both', () => 
   const t = h.tmpTree(h.validFiles());
   try {
     const ctx = loadTree(t.root);
-    const pc = ctx.nodeFiles.find((p) => p.endsWith('/page-cache.md'));
+    const pc = ctx.nodeFiles.find((p) => h.posix(p).endsWith('/page-cache.md'));
     const rel = relatives(ctx, pc);
     assert.deepEqual(rel.children, []);
     assert.equal(rel.alts.length, 1);
-    assert.ok(rel.alts[0].endsWith('/page-cache.alt/write-through.md'));
+    assert.ok(h.posix(rel.alts[0]).endsWith('/page-cache.alt/write-through.md'));
     assert.equal(rel.factFiles.length, 1);
-    assert.ok(rel.factFiles[0].endsWith('/page-cache.fact/stall.md'));
+    assert.ok(h.posix(rel.factFiles[0]).endsWith('/page-cache.fact/stall.md'));
   } finally {
     t.cleanup();
   }
@@ -422,7 +422,7 @@ test('loadTree: separates node files from .fact/ files', () => {
     const ctx = loadTree(t.root);
     assert.equal(ctx.nodeFiles.length, 3); // acorn, page-cache, write-through
     assert.equal(ctx.factFiles.length, 1); // stall
-    assert.ok(ctx.factFiles[0].endsWith('/stall.md'));
+    assert.ok(h.posix(ctx.factFiles[0]).endsWith('/stall.md'));
     // stem map keys present
     assert.ok(ctx.stems.has('acorn'));
     assert.ok(ctx.stems.has('page-cache'));

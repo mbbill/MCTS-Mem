@@ -12,6 +12,10 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 export const ROOT_DIR = path.join(here, '..');
 export const BIN = path.join(ROOT_DIR, 'bin', 'mcts-mem.js');
 
+// Normalize an OS path to forward slashes so tests can assert on POSIX-style
+// suffixes (e.g. endsWith('/page-cache.md')) on Windows, where paths use '\'.
+export const posix = (p) => (p ?? '').split(path.sep).join('/');
+
 // Write { "<relpath>": "<content>" } into a fresh tmp dir under a root subdir.
 // Returns { dir, root, write, rm, cleanup }. `root` is the tree root to pass to the CLI.
 export function tmpTree(files = {}, { rootName = 'mcts_mem' } = {}) {

@@ -177,7 +177,10 @@ export function lint(root, opts = {}) {
         for (const b of [...n.facts, ...n.moves]) treeEntries.add(b.replace(/\s+/g, ' '));
       }
       for (const p of ctx.nodeFiles) {
-        const rel = path.relative(repoRoot, p);
+        // git pathspecs (HEAD:<path>) use '/', but path.relative yields '\' on
+        // Windows — without normalizing, every `git show` misses and R-append is
+        // silently skipped for the whole tree.
+        const rel = path.relative(repoRoot, p).split(path.sep).join('/');
         let old;
         try { old = git('show', `HEAD:${rel}`); } catch { continue; } // new file
         const on = parseNode(old);
