@@ -1,0 +1,52 @@
+# PR + main-branch test pipeline.
+#
+# Runs the node:test suite on every push to main and every pull request.
+#
+# Why this matrix: mcts-mem is pure JS with zero dependencies, but the linter
+# does platform-sensitive work — path handling (separators, fs.realpathSync)
+# and shelling out to `git` for the append-only (R-append) check. So the OS
+# axis (ubuntu/macOS/windows) is the one that actually catches breakage; the
+# Node axis (20/22/24) just covers the supported engine range. Tests configure
+# their own per-repo git identity, so no global git config is needed here.
+#
+# No install step: there are no dependencies and no lockfile, so `npm test`
+# (which is `node --test`) runs directly.
+#
+# The tag-triggered npm publish lives in release.yml, not here.
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  # Force every JavaScript action to Node 24 — silences GitHub's Node-20
+  # deprecation warning on actions that still pin to it.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
+jobs:
+  test:
+    name: test (node ${{ matrix.node }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      # Show every leg's result rather than cancelling siblings on the first
+      # failure — a platform-specific break is the reason the OS axis exists.
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, node: '20' }
+          - { os: ubuntu-latest, node: '22' }
+          - { os: ubuntu-latest, node: '24' }
+          - { os: macos-latest, node: '20' }
+          - { os: windows-latest, node: '20' }
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm test

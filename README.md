@@ -112,13 +112,38 @@ your codebase — you point your AI coding agent at a skill, and it follows the 
 
 Each skill is a single self-contained `SKILL.md` — the tree format and the full method are
 written inside it, so any agent that can load a skill can read and maintain a tree with no
-other setup. Drop the `skills/` directory into your agent's skills path and ask it to build
-or consult the design memory.
+other setup. See [Installation](#installation) to add them to your agent.
 
 The one piece of running code is the linter: `npx mcts-mem lint <path-to-mcts_mem>`
 validates a tree the way a compiler validates source — links resolve, re-decisions agree,
 history is append-only, every claim is tagged. Run it after any edit; a clean lint is a
 cheap, mechanical guarantee that the structure holds.
+
+## Installation
+
+MCTS-Mem is **two skills** plus a helper **CLI**. Only the skills are "installed" — the CLI
+needs nothing, because the skills call it via `npx mcts-mem` on demand.
+
+### Install the skills
+
+Paste this to your coding agent (Claude Code, Cursor, Codex, Gemini CLI, …):
+
+> Install the MCTS-Mem skills. Fetch these two files from
+> https://github.com/mbbill/MCTS-Mem — `skills/mcts-mem-build/SKILL.md` and
+> `skills/mcts-mem-use/SKILL.md` — and save each into your agent's skills directory,
+> preserving the folder names (`mcts-mem-build/`, `mcts-mem-use/`).
+
+Your agent already knows where its skills live, so this works in any of them. The two skills
+are the open [Agent Skills](https://agentskills.io) format, so the same files work across
+agents — nothing here is specific to one tool.
+
+Prefer to do it by hand? Copy the two folders under `skills/` into your agent's skills path
+— e.g. `~/.claude/skills/` (personal) or `.claude/skills/` (project) for Claude Code.
+
+### The CLI
+
+No install step. The skills run the linter as `npx mcts-mem lint <path>`, which fetches the
+published package on demand.
 
 ## The deeper idea
 

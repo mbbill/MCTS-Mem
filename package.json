@@ -6,15 +6,34 @@
   "bin": {
     "mcts-mem": "bin/mcts-mem.js"
   },
+  "author": "B.M. <mbbill@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbbill/MCTS-Mem.git"
+  },
+  "homepage": "https://github.com/mbbill/MCTS-Mem#readme",
+  "bugs": {
+    "url": "https://github.com/mbbill/MCTS-Mem/issues"
+  },
+  "keywords": [
+    "mcts-mem",
+    "design-memory",
+    "design-rationale",
+    "adr",
+    "architecture",
+    "linter",
+    "agent-skills"
+  ],
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "files": [
     "bin",
     "src"
   ],
   "scripts": {
-    "test": "node --test"
-  },
-  "license": "MIT"
+    "test": "node --test",
+    "prepublishOnly": "node --test"
+  }
 }

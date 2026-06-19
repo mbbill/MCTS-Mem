@@ -1,0 +1,73 @@
+# Release pipeline.
+#
+# Trigger: push a tag matching `v*` (e.g. `v0.1.0`). scripts/release.sh bumps
+# package.json, commits, tags, and (optionally) pushes — pushing the tag fires
+# this workflow.
+#
+# Pipeline:
+#   1. test    — re-run the suite on the tagged commit. Never publish red.
+#   2. publish — verify the tag matches package.json's version, then
+#                `npm publish` with provenance.
+#
+# Provenance (`--provenance`) links the published package to this exact repo +
+# commit + workflow via OIDC. It requires `id-token: write` and a PUBLIC repo
+# (this one is). If the repo is ever made private, drop `--provenance`.
+#
+# Secret needed:
+#   NPM_TOKEN — an npm Automation token with publish rights on `mcts-mem`.
+#               Add it under Settings → Secrets and variables → Actions.
+
+name: release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+  id-token: write # required for npm provenance (OIDC)
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+      - run: npm test
+
+  publish:
+    name: publish to npm
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Check tag matches package.json version
+        # A mis-tagged push (tag vX but package.json still vY) must not publish
+        # the wrong version. Fail loudly instead.
+        shell: bash
+        run: |
+          set -eu
+          tag="${GITHUB_REF_NAME#v}"
+          pkg="$(node -p "require('./package.json').version")"
+          if [ "$tag" != "$pkg" ]; then
+            echo "::error::tag v$tag does not match package.json version $pkg"
+            exit 1
+          fi
+          echo "publishing mcts-mem@$pkg"
+
+      - name: Publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --provenance --access public
