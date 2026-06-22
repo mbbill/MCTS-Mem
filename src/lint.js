@@ -143,6 +143,18 @@ export function lint(root, opts = {}) {
     }
   }
 
+  // ---------- R-altnest: an .alt member must not have its own .alt/ ----------
+  // Alternatives are rivals for ONE decision — a flat set under the live node.
+  // A supersession chain (A replaced by B replaced by C) flattens so every
+  // rejected form is a sibling under the live node's .alt/; the lineage lives in
+  // the paired Moves, not in nested folders.
+  for (const d of ctx.dirs) {
+    if (d.endsWith('.alt') && path.basename(path.dirname(d)).endsWith('.alt')) {
+      err('R-altnest', d, 'alternative has its own .alt/ — flatten it up to the parent .alt/ ' +
+        '(rejected rivals are siblings; the supersession order is recorded in the paired Moves)');
+    }
+  }
+
   // ---------- R-thin (skipped under --skeleton) ----------
   if (!skeleton) {
     for (const p of ctx.nodeFiles) {

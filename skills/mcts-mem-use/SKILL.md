@@ -88,7 +88,7 @@ the system. Everything else hangs beneath it.
 
 To read the *current* design, **ignore every `.alt/`**: the main tree's Items are statements
 true of the code today. The `.alt/` folders are history — superseded forms and roads not taken.
-You do not skip them, though: before proposing a change you walk the relevant `.alt/` chain
+You do not skip them, though: before proposing a change you walk the relevant `.alt/`
 (Job 1), because that is the record of what was already tried here and why it lost.
 
 ## Job 1 — Before you plan: read the tree
@@ -96,15 +96,15 @@ You do not skip them, though: before proposing a change you walk the relevant `.
 The goal is to start where the project's reasoning already is, not where you'd start cold.
 
 - **Follow the structure; do not grep it.** The shape carries the meaning. Walking from a
-  node into its `.alt/` chain shows you what was tried, in what order, and why each form
-  lost — context a keyword jump throws away. An agent that lands on a node by `grep` sees
+  node into its `.alt/` shows you what was tried — the flat set of rejected rivals, with their
+  Moves giving the order and why each form lost — context a keyword jump throws away. An agent that lands on a node by `grep` sees
   the answer stripped of the reasoning that makes it trustworthy. Start at the root, descend
   by subsystem. Use `grep` only as a last-resort locator when you genuinely can't place a
   topic by structure.
 - Find the subsystem your change touches. Read its **Items** (what holds now), its
   **`## Facts`** (what is known and measured), and its **`## Moves`** (what changed and why).
   Follow `[[links]]` to related nodes.
-- **Before you propose an approach, open the subsystem's `.alt/` chain.** If your idea is
+- **Before you propose an approach, open the subsystem's `.alt/`.** If your idea is
   already in there, it was tried — read the recorded reason it lost *before* re-proposing
   it. Re-open it only if that reason no longer holds under today's constraints; if so, say
   so explicitly and name the reason that lapsed. (Dead ends are kept, not deleted, precisely

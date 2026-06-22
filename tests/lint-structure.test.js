@@ -1,5 +1,5 @@
 // Tests for the STRUCTURAL lint rules of the mcts-mem CLI:
-//   R-root, R-orphan, R-empty, R-title, R-sections, R-items, R-tail
+//   R-root, R-orphan, R-empty, R-altnest, R-title, R-sections, R-items, R-tail
 //
 // Strategy: start from the lint-clean tree (validFiles()) and perturb exactly
 // ONE thing per case, so we know which rule must fire. For every rule we assert
@@ -204,6 +204,69 @@ test('R-empty: an .alt/ dir that DOES contain a .md does not fire R-empty', asyn
     'a.alt/old.md': `${ITEM('Old', 'O')}\n## Moves\n\n- 2031-01-01 (00000001) replaced by [[a]]: lost (code).\n`,
   });
   assert.ok(!fired(r, 'R-empty'));
+});
+
+// ===========================================================================
+// R-altnest — an .alt member must not have its own .alt/. Alternatives are
+// rivals for ONE decision (a flat set under the live node); a supersession
+// chain flattens to siblings, with the lineage carried by the paired Moves.
+// ===========================================================================
+
+// validFiles() has a flat page-cache.alt/write-through.md — give write-through
+// its OWN alt (disk-log) and the .alt/ nests, which is what R-altnest forbids.
+function nestedAltFiles() {
+  const f = h.validFiles();
+  f['acorn/page-cache.alt/write-through.md'] =
+`- Every mutation writes its page to disk before returning.
+
+## Moves
+
+- 2031-03-01 (aa11bb22) replaced [[disk-log]]: the append-only disk log forced a sequential scan on every read (code).
+
+- 2031-04-02 (ab12cd34) replaced by [[page-cache]]: write-through stalled every mutation on disk latency; batching at eviction removed the stall (code).
+`;
+  f['acorn/page-cache.alt/write-through.alt/disk-log.md'] =
+`- Mutations append to a single on-disk log; reads scan the whole log.
+
+## Moves
+
+- 2031-03-01 (aa11bb22) replaced by [[write-through]]: the append-only disk log forced a sequential scan on every read (code).
+`;
+  return f;
+}
+
+test('R-altnest: the flat valid tree does not fire R-altnest', async () => {
+  const r = await h.lintFiles(h.validFiles());
+  assert.ok(!fired(r, 'R-altnest'));
+});
+
+test('R-altnest: an .alt member with its own .alt/ fires R-altnest (only)', async () => {
+  const r = await h.lintFiles(nestedAltFiles());
+  onlyRule(r, 'R-altnest');
+  assert.match(r.errors.find((e) => e.rule === 'R-altnest').path, /write-through\.alt$/);
+});
+
+test('R-altnest: a child of an .alt member MAY have its own .alt/ (rejected branch keeps its design)', async () => {
+  // page-cache.alt/write-through (alt member) has a child `flush`, and flush has
+  // its own alternative — that is the internal design of a rejected branch, not
+  // a nested rival, so R-altnest must NOT fire on it.
+  const f = h.validFiles();
+  f['acorn/page-cache.alt/write-through/flush.md'] =
+`- Dirty pages flush on a fixed interval.
+
+## Moves
+
+- 2031-03-05 (cc33dd44) replaced [[flush-on-write]]: per-write flushing serialized the hot path (code).
+`;
+  f['acorn/page-cache.alt/write-through/flush.alt/flush-on-write.md'] =
+`- Each write flushes its own page immediately.
+
+## Moves
+
+- 2031-03-05 (cc33dd44) replaced by [[flush]]: per-write flushing serialized the hot path (code).
+`;
+  const r = await h.lintFiles(f);
+  assert.ok(!fired(r, 'R-altnest'), `R-altnest is for nested rivals, not a rejected branch's own design; got ${JSON.stringify(r.errors)}`);
 });
 
 // ===========================================================================

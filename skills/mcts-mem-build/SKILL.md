@@ -82,7 +82,10 @@ history.
 
 **`<name>.alt/`** holds the node's **rejected alternatives and superseded forms**, each a full
 frozen node with the reason it lost. **Walking into `.alt/` walks back in time.** An `.alt/`
-member's Moves always end in `replaced by` or `removed`.
+member's Moves always end in `replaced by` or `removed`. **`.alt/` is a *flat* set** — rivals
+for one decision are siblings, so an `.alt/` member never has its own `.alt/`. A supersession
+chain (A → B → C) lands as flat siblings under the live node; the order lives in the paired
+Moves, not in nested folders (the linter enforces this as `R-altnest`).
 
 **`<name>.fact/`** holds **graduated evidence** — a document too big for one `## Facts` line (a
 recovered design paper, a measurement table, a long diagnosis), linked from a `## Facts` entry.
@@ -141,6 +144,11 @@ does not read as a link; verbatim-why comparison ignores backticks and line-wrap
 
 - **A node exists only if a real alternative exists** (or was genuinely weighed). Otherwise the
   content is an Item on the nearest real node, or nothing. The tree is **not a module map**.
+- **Alternatives are a flat set.** A node's `.alt/` holds rivals for *one* decision as siblings;
+  an `.alt/` member never has its own `.alt/`. Successive superseded forms (A replaced by B
+  replaced by C) all sit side by side under the live node — the supersession order is recorded in
+  the paired Moves, not in nested folders. (A rejected branch's own *children* may still carry
+  their `.alt/`; what is forbidden is an alternative nesting alternatives.)
 - **Representation budget follows decision density.** An unweighed path stays thin — never pad
   a missing fact with description. Fact density is the confidence signal: a node thick with
   facts was fought over; a thin node honestly says "nobody weighed this; reconsider freely."
@@ -275,10 +283,37 @@ boundary conditions, the rules that make it correct (an underflow guard that nev
 error built at the decode boundary but never raised) — is instructive and is filed at its fix;
 a generic coding slip with no mechanism-specific lesson is skipped.
 
+*The transition gate:* a transition is a re-decision between **two different mechanisms** — its
+old and new must name different things. If old and new are the same mechanism, or the only change
+is internal logic, a thread-safety guard (a lock, a marshal-to-thread), a null/bounds check, a
+dedup or already-done flag, a scale/DPI correction, or a perf tweak that keeps the same form, it
+is **not** a transition — it is a pitfall fact (if it teaches a mechanism invariant) or nothing.
+A bug fix earns a transition only when it changes the mechanism's **form, representation, or
+type-signature** (an ownership model `ScopedPtr`→raw pointer; a value returned
+by-reference→by-value). Recording bug fixes and thread-safety guards as transitions is the
+sweep's second-most-common false positive after paperwork.
+
 Distinct from a bug: an **unimplemented** capability (a `TODO`, a stub, a missing branch — the
 code does not do it at all) must never be asserted by an Item, even when it is the design's
 evident intent. State only what the code performs; the unimplemented half is recorded when it
 is implemented.
+
+### Paperwork is not design
+
+A large fraction of commits touch no decision at all, and the sweep's single most common failure
+is dressing one as a decision. **Always SKIP — never a transition or birth:** build / packaging /
+link configuration (`BUILD.gn`, CMake, `.mk`, `.gni`, linker or compiler flags, SHARED↔STATIC,
+`.so`/`.a` bundling, load entry-point renames); version bumps of build / test / lint / CI tooling;
+generated files; **pure renames and moves** (a file, directory, or symbol relocated — including
+across namespaces — with the design unchanged); **convention / style** (guard-macro
+standardization, include reordering, formatting, lint, comments, license, typos); and
+**test-only / docs / example** edits that reveal no engine decision. Identity across a rename is
+re-derived later from name + anchors, so a pure rename needs no transition; record the design
+change *only* when the rename also changes the design. (Adopting or dropping the engine's own
+*runtime* capability is still a re-decision — it is the link mode and packaging of a dependency,
+not its existence, that is paperwork.) A weaker sweep model over-records this and the transition
+gate above far more than a strong one, so the miner prompt must name both traps explicitly, and
+the audit must hunt them (see Stage 4).
 
 ### The regeneration test (what is even an Item)
 
@@ -386,8 +421,9 @@ One agent reads the skeleton and **every record — never the diffs.** In order:
 
 1. **Identity** — cluster records into concept timelines by anchors and names; transitions
    stitch timelines across their own rename boundaries.
-2. **Fold, in seq order** — each timeline's transitions become a node and its generational
-   `.alt/` chain (the final form is a skeleton concept; predecessors nest by generation). Move
+2. **Fold, in seq order** — each timeline's transitions become a node and a *flat* `.alt/` of its
+   superseded forms (the final form is the live node; every predecessor is a sibling alternative,
+   never nested under another). Move
    pairs are generated from each transition's single `why`, so they are verbatim by
    construction. `frozen_items` become the alt's items; facts attach to the generation current
    at their seq; a `dropped` lands on the surviving parent. Aspect promotion is decided here,
@@ -420,6 +456,11 @@ never commit messages** — re-checks the work. It is detection-only; it never e
   structure: a replaced working mechanism is a re-decision (loser in `.alt/`, paired Moves); an
   expressivity-wall aspect is a promoted node+alt, not a fact, not buried on an unrelated node,
   not mislabeled (`dropped` vs `replaced`).
+- **False positives** — run completeness in reverse: every recorded transition must be a *real*
+  re-decision. Flag any whose old and new are the same mechanism, or that is paperwork-shaped (a
+  rename, a build/link tweak, a namespace move) or bug-fix-shaped (a guard, a null/bounds check, a
+  thread-safety lock, a dedup flag). These are the sweep's two commonest false positives and must
+  be demoted to a pitfall fact or dropped, not left as a spurious `.alt/` re-decision.
 - **Spot-check** — re-derive a few RECORD/COVERED/SKIP rows from their diffs; confirm no
   intent-guess hides under a `(code)` or `(sourced)` tag (it should be `(uncertain)`).
 
@@ -467,7 +508,7 @@ and merge them. The discipline, learned the hard way:
   as if the project chose the new codebase *over* the old one — they are one continuous project.
   (This exact false fork was built and rejected twice on the reference project.)
 - Only genuinely **re-decided** forms — where the new era made a different choice and the old
-  one hit a wall — become `.alt/` generations, with the why; un-recoverable whys are tagged
+  one hit a wall — become flat `.alt/` siblings, with the why; un-recoverable whys are tagged
   `(uncertain)`.
 
 ### Stage 7 — Certify
