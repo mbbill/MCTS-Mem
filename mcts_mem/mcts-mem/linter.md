@@ -3,8 +3,7 @@
   Facts and Moves are never edited, every entry carries a provenance tag, and no node is a
   bare module-map entry.
 
-- It ships in two implementations: the Node CLI (`mcts-mem`, with `lint`/`view`/`show`/
-  `uncertain`) and a richer `lint.py` that also validates the one-time build's scratch files.
+- It ships as the Node CLI (`mcts-mem`, with `lint`/`view`/`show`/`uncertain`).
 
 - The README is the specification; each rule is cited by its ID rather than restated in a
   separate grammar document.
@@ -38,3 +37,7 @@
 - 2026-06-19 replaced [[prose-rules]]: prompt-tuning alone could not collapse agent variance
   on structural violations, while encoding them as mechanical checks made the violations
   impossible or visible (sourced).
+
+- 2026-06-22 dropped: the Python `lint.py` second implementation — the Node CLI is the single
+  linter going forward, and lint.py's extra build-time validation features were left
+  unimplemented as unused (code).
