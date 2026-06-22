@@ -3,6 +3,7 @@
 import { lint } from './lint.js';
 import { view, show } from './view.js';
 import { uncertain } from './uncertain.js';
+import { serve } from './serve.js';
 
 const VERSION = '0.1.0';
 const DEFAULT_ROOT = 'mcts_mem';
@@ -42,6 +43,12 @@ commands:
         List every (uncertain) entry — the worklist of decisions whose why is not
         yet backed by code or a source.
 
+  serve [path] [--port N]
+        Open a local web viewer for the tree (default port 4173). Reads the tree
+        live from disk and serves it at http://localhost:<port>, reusing the same
+        model as lint/view so the browser and the CLI never disagree. Runs until
+        interrupted.
+
   help | --help | -h        show this
   --version                 print version
 `;
@@ -52,6 +59,7 @@ function parse(args) {
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === '--depth') flags.depth = Number(args[++i]);
+    else if (a === '--port') flags.port = Number(args[++i]);
     else if (a === '--skeleton') flags.skeleton = true;
     else if (a === '--alt') flags.alt = true;
     else if (a.startsWith('--')) flags[a.slice(2)] = true;
@@ -97,6 +105,11 @@ export function run(argv) {
       case 'uncertain': {
         const root = pos[0] || DEFAULT_ROOT;
         return uncertain(root);
+      }
+      case 'serve': {
+        const root = pos[0] || DEFAULT_ROOT;
+        serve(root, { port: flags.port });
+        return undefined; // server keeps the process alive
       }
       default:
         console.error(`unknown command: ${cmd}\n`);

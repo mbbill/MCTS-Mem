@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+}
+body {
+  font: 14px/1.5 system-ui, sans-serif;
+  color: #1a1a1a;
+  background: #fafafa;
+}
+
+.canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  cursor: grab;
+}
+.canvas:active {
+  cursor: grabbing;
+}
+
+.link {
+  fill: none;
+  stroke: #cdcdcd;
+  stroke-width: 1;
+  stroke-dasharray: 1; /* with pathLength="1" this animates the draw, length-independent */
+  animation: link-draw 280ms ease both;
+}
+.link.alt {
+  stroke: #e0c4a8; /* warm tint, matches the ↩ cue */
+}
+@keyframes link-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.node {
+  transition: transform 240ms cubic-bezier(0.4, 0, 0.2, 1);
+  animation: node-in 220ms ease both;
+}
+@keyframes node-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.node rect {
+  fill: #fff;
+  stroke: #d2d2d2;
+  stroke-width: 1;
+}
+.node text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  fill: #1a1a1a;
+  text-anchor: start;
+  pointer-events: none;
+}
+
+/* +/- expand/collapse toggle */
+.toggle {
+  cursor: pointer;
+}
+.toggle rect {
+  fill: #fff;
+  stroke: #c2c2c2;
+  stroke-width: 1;
+}
+.toggle:hover rect {
+  fill: #eef2ff;
+  stroke: #6b8aff;
+}
+.toggle text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  fill: #555;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+/* ↩N alternatives cue (left of the node) — warm tint, distinct from the +/- */
+.altcue {
+  cursor: pointer;
+}
+.altcue rect {
+  fill: #fff;
+  stroke: #d8b48f;
+  stroke-width: 1;
+}
+.altcue:hover rect {
+  fill: #fdf3ea;
+  stroke: #d98a3d;
+}
+.altcue text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  fill: #b07435;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.state {
+  padding: 48px;
+  color: #666;
+}
+.err {
+  color: #b00020;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node,
+  .link {
+    transition: none;
+    animation: none;
+  }
+}
