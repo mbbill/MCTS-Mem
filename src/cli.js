@@ -1,11 +1,15 @@
 // mcts-mem — build, verify, and explore an MCTS-Mem design tree.
 
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { lint } from './lint.js';
 import { view, show } from './view.js';
 import { uncertain } from './uncertain.js';
 import { serve } from './serve.js';
 
-const VERSION = '0.1.0';
+const here = path.dirname(fileURLToPath(import.meta.url));
+const VERSION = JSON.parse(fs.readFileSync(path.join(here, '..', 'package.json'), 'utf8')).version;
 const DEFAULT_ROOT = 'mcts_mem';
 
 const HELP = `mcts-mem — work with an MCTS-Mem design tree

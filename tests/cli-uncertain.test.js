@@ -11,6 +11,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import * as h from './helpers.js';
+import pkg from '../package.json' with { type: 'json' };
 
 // ---- small helpers -------------------------------------------------------
 
@@ -85,7 +86,7 @@ test('dispatch: "--version" prints a version string, exit 0', () => {
   const r = h.runCli(['--version']);
   assert.equal(r.code, 0);
   assert.match(r.stdout.trim(), /^\d+\.\d+\.\d+$/);
-  assert.equal(r.stdout.trim(), '0.1.0');
+  assert.equal(r.stdout.trim(), pkg.version);
 });
 
 test('dispatch: "-v" also prints version, exit 0', () => {
