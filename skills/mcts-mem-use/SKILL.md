@@ -2,16 +2,12 @@
 name: mcts-mem-use
 description: >-
   Consult and maintain an MCTS-Mem design tree — a structured, verifiable record of *why*
-  a project is built the way it is: the decisions that still hold, the alternatives that
-  were tried and rejected, and the dated facts that drove each. Use this skill BEFORE you
-  plan, design, refactor, extend, or rewrite anything in a repository that contains an
-  `mcts_mem/` folder, and AGAIN before you finalize a change that re-decides something —
-  even if the user never mentions the tree — because reading it first stops you re-deriving
-  or re-breaking choices that were already settled and measured, and updating it after stops
-  the tree drifting out of sync with the code (a drifted tree misleads every later reader).
-  Also triggers on "check the design tree", "what does the tree say about X", "update the
-  design tree", "does this change need a tree update", or any non-trivial design or
-  architecture work in a repo that has an `mcts_mem/` folder.
+  a project is built the way it is: the decisions in force, the alternatives that were
+  tried and rejected, and the dated evidence behind each. Invoke only on an explicit
+  request — the user names the skill, or asks directly to consult the tree ("check the
+  design tree", "what does the tree say about X") or to maintain it ("update the design
+  tree", "record this decision"). Never trigger it uninvited, even for design or
+  architecture work in a repository that has an `mcts_mem/` folder.
 ---
 
 # Working with an MCTS-Mem design tree

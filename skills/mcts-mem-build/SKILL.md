@@ -1,17 +1,13 @@
 ---
 name: mcts-mem-build
 description: >-
-  Build an MCTS-Mem design tree for an existing project by reconstructing its design history
-  — the decisions that still hold, the alternatives that were tried and dropped, and the
-  dated facts that drove each — recovered from git history, plus any design documents, papers,
-  or author input where available. Use this skill when someone wants to create, bootstrap, set up, generate,
-  or extract an MCTS-Mem tree for a repository that does not yet have an `mcts_mem/` folder,
-  capture *why* a codebase is the way it is, or
-  recover the design rationale buried in a project's history. This is a one-time,
-  history-spanning job that stands up the design memory the `mcts-mem-use` skill then keeps
-  current. Reach for it on requests like "build a design tree for this repo", "extract the
-  design history", "set up MCTS-Mem here", "capture the decisions behind this codebase", or
-  "recover why we built X the way we did".
+  Build an MCTS-Mem design tree for an existing project by recovering its design history —
+  the decisions that still hold, the alternatives that were tried and dropped, and the
+  dated evidence behind each — from git history, design documents, papers, and author
+  input. A one-time, history-spanning job that stands up the design memory the
+  `mcts-mem-use` skill then keeps current. Invoke only on an explicit request — the user
+  names the skill, or asks directly to build, set up, or extract a design tree for a
+  repository. Never trigger it uninvited.
 ---
 
 # Building an MCTS-Mem tree from a project's history

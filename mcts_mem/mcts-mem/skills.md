@@ -16,6 +16,11 @@
   skill, not the use skill, because when using an existing tree the live nodes are the example
   (sourced).
 
+- 2026-07-12 correction: the separation rationale's premise that `use` fires implicitly no
+  longer holds — both skills now trigger only on an explicit request ([[triggering]]), and
+  the skills stay separate regardless, since a merged skill would still load irrelevant
+  content for whichever moment it fired on (code).
+
 ## Moves
 
 - 2026-06-19 replaced [[external-reference-skills]]: a skill that points at sibling grammar
