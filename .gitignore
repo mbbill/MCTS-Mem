@@ -145,3 +145,18 @@ vite.config.ts.timestamp-*
 # Local Claude Code settings (personal; includes a permission-bypass hook)
 .claude/
 /.mcts-extraction/
+
+# Playwright MCP session artifacts
+.playwright-mcp/
+
+# Paper working data (regenerable / downloaded): cloned repos, eval run
+# outputs and workdirs, generated condition payloads, source PDFs.
+paper/repos/
+paper/sources/*.pdf
+paper/evaluations/*/results/
+paper/evaluations/*/tmp/
+paper/evaluations/*/logs/
+paper/evaluations/*/cutoffs/
+paper/evaluations/*/datasets/
+paper/evaluations/*/conditions/
+paper/evaluations/*/extraction/
