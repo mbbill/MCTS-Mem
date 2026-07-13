@@ -98,12 +98,16 @@ function stemOf(p) {
   return path.basename(p).slice(0, -3);
 }
 
-// logical path: relative to root, with .alt segments stripped (pivot-proof)
+// logical path: relative to root, with .alt folders omitted. An .alt member
+// occupies the same decision slot as the node it replaced, not a child slot:
+//   silverfir/compiler.alt/fast-interpreter.md → silverfir/fast-interpreter
+// Children under that alt remain below the alt member:
+//   silverfir/compiler.alt/fast-interpreter/neutral-ir.md → silverfir/fast-interpreter/neutral-ir
 export function logical(root, p) {
   const rel = path.relative(root, p).slice(0, -3);
   return rel
     .split(path.sep)
-    .map((seg) => (seg.endsWith('.alt') ? seg.slice(0, -4) : seg))
+    .filter((seg) => !seg.endsWith('.alt'))
     .join('/');
 }
 

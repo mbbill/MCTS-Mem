@@ -273,7 +273,7 @@ test('uncertain: two entries across two nodes → both paths listed, plural coun
   });
 });
 
-test('uncertain: an (uncertain) entry inside an .alt member is reported under its .alt-stripped logical path', () => {
+test('uncertain: an (uncertain) entry inside an .alt member is reported under its .alt-omitted logical path', () => {
   const v = h.validFiles();
   // the .alt member already ends in "replaced by" (frozen); add an uncertain fact to it.
   v['acorn/page-cache.alt/write-through.md'] =
@@ -289,8 +289,8 @@ test('uncertain: an (uncertain) entry inside an .alt member is reported under it
 `;
   withUncertain(v, (_t, r) => {
     assert.equal(r.code, 0);
-    // logical() strips the .alt segment: page-cache.alt/write-through → page-cache/write-through
-    assert.match(r.stdout, /^acorn\/page-cache\/write-through$/m);
+    // logical() omits the .alt folder: page-cache.alt/write-through → acorn/write-through
+    assert.match(r.stdout, /^acorn\/write-through$/m);
     assert.match(r.stdout, /\(00000abc\) why this was originally chosen is lost/);
     assert.match(r.stdout, /^1 uncertain entry: /m);
   });

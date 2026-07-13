@@ -65,6 +65,33 @@ test('serve: /api/tree returns the serialized tree as JSON', async () => {
   }
 });
 
+test('serve: /api/node returns one node details lazily', async () => {
+  const t = h.tmpTree(h.validFiles());
+  try {
+    const res = await call(t.root, '/api/node?path=acorn%2Fpage-cache');
+    assert.equal(res.statusCode, 200);
+    assert.match(res.headers['content-type'], /application\/json/);
+    const body = JSON.parse(res.body);
+    assert.equal(body.node.name, 'page-cache');
+    assert.ok(body.node.items[0].startsWith('Reads go'));
+    assert.equal(body.node.facts.length, 1);
+    assert.equal(body.node.moves.length, 1);
+  } finally {
+    t.cleanup();
+  }
+});
+
+test('serve: /api/node returns 404 for a missing node path', async () => {
+  const t = h.tmpTree(h.validFiles());
+  try {
+    const res = await call(t.root, '/api/node?path=acorn%2Fmissing');
+    assert.equal(res.statusCode, 404);
+    assert.match(JSON.parse(res.body).error, /node not found/);
+  } finally {
+    t.cleanup();
+  }
+});
+
 test('serve: a non-servable tree yields 500 (headers not pre-sent before serialize)', async () => {
   const t = h.tmpTree({ 'a.md': '- one.\n', 'b.md': '- two.\n' }); // two roots → treeJson throws
   try {

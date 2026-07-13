@@ -131,6 +131,13 @@ describe('buildLayout — alternatives', () => {
     expect(r.altLinks[0].source.data.name).toBe('aa');
     expect(r.altLinks[0].target.data.name).toBe('aa-alt');
   });
+
+  it('marks rendered alternatives as isAlt so the UI can style them differently', () => {
+    const r = buildLayout(tree, new Set(['root']), new Set(['root/aa']));
+    expect(node(r, 'root').isAlt).toBe(false);
+    expect(node(r, 'aa').isAlt).toBe(false);
+    expect(node(r, 'aa-alt').isAlt).toBe(true);
+  });
 });
 
 describe('linkPath (child elbow)', () => {

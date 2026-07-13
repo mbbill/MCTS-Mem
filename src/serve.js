@@ -9,7 +9,7 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { treeJson } from './api.js';
+import { treeJson, nodeJson } from './api.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_DIST = path.join(here, '..', 'viewer', 'dist');
@@ -37,6 +37,20 @@ export function createHandler(root, dist = DEFAULT_DIST) {
         res.end(body);
       } catch (e) {
         res.writeHead(500, { 'content-type': 'application/json' });
+        res.end(JSON.stringify({ error: e.message }));
+      }
+      return;
+    }
+
+    if (url.pathname === '/api/node') {
+      try {
+        const p = url.searchParams.get('path');
+        if (!p) throw new Error('missing ?path=...');
+        const body = JSON.stringify(nodeJson(root, p)); // serialize BEFORE writing headers
+        res.writeHead(200, { 'content-type': 'application/json' });
+        res.end(body);
+      } catch (e) {
+        res.writeHead(404, { 'content-type': 'application/json' });
         res.end(JSON.stringify({ error: e.message }));
       }
       return;

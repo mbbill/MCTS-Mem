@@ -270,13 +270,14 @@ test('ENTRY_HEAD / PROV / MOVE_VERB raw behavior', () => {
 });
 
 // ===========================================================================
-// logical() — strip .alt segments (pivot-proof), keep .fact
+// logical() — omit .alt folders (alts occupy the replaced node's slot), keep .fact
 // ===========================================================================
 
-test('logical: strips .alt segments so a pivot does not change a path', () => {
-  assert.equal(logical('/r', '/r/a/b.alt/c.md'), 'a/b/c');
-  // multiple .alt segments all stripped
-  assert.equal(logical('/r', '/r/x.alt/y.alt/z.md'), 'x/y/z');
+test('logical: omits .alt folders so an alternative replaces the base node slot', () => {
+  assert.equal(logical('/r', '/r/a/b.alt/c.md'), 'a/c');
+  assert.equal(logical('/r', '/r/a/b.alt/c/d.md'), 'a/c/d');
+  // multiple .alt folders all omitted
+  assert.equal(logical('/r', '/r/x.alt/y.alt/z.md'), 'z');
 });
 
 test('logical: keeps the .fact suffix (it is part of the logical name)', () => {

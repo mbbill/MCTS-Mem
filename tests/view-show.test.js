@@ -370,14 +370,14 @@ test('show <root>: exits 0, has no Moves section and no alternatives section', (
   } finally { t.cleanup(); }
 });
 
-test('show <alt member>: logical path drops .alt and marks it superseded/rejected', () => {
+test('show <alt member>: logical path omits .alt folder and marks it superseded/rejected', () => {
   const t = h.tmpTree(h.validFiles());
   try {
     const r = show('write-through', t.root);
     assert.equal(r.code, 0, r.stderr);
     const first = lines(r.stdout)[0];
-    // logical path strips ".alt" → acorn/page-cache/write-through
-    assert.match(first, /^acorn\/page-cache\/write-through\b/);
+    // logical path omits the .alt folder → the alternative replaces page-cache's slot
+    assert.match(first, /^acorn\/write-through\b/);
     assert.match(first, /superseded \/ rejected — in \.alt\//);
     // the alt has Moves (ends in "replaced by") but no Facts
     assert.match(r.stdout, /## Moves/);

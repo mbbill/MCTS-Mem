@@ -4,17 +4,41 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import * as h from './helpers.js';
-import { treeJson } from '../src/api.js';
+import { treeJson, nodeJson } from '../src/api.js';
 
-test('treeJson: serializes items, facts, moves, alts and resolved links', () => {
+test('treeJson: serializes the structural tree without heavy detail entries', () => {
   const t = h.tmpTree(h.validFiles());
   try {
     const { root } = treeJson(t.root);
     assert.equal(root.name, 'acorn');
-    assert.ok(root.items.length >= 1 && root.items[0].startsWith('Acorn stores'));
+    assert.equal(root.items, undefined);
 
     const pc = root.children.find((c) => c.name === 'page-cache');
     assert.ok(pc, 'page-cache is a child of acorn');
+    assert.equal(pc.facts, undefined);
+    assert.equal(pc.moves, undefined);
+
+    // alternatives are separate from children, and flagged inAlt
+    assert.equal(pc.children.length, 0);
+    assert.equal(pc.alts.length, 1);
+    assert.equal(pc.alts[0].name, 'write-through');
+    assert.equal(pc.alts[0].inAlt, true);
+
+    // lightweight semantic counts remain on the structural payload
+    assert.deepEqual(pc.counts, { facts: 1, moves: 1, alts: 1, children: 0 });
+    assert.equal(pc.weight, 'normal');
+    assert.deepEqual(pc.provenance, { code: 2, sourced: 0, uncertain: 0 });
+  } finally {
+    t.cleanup();
+  }
+});
+
+test('nodeJson: serializes one node details lazily, including resolved links', () => {
+  const t = h.tmpTree(h.validFiles());
+  try {
+    const { node: pc } = nodeJson(t.root, 'acorn/page-cache');
+    assert.equal(pc.name, 'page-cache');
+    assert.ok(pc.items.length >= 1 && pc.items[0].startsWith('Reads go'));
 
     // a fact, parsed with provenance + cleaned claim text
     assert.equal(pc.facts.length, 1);
@@ -30,12 +54,6 @@ test('treeJson: serializes items, facts, moves, alts and resolved links', () => 
     assert.equal(pc.moves[0].targetName, 'write-through');
     assert.ok(pc.moves[0].target.endsWith('write-through'));
 
-    // alternatives are separate from children, and flagged inAlt
-    assert.equal(pc.children.length, 0);
-    assert.equal(pc.alts.length, 1);
-    assert.equal(pc.alts[0].name, 'write-through');
-    assert.equal(pc.alts[0].inAlt, true);
-
     // counts, provenance distribution, graduated fact files
     assert.deepEqual(pc.counts, { facts: 1, moves: 1, alts: 1, children: 0 });
     assert.deepEqual(pc.provenance, { code: 2, sourced: 0, uncertain: 0 });
@@ -45,7 +63,7 @@ test('treeJson: serializes items, facts, moves, alts and resolved links', () => 
   }
 });
 
-test('treeJson: weight reflects fact density (fought-over / normal / unweighed)', () => {
+test('nodeJson: weight reflects fact density (fought-over / normal / unweighed)', () => {
   const facts5 = Array.from({ length: 5 }, (_, i) => `- 2031-01-0${i + 1} statement: fact ${i} (code).`).join('\n\n');
   const files = {
     'r.md': '- root.\n',
@@ -55,11 +73,9 @@ test('treeJson: weight reflects fact density (fought-over / normal / unweighed)'
   };
   const t = h.tmpTree(files);
   try {
-    const { root } = treeJson(t.root);
-    const by = Object.fromEntries(root.children.map((c) => [c.name, c.weight]));
-    assert.equal(by.fought, 'fought-over'); // >= 5 facts
-    assert.equal(by.thin, 'normal'); // some signal, < 5
-    assert.equal(by.bare, 'unweighed'); // no facts/moves/alts
+    assert.equal(nodeJson(t.root, 'r/fought').node.weight, 'fought-over'); // >= 5 facts
+    assert.equal(nodeJson(t.root, 'r/thin').node.weight, 'normal'); // some signal, < 5
+    assert.equal(nodeJson(t.root, 'r/bare').node.weight, 'unweighed'); // no facts/moves/alts
   } finally {
     t.cleanup();
   }

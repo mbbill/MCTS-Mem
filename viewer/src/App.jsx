@@ -19,6 +19,10 @@ import {
   ALT_H,
   ALT_GAP,
 } from './layout.js';
+import DetailsPane from './DetailsPane.jsx';
+import { pathTo, selectedNode } from './details.js';
+import { paneRect } from './pane.js';
+import { confidenceChecks, provenanceBadge } from './semantics.js';
 
 // The current-design tree, collapsible. Two independent toggles per node:
 //   [+]  on the right  → children (sub-decisions), expand to the right
@@ -30,6 +34,10 @@ export default function App() {
   const [err, setErr] = useState(null);
   const [expanded, setExpanded] = useState(() => new Set()); // children open
   const [altsOpen, setAltsOpen] = useState(() => new Set()); // alternatives open
+  const [selectedPath, setSelectedPath] = useState(null);
+  const [detailsByPath, setDetailsByPath] = useState(() => new Map());
+  const [detailsErr, setDetailsErr] = useState(null);
+  const [savedPaneRect, setSavedPaneRect] = useState(null);
   const svgRef = useRef(null);
   const gRef = useRef(null);
   const firstFit = useRef(true);
@@ -58,10 +66,36 @@ export default function App() {
     flip(setAltsOpen, path);
   };
 
+  const navigateTo = (targetPath) => {
+    const route = root ? pathTo(root, targetPath) : null;
+    if (!route) return;
+    const childParents = route.filter((s) => s.edge === 'children').map((s) => s.parentPath);
+    const altParents = route.filter((s) => s.edge === 'alts').map((s) => s.parentPath);
+    if (childParents.length) setExpanded((prev) => new Set([...prev, ...childParents]));
+    if (altParents.length) setAltsOpen((prev) => new Set([...prev, ...altParents]));
+    pendingReveal.current = { path: targetPath, kind: 'node' };
+    setSelectedPath(targetPath);
+  };
+
   const layout = useMemo(
     () => (root ? buildLayout(root, expanded, altsOpen) : null),
     [root, expanded, altsOpen]
   );
+
+  useEffect(() => {
+    if (!selectedPath || detailsByPath.has(selectedPath)) return;
+    let cancelled = false;
+    setDetailsErr(null);
+    fetch(`/api/node?path=${encodeURIComponent(selectedPath)}`)
+      .then((r) => r.json())
+      .then((d) => {
+        if (cancelled) return;
+        if (d.error) setDetailsErr(d.error);
+        else setDetailsByPath((prev) => new Map(prev).set(selectedPath, d.node));
+      })
+      .catch((e) => !cancelled && setDetailsErr(String(e)));
+    return () => { cancelled = true; };
+  }, [selectedPath, detailsByPath]);
 
   useEffect(() => {
     if (!layout || !svgRef.current) return;
@@ -86,7 +120,7 @@ export default function App() {
     if (rev) {
       const clicked = layout.nodes.find((n) => n.data.path === rev.path);
       if (clicked) {
-        const revealed = rev.kind === 'alts' ? clicked.altKids : clicked.kids;
+        const revealed = rev.kind === 'alts' ? clicked.altKids : rev.kind === 'kids' ? clicked.kids : [];
         const target = revealTransform(
           zoomTransform(svgRef.current),
           nodesBBox([clicked, ...revealed]),
@@ -107,9 +141,15 @@ export default function App() {
   if (err) return <div className="state err">Failed to load tree: {err}</div>;
   if (!root) return <div className="state">Loading…</div>;
 
+  const nodes = layout.nodes;
+  const selected = selectedNode(nodes, selectedPath);
+  const selectedDetails = selectedPath ? detailsByPath.get(selectedPath) : null;
+  const currentPaneRect = selected ? paneRect(savedPaneRect, window.innerWidth, window.innerHeight) : null;
+
   return (
-    <svg ref={svgRef} className="canvas">
-      <g ref={gRef}>
+    <>
+      <svg ref={svgRef} className="canvas">
+        <g ref={gRef}>
         <g className="links">
           {layout.childLinks.map((l) => (
             <path
@@ -129,13 +169,30 @@ export default function App() {
           ))}
         </g>
         <g className="nodes">
-          {layout.nodes.map((n) => {
+          {nodes.map((n) => {
             const w = nodeW(n.data.name);
             const kidsOpen = expanded.has(n.data.path);
+            const prov = provenanceBadge(n.data.provenance);
+            const checks = confidenceChecks(n.data.weight);
             return (
-              <g key={n.data.path} className="node" style={{ transform: nodeTransform(n) }}>
+              <g
+                key={n.data.path}
+                className={`node${n.isAlt ? ' alt-node' : ''}${selectedPath === n.data.path ? ' selected' : ''}`}
+                style={{ transform: nodeTransform(n) }}
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedPath(n.data.path);
+                }}
+              >
                 <rect x={0} y={-NODE_H / 2} width={w} height={NODE_H} rx="6" />
                 <text x={TEXT_PAD} dy="0.32em">{n.data.name}</text>
+                {prov && <text className={`prov-badge ${prov === '?' ? 'uncertain' : ''}`} x={-5} y={-NODE_H / 2 - 2}>{prov}</text>}
+                <g className="confidence" transform={`translate(${prov ? 10 : -3},${-NODE_H / 2 - 3})`}>
+                  {[0, 1, 2].map((i) => (
+                    <text key={i} className={i < checks ? 'on' : 'off'} x={i * 5} y={0}>✓</text>
+                  ))}
+                </g>
                 {hasChildren(n) && (
                   <g
                     className="toggle"
@@ -168,7 +225,19 @@ export default function App() {
             );
           })}
         </g>
-      </g>
-    </svg>
+        </g>
+      </svg>
+      {selected && (
+        <DetailsPane
+          node={{ ...selected, data: { ...selected.data, ...(selectedDetails || {}) } }}
+          rect={currentPaneRect}
+          onRectChange={setSavedPaneRect}
+          loading={!selectedDetails && !detailsErr}
+          error={detailsErr}
+          onClose={() => setSelectedPath(null)}
+          onNavigate={navigateTo}
+        />
+      )}
+    </>
   );
 }
