@@ -1,0 +1,39 @@
+{
+  "id": 48,
+  "file": "cases_41_50.md",
+  "title": "Owned Starlight not Yoga",
+  "maxScore": 5,
+  "codeOnlyScore": 4,
+  "mctsAwareScore": 5,
+  "codeOnlyPct": 80.0,
+  "mctsAwarePct": 100.0,
+  "gapScore": 1,
+  "gapPct": 20.0,
+  "codeOnlyAnswer": "Based only on code and git evidence, the answer should push back on reintroducing Yoga/Yoga-compatible nodes/styles. Current code exposes and implements Starlight as Lynx's layout engine: the standalone C API uses SLNodeRef, SLNodeStyleSet*, SLNodeCalculateLayout, and StarlightMeasureDelegate, and its implementation wraps lynx::starlight::LayoutObject plus LayoutComputedStyle, not Yoga. Git history shows commit fc6e4ec1 titled replace yoga, deleting ReactCommon/yoga/* while adding ReactCommon/starlight/*, plus later Yoga cleanup/removal commits. A new layout feature should be added to Starlight's own style/model/API boundary rather than exporting Yoga semantics. Uncertainty: code/git show Yoga was replaced and removed, but do not fully explain the precise design rationale or reopening condition.",
+  "mctsAwareAnswer": "The design-aware answer should say no by default: Lynx's current design is an owned Starlight layout backend, not Yoga or a Yoga-compatibility facade. The MCTS node records owned Starlight layout backend identity and a renderer-independent layout scheduling/API boundary; its Yoga alternative is frozen in .alt and was replaced by layout-starlight in commit fc6e4ec1 with the recorded reason: owning the engine lets Lynx encode CSS-native style and measurement contracts directly and removes Yoga as a public semantic option. The feature should be designed as Starlight-native style/algorithm/API work, preserving the standalone/API boundary, not by exposing Yoga-compatible nodes/styles or making Yoga flex behavior public. Reopen Yoga only if new evidence shows the old rejection reason has lapsed.",
+  "gradeNotes": {
+    "codeOnly": "Strengths: identifies Starlight implementation, Yoga replacement/removal from git, standalone API/code anchors, and states uncertainty. Misses: precise recorded Yoga rejection reason and reopening condition tied to that reason.",
+    "mctsAware": "Covers live MCTS item, Yoga .alt replacement reason, standalone/API boundary, code anchors, and reopening condition tied to recorded reason."
+  },
+  "evidence": {
+    "mctsMem": [
+      "mcts_mem/lynx/layout-starlight.md",
+      "mcts_mem/lynx/layout-starlight.alt/third-party-yoga-nodes-styles-measure-modes-as-t-336b80.md",
+      "mcts_mem/lynx/layout-starlight/style-model.md",
+      "mcts_mem/lynx/layout-starlight/custom-measure.md"
+    ],
+    "code": [
+      "lynx/core/include/starlight_standalone/starlight.h",
+      "lynx/core/services/starlight_standalone/core/src/starlight.cc",
+      "lynx/core/renderer/starlight/layout/layout_object.h",
+      "lynx/core/renderer/starlight/style/layout_computed_style.h",
+      "core/services/starlight_standalone/javascript/src/Node.h",
+      "core/services/starlight_standalone/javascript/src/wrapAssembly.ts"
+    ],
+    "git": [
+      "fc6e4ec1 replace yoga",
+      "56f95369 删除yoga",
+      "ebf4bbce Remove unused code including old list layout code and Yoga feature"
+    ]
+  }
+}
