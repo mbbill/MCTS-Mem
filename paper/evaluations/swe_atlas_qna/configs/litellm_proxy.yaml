@@ -1,0 +1,19 @@
+model_list:
+  - model_name: claude-gpt-5.5
+    litellm_params:
+      model: anthropic/claude-gpt-5.5
+      api_base: http://127.0.0.1:8787
+      api_key: sk-local-proxy-dummy
+      timeout: 600
+  - model_name: claude-gpt-5.2-codex
+    litellm_params:
+      model: anthropic/claude-gpt-5.2-codex
+      api_base: http://127.0.0.1:8789
+      api_key: sk-local-proxy-dummy
+      timeout: 600
+litellm_settings:
+  drop_params: true
+  num_retries: 4
+  request_timeout: 600
+  allowed_fails: 1000
+  cooldown_time: 5

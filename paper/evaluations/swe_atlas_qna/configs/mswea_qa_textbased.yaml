@@ -1,0 +1,138 @@
+## Text-based variant of the QnA config.
+## Uses litellm.completion() (chat/completions) + regex-parsed ```mswea_bash_command```
+## actions instead of native Responses-API tool calls. This sidesteps the gpt-5.5
+## "empty command argument" tool-call collapse at large context (the native-tool-call
+## path degrades after ~66K tokens of accumulated tool history; the chat/completions
+## text path returns 200 cleanly at 84K). All else (answer protocol, step limit,
+## observation truncation) matches mswea_qa_config.yaml for comparability.
+agent:
+  system_template: |
+    You are a helpful assistant that can interact with a computer to answer questions
+    about a codebase.
+
+    Your response must contain EXACTLY ONE ```mswea_bash_command``` code block with ONE
+    command (you may chain steps inside it with && or ||). Output EXACTLY ONE action per
+    turn — do NOT batch multiple code blocks. Do NOT use any native "bash" tool or
+    tool-calls; the ONLY way to run a command is to write a single ```mswea_bash_command```
+    fenced block in your message text. Include a THOUGHT section before the block.
+
+    <format_example>
+    THOUGHT: Your reasoning and analysis here. Explain why you want to run the command.
+
+    ```mswea_bash_command
+    your_command_here
+    ```
+    </format_example>
+
+    Failure to follow these rules (more than one block, zero blocks, or a native tool call)
+    will cause your response to be rejected.
+  instance_template: |
+    {{task}}
+
+    You can execute bash commands to explore the codebase and gather evidence for your
+    answer. Do NOT modify any files in the repository.
+
+    ## Command Execution Rules
+
+    1. Every response must contain exactly ONE action enclosed in a single
+       ```mswea_bash_command ... ``` block, preceded by a THOUGHT section.
+    2. The system executes the command in a fresh subshell and returns the result.
+    3. Directory or environment variable changes are NOT persistent. Prefix any action with
+       `MY_ENV_VAR=MY_VALUE cd /path/to/dir && ...` or write/load env vars from files.
+
+    ## Submitting your answer
+
+    When you are confident in your answer, you MUST do it in two separate steps:
+
+    1. First, write your complete answer wrapped in <<FINAL_ANSWER>> tags to
+       /logs/agent/answer.txt:
+
+       ```mswea_bash_command
+       cat <<'ANSWER_EOF' > /logs/agent/answer.txt
+       <<FINAL_ANSWER>>
+       Your comprehensive answer here, including all relevant findings, code references, and explanations.
+       <<FINAL_ANSWER>>
+       ANSWER_EOF
+       ```
+
+    2. Then, in a SEPARATE follow-up response, submit exactly:
+
+       ```mswea_bash_command
+       echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT
+       ```
+
+    <important>You MUST write /logs/agent/answer.txt with <<FINAL_ANSWER>> tags BEFORE
+    submitting. After the submit command, you cannot continue working on this task.</important>
+
+    <system_information>
+    {{system}} {{release}} {{version}} {{machine}}
+    </system_information>
+
+    ## Useful command examples
+
+    ### View file content with line numbers:
+
+    ```mswea_bash_command
+    nl -ba filename.py | sed -n '10,20p'
+    ```
+
+    ### Search for patterns:
+
+    ```mswea_bash_command
+    grep -rn "pattern" /app/src/
+    ```
+
+    ### Explore directory structure:
+
+    ```mswea_bash_command
+    find /app -type f -name "*.py" | head -20
+    ```
+  step_limit: 250
+  cost_limit: 0.
+  max_consecutive_format_errors: 30
+environment:
+  cwd: /app
+  timeout: 900
+  env:
+    PAGER: cat
+    MANPAGER: cat
+    LESS: -R
+    PIP_PROGRESS_BAR: 'off'
+    TQDM_DISABLE: '1'
+model:
+  model_class: litellm_textbased
+  format_error_template: |
+    Your last response was rejected: {{error}}
+
+    You must put EXACTLY ONE command in a SINGLE ```mswea_bash_command``` fenced block,
+    and nothing outside fenced blocks should look like a command. Do NOT emit a native
+    "bash" tool call and do NOT emit more than one fenced block. Correct form:
+
+    THOUGHT: brief reasoning.
+
+    ```mswea_bash_command
+    your single command here
+    ```
+
+    To finish, send exactly one block containing: echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT
+  observation_template: |
+    {%- if output.output | length < 10000 -%}
+    {
+      "returncode": {{ output.returncode }},
+      "output": {{ output.output | tojson }}
+      {%- if output.exception_info %}, "exception_info": {{ output.exception_info | tojson }}{% endif %}
+    }
+    {%- else -%}
+    {
+      "returncode": {{ output.returncode }},
+      "output_head": {{ output.output[:5000] | tojson }},
+      "output_tail": {{ output.output[-5000:] | tojson }},
+      "elided_chars": {{ output.output | length - 10000 }},
+      "warning": "Output too long."
+      {%- if output.exception_info %}, "exception_info": {{ output.exception_info | tojson }}{% endif %}
+    }
+    {%- endif -%}
+  cost_tracking: ignore_errors
+  model_kwargs:
+    drop_params: true
+    temperature: 1.0

@@ -1,0 +1,597 @@
+[
+  {
+    "instance_id": "instance_flipt-io__flipt-02e21636c58e86c51119b63e0fb5ca7b813b07b1",
+    "repo": "flipt-io/flipt",
+    "base_commit": "85bb23a3571794c7ba01e61904bac6913c3d9729",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-02e21636c58e86c51119b63e0fb5ca7b813b07b1",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-02e21636c58e86c51119b63e0fb5ca7b813b07b1"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-05d7234fa582df632f70a7cd10194d61bd7043b9",
+    "repo": "flipt-io/flipt",
+    "base_commit": "b64891e57df74861e89ebcfa81394e4bc096f8c7",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-05d7234fa582df632f70a7cd10194d61bd7043b9",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-05d7234fa582df632f70a7cd10194d61bd7043b9"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-0b119520afca1cf25c470ff4288c464d4510b944",
+    "repo": "flipt-io/flipt",
+    "base_commit": "7620fe8bb64c0d875f419137acc5da24ca8e6031",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-0b119520afca1cf25c470ff4288c464d4510b944",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-0b119520afca1cf25c470ff4288c464d4510b944"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-0fd09def402258834b9d6c0eaa6d3b4ab93b4446",
+    "repo": "flipt-io/flipt",
+    "base_commit": "3ddd2d16f10a3a0c55c135bdcfa0d1a0307929f4",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-0fd09def402258834b9d6c0eaa6d3b4ab93b4446",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-0fd09def402258834b9d6c0eaa6d3b4ab93b4446"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-15b76cada1ef29cfa56b0fba36754be36243dded",
+    "repo": "flipt-io/flipt",
+    "base_commit": "77e21fd62a00c6d2d4fd55a7501e6a8a95404e2e",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-15b76cada1ef29cfa56b0fba36754be36243dded",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-15b76cada1ef29cfa56b0fba36754be36243dded"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-1737085488ecdcd3299c8e61af45a8976d457b7e",
+    "repo": "flipt-io/flipt",
+    "base_commit": "1f6255dda6648ecafd94826cda3fac2486af4b0f",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-1737085488ecdcd3299c8e61af45a8976d457b7e",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-1737085488ecdcd3299c8e61af45a8976d457b7e"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-1dceb5edf3fa8f39495b939ef9cc0c3dd38fa17d",
+    "repo": "flipt-io/flipt",
+    "base_commit": "eafbf82dbc497801453f91bc991421d7491d4e15",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-1dceb5edf3fa8f39495b939ef9cc0c3dd38fa17d",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-1dceb5edf3fa8f39495b939ef9cc0c3dd38fa17d"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-21a935ad7886cc50c46852be21b37f363a926af0",
+    "repo": "flipt-io/flipt",
+    "base_commit": "4e1cd36398ee73acf7d9235b517f05178651c464",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-21a935ad7886cc50c46852be21b37f363a926af0",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-21a935ad7886cc50c46852be21b37f363a926af0"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-292fdaca9be39e6a921aaa8874c011d0fdd3e874",
+    "repo": "flipt-io/flipt",
+    "base_commit": "2cdbe9ca09b33520c1b19059571163ea6d8435ea",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-292fdaca9be39e6a921aaa8874c011d0fdd3e874",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-292fdaca9be39e6a921aaa8874c011d0fdd3e874"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-29d3f9db40c83434d0e3cc082af8baec64c391a9",
+    "repo": "flipt-io/flipt",
+    "base_commit": "018129e08535e0a7ec725680a1e8b2c969a832e9",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-29d3f9db40c83434d0e3cc082af8baec64c391a9",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-29d3f9db40c83434d0e3cc082af8baec64c391a9"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-2ca5dfb3513e4e786d2b037075617cccc286d5c3",
+    "repo": "flipt-io/flipt",
+    "base_commit": "168f61194a4cd0f515a589511183bb1bd4f87507",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-2ca5dfb3513e4e786d2b037075617cccc286d5c3",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-2ca5dfb3513e4e786d2b037075617cccc286d5c3"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-2ce8a0331e8a8f63f2c1b555db8277ffe5aa2e63",
+    "repo": "flipt-io/flipt",
+    "base_commit": "f3421c143953d2a2e3f4373f8ec366e0904f9bdd",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-2ce8a0331e8a8f63f2c1b555db8277ffe5aa2e63",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-2ce8a0331e8a8f63f2c1b555db8277ffe5aa2e63"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-2eac0df47b5ecc8bb05002d80383ceb08ab3620a",
+    "repo": "flipt-io/flipt",
+    "base_commit": "01f583bb025dbd60e4210eb9a31a6f859ed150e8",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-2eac0df47b5ecc8bb05002d80383ceb08ab3620a",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-2eac0df47b5ecc8bb05002d80383ceb08ab3620a"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-36e62baffae2132f78f9d34dc300a9baa2d7ae0e",
+    "repo": "flipt-io/flipt",
+    "base_commit": "22ce5e88968025e0ae44ce4c1de90fb10f6e38fa",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-36e62baffae2132f78f9d34dc300a9baa2d7ae0e",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-36e62baffae2132f78f9d34dc300a9baa2d7ae0e"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-381b90f718435c4694380b5fcd0d5cf8e3b5a25a",
+    "repo": "flipt-io/flipt",
+    "base_commit": "0ed96dc5d33768c4b145d68d52e80e7bce3790d0",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-381b90f718435c4694380b5fcd0d5cf8e3b5a25a",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-381b90f718435c4694380b5fcd0d5cf8e3b5a25a"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-3b2c25ee8a3ac247c3fad13ad8d64ace34ec8ee7",
+    "repo": "flipt-io/flipt",
+    "base_commit": "8d72418bf67cec833da7f59beeecb5abfd48cb05",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-3b2c25ee8a3ac247c3fad13ad8d64ace34ec8ee7",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-3b2c25ee8a3ac247c3fad13ad8d64ace34ec8ee7"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-3d5a345f94c2adc8a0eaa102c189c08ad4c0f8e8",
+    "repo": "flipt-io/flipt",
+    "base_commit": "91cc1b9fc38280a53a36e1e9543d87d7306144b2",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-3d5a345f94c2adc8a0eaa102c189c08ad4c0f8e8",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-3d5a345f94c2adc8a0eaa102c189c08ad4c0f8e8"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-3ef34d1fff012140ba86ab3cafec8f9934b492be",
+    "repo": "flipt-io/flipt",
+    "base_commit": "456ee2570b53ee8efd812aeb64546a19ed9256fc",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-3ef34d1fff012140ba86ab3cafec8f9934b492be",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-3ef34d1fff012140ba86ab3cafec8f9934b492be"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-40007b9d97e3862bcef8c20ae6c87b22ea0627f0",
+    "repo": "flipt-io/flipt",
+    "base_commit": "bbf0a917fbdf4c92017f760b63727b921eb9fc98",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-40007b9d97e3862bcef8c20ae6c87b22ea0627f0",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-40007b9d97e3862bcef8c20ae6c87b22ea0627f0"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-406f9396ad65696d58865b3a6283109cd4eaf40e",
+    "repo": "flipt-io/flipt",
+    "base_commit": "0c6e9b3f3cd2a42b577a7d84710b6e2470754739",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-406f9396ad65696d58865b3a6283109cd4eaf40e",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-406f9396ad65696d58865b3a6283109cd4eaf40e"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-492cc0b158200089dceede3b1aba0ed28df3fb1d",
+    "repo": "flipt-io/flipt",
+    "base_commit": "d38a357b67ced2c3eba83e7a4aa71a1b2af019ae",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-492cc0b158200089dceede3b1aba0ed28df3fb1d",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-492cc0b158200089dceede3b1aba0ed28df3fb1d"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-507170da0f7f4da330f6732bffdf11c4df7fc192",
+    "repo": "flipt-io/flipt",
+    "base_commit": "5c6de423ccaad9eda072d951c4fc34e779308e95",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-507170da0f7f4da330f6732bffdf11c4df7fc192",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-507170da0f7f4da330f6732bffdf11c4df7fc192"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-518ec324b66a07fdd95464a5e9ca5fe7681ad8f9",
+    "repo": "flipt-io/flipt",
+    "base_commit": "0018c5df774444117b107dfe3fe503d4c7126d73",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-518ec324b66a07fdd95464a5e9ca5fe7681ad8f9",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-518ec324b66a07fdd95464a5e9ca5fe7681ad8f9"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-524f277313606f8cd29b299617d6565c01642e15",
+    "repo": "flipt-io/flipt",
+    "base_commit": "190b3cdc8e354d1b4d1d2811cb8a29f62cab8488",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-524f277313606f8cd29b299617d6565c01642e15",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-524f277313606f8cd29b299617d6565c01642e15"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-56a620b8fc9ef7a0819b47709aa541cdfdbba00b",
+    "repo": "flipt-io/flipt",
+    "base_commit": "32864671f44b7bbd9edc8e2bc1d6255906c31f5b",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-56a620b8fc9ef7a0819b47709aa541cdfdbba00b",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-56a620b8fc9ef7a0819b47709aa541cdfdbba00b"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-5aef5a14890aa145c22d864a834694bae3a6f112",
+    "repo": "flipt-io/flipt",
+    "base_commit": "3e8ab3fdbd7b3bf14e1db6443d78bc530743d8d0",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-5aef5a14890aa145c22d864a834694bae3a6f112",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-5aef5a14890aa145c22d864a834694bae3a6f112"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-5af0757e96dec4962a076376d1bedc79de0d4249",
+    "repo": "flipt-io/flipt",
+    "base_commit": "d94448d3351ee69fd384b55f329003097951fe07",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-5af0757e96dec4962a076376d1bedc79de0d4249",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-5af0757e96dec4962a076376d1bedc79de0d4249"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-5c7037ececb0bead0a8eb56054e224bcd7ac5922",
+    "repo": "flipt-io/flipt",
+    "base_commit": "4914fdf32b09e3a9ffffab9a7f4f007561cc13d0",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-5c7037ececb0bead0a8eb56054e224bcd7ac5922",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-5c7037ececb0bead0a8eb56054e224bcd7ac5922"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-5ffba3406a7993d97ced4cc13658bee66150fcca",
+    "repo": "flipt-io/flipt",
+    "base_commit": "02f5a1f8ef79565d6f4efed09259e7bf6541437a",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-5ffba3406a7993d97ced4cc13658bee66150fcca",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-5ffba3406a7993d97ced4cc13658bee66150fcca"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-65581fef4aa807540cb933753d085feb0d7e736f",
+    "repo": "flipt-io/flipt",
+    "base_commit": "e53fb0f25ef6747aa10fc3e6f457b620137bcd4f",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-65581fef4aa807540cb933753d085feb0d7e736f",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-65581fef4aa807540cb933753d085feb0d7e736f"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-690672523398c2b6f6e4562f0bf9868664ab894f",
+    "repo": "flipt-io/flipt",
+    "base_commit": "6da20eb7afb693a1cbee2482272e3aee2fbd43ee",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-690672523398c2b6f6e4562f0bf9868664ab894f",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-690672523398c2b6f6e4562f0bf9868664ab894f"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-6fd0f9e2587f14ac1fdd1c229f0bcae0468c8daa",
+    "repo": "flipt-io/flipt",
+    "base_commit": "563a8c4593610e431f0c3db55e88a679c4386991",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-6fd0f9e2587f14ac1fdd1c229f0bcae0468c8daa",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-6fd0f9e2587f14ac1fdd1c229f0bcae0468c8daa"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-6fe76d024ee0c50ddb09c86f4ae0bd4c208fd65f",
+    "repo": "flipt-io/flipt",
+    "base_commit": "edc61fb357077d0384391cdfefae4411d8a1848e",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-6fe76d024ee0c50ddb09c86f4ae0bd4c208fd65f",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-6fe76d024ee0c50ddb09c86f4ae0bd4c208fd65f"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-7161f7b876773a911afdd804b281e52681cb7321",
+    "repo": "flipt-io/flipt",
+    "base_commit": "11775ea830dd27bccd3e28152309df91d754a11b",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-7161f7b876773a911afdd804b281e52681cb7321",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-7161f7b876773a911afdd804b281e52681cb7321"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-72d06db14d58692bfb4d07b1aa745a37b35956f3",
+    "repo": "flipt-io/flipt",
+    "base_commit": "b6edc5e46af598a3c187d917ad42b2d013e4dfee",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-72d06db14d58692bfb4d07b1aa745a37b35956f3",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-72d06db14d58692bfb4d07b1aa745a37b35956f3"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-756f00f79ba8abf9fe53f3c6c818123b42eb7355",
+    "repo": "flipt-io/flipt",
+    "base_commit": "266e5e143e87519047b9be3202a0aba273b83de3",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-756f00f79ba8abf9fe53f3c6c818123b42eb7355",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-756f00f79ba8abf9fe53f3c6c818123b42eb7355"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-84806a178447e766380cc66b14dee9c6eeb534f4",
+    "repo": "flipt-io/flipt",
+    "base_commit": "b22f5f02e40b225b6b93fff472914973422e97c6",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-84806a178447e766380cc66b14dee9c6eeb534f4",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-84806a178447e766380cc66b14dee9c6eeb534f4"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-86906cbfc3a5d3629a583f98e6301142f5f14bdb-v6bea0cc3a6fc532d7da914314f2944fc1cd04dee",
+    "repo": "flipt-io/flipt",
+    "base_commit": "358e13bf5748bba4418ffdcdd913bcbfdedc9d3f",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-86906cbfc3a5d3629a583f98e6301142f5f14bdb-v6bea0cc3a6fc532d7da914314f2944fc1cd04dee",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-86906cbfc3a5d3629a583f98e6301142f5f14bdb-v6bea0cc3a6fc532d7da914314f2944fc1cd04dee"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-8bd3604dc54b681f1f0f7dd52cbc70b3024184b6",
+    "repo": "flipt-io/flipt",
+    "base_commit": "25a5f278e1116ca22f86d86b4a5259ca05ef2623",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-8bd3604dc54b681f1f0f7dd52cbc70b3024184b6",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-8bd3604dc54b681f1f0f7dd52cbc70b3024184b6"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-967855b429f749c28c112b8cb1b15bc79157f973",
+    "repo": "flipt-io/flipt",
+    "base_commit": "3c6bd20465f0c801ebbcdadaf998e46b37b98e6b",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-967855b429f749c28c112b8cb1b15bc79157f973",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-967855b429f749c28c112b8cb1b15bc79157f973"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-96820c3ad10b0b2305e8877b6b303f7fafdf815f",
+    "repo": "flipt-io/flipt",
+    "base_commit": "8dd44097778951eaa6976631d35bc418590d1555",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-96820c3ad10b0b2305e8877b6b303f7fafdf815f",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-96820c3ad10b0b2305e8877b6b303f7fafdf815f"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-9d25c18b79bc7829a6fb08ec9e8793d5d17e2868",
+    "repo": "flipt-io/flipt",
+    "base_commit": "fa8f302adcde48b4a94bf45726fe4da73de5e5ab",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-9d25c18b79bc7829a6fb08ec9e8793d5d17e2868",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-9d25c18b79bc7829a6fb08ec9e8793d5d17e2868"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-9f8127f225a86245fa35dca4885c2daef824ee55",
+    "repo": "flipt-io/flipt",
+    "base_commit": "2d0ff0c91a63a1165f5ca528faa1f0785b1f730c",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-9f8127f225a86245fa35dca4885c2daef824ee55",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-9f8127f225a86245fa35dca4885c2daef824ee55"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-a0cbc0cb65ae601270bdbe3f5313e2dfd49c80e4",
+    "repo": "flipt-io/flipt",
+    "base_commit": "fee220d0a20adfb21686685bef2a1d6c2ff6fc17",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-a0cbc0cb65ae601270bdbe3f5313e2dfd49c80e4",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-a0cbc0cb65ae601270bdbe3f5313e2dfd49c80e4"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-a42d38a1bb1df267c53d9d4a706cf34825ae3da9",
+    "repo": "flipt-io/flipt",
+    "base_commit": "ee02b164f6728d3227c42671028c67a4afd36918",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-a42d38a1bb1df267c53d9d4a706cf34825ae3da9",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-a42d38a1bb1df267c53d9d4a706cf34825ae3da9"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-abaa5953795afb9c621605bb18cb32ac48b4508c",
+    "repo": "flipt-io/flipt",
+    "base_commit": "fddcf20f9e79532db9feade40395883565f6eb57",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-abaa5953795afb9c621605bb18cb32ac48b4508c",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-abaa5953795afb9c621605bb18cb32ac48b4508c"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-aebaecd026f752b187f11328b0d464761b15d2ab",
+    "repo": "flipt-io/flipt",
+    "base_commit": "1d550f0c0d693844b6f4b44fd7859254ef3569c0",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-aebaecd026f752b187f11328b0d464761b15d2ab",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-aebaecd026f752b187f11328b0d464761b15d2ab"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-af7a0be46d15f0b63f16a868d13f3b48a838e7ce",
+    "repo": "flipt-io/flipt",
+    "base_commit": "165ba79a44732208147f516fa6fa4d1dc72b7008",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-af7a0be46d15f0b63f16a868d13f3b48a838e7ce",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-af7a0be46d15f0b63f16a868d13f3b48a838e7ce"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+    "repo": "flipt-io/flipt",
+    "base_commit": "5d544c9172ccf6c445c16ed333409930d2a1f0ad",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-b22f5f02e40b225b6b93fff472914973422e97c6",
+    "repo": "flipt-io/flipt",
+    "base_commit": "08213a50b2cb54709aeb44125f33d55364ea6237",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-b22f5f02e40b225b6b93fff472914973422e97c6",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-b22f5f02e40b225b6b93fff472914973422e97c6"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-b2393f07d893024ab1e47ea2081e0289e1f9d56f",
+    "repo": "flipt-io/flipt",
+    "base_commit": "19fe7a3e92fc128acc75d0c5ececdc6d9a4e64e5",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-b2393f07d893024ab1e47ea2081e0289e1f9d56f",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-b2393f07d893024ab1e47ea2081e0289e1f9d56f"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-b2cd6a6dd73ca91b519015fd5924fde8d17f3f06",
+    "repo": "flipt-io/flipt",
+    "base_commit": "d52e03fd5781eabad08e9a5b33c9283b8ffdb1ce",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-b2cd6a6dd73ca91b519015fd5924fde8d17f3f06",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-b2cd6a6dd73ca91b519015fd5924fde8d17f3f06"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-b3cd920bbb25e01fdb2dab66a5a913363bc62f6c",
+    "repo": "flipt-io/flipt",
+    "base_commit": "490cc12996575ec353e9755ca1c21e222a4e5191",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-b3cd920bbb25e01fdb2dab66a5a913363bc62f6c",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-b3cd920bbb25e01fdb2dab66a5a913363bc62f6c"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-b433bd05ce405837804693bebd5f4b88d87133c8",
+    "repo": "flipt-io/flipt",
+    "base_commit": "4e066b8b836ceac716b6f63db41a341fb4df1375",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-b433bd05ce405837804693bebd5f4b88d87133c8",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-b433bd05ce405837804693bebd5f4b88d87133c8"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-b4bb5e13006a729bc0eed8fe6ea18cff54acdacb",
+    "repo": "flipt-io/flipt",
+    "base_commit": "c2c0f7761620a8348be46e2f1a3cedca84577eeb",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-b4bb5e13006a729bc0eed8fe6ea18cff54acdacb",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-b4bb5e13006a729bc0eed8fe6ea18cff54acdacb"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-b68b8960b8a08540d5198d78c665a7eb0bea4008",
+    "repo": "flipt-io/flipt",
+    "base_commit": "324b9ed54747624c488d7123c38e9420c3750368",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-b68b8960b8a08540d5198d78c665a7eb0bea4008",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-b68b8960b8a08540d5198d78c665a7eb0bea4008"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-b6cef5cdc0daff3ee99e5974ed60a1dc6b4b0d67",
+    "repo": "flipt-io/flipt",
+    "base_commit": "1bd9924b177927fa51d016a71a4353ab9c0d32e7",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-b6cef5cdc0daff3ee99e5974ed60a1dc6b4b0d67",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-b6cef5cdc0daff3ee99e5974ed60a1dc6b4b0d67"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-c12967bc73fdf02054cf3ef8498c05e25f0a18c0",
+    "repo": "flipt-io/flipt",
+    "base_commit": "3bf3255a7b7e2cbe9f71ec167f16a5449a357a5e",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-c12967bc73fdf02054cf3ef8498c05e25f0a18c0",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-c12967bc73fdf02054cf3ef8498c05e25f0a18c0"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-c154dd1a3590954dfd3b901555fc6267f646a289",
+    "repo": "flipt-io/flipt",
+    "base_commit": "e432032cf2d11e3bb6f558748a5ee41a90640daa",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-c154dd1a3590954dfd3b901555fc6267f646a289",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-c154dd1a3590954dfd3b901555fc6267f646a289"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-c1728053367c753688f114ec26e703c8fdeda125",
+    "repo": "flipt-io/flipt",
+    "base_commit": "775da4fe5fcbc163ab01fd9a809fdbddd9a87ebd",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-c1728053367c753688f114ec26e703c8fdeda125",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-c1728053367c753688f114ec26e703c8fdeda125"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-c188284ff0c094a4ee281afebebd849555ebee59",
+    "repo": "flipt-io/flipt",
+    "base_commit": "47499077ce785f0eee0e3940ef6c074e29a664fc",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-c188284ff0c094a4ee281afebebd849555ebee59",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-c188284ff0c094a4ee281afebebd849555ebee59"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-c1fd7a81ef9f23e742501bfb26d914eb683262aa",
+    "repo": "flipt-io/flipt",
+    "base_commit": "dbe263961b187e1c5d7fe34c65b000985a2da5a0",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-c1fd7a81ef9f23e742501bfb26d914eb683262aa",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-c1fd7a81ef9f23e742501bfb26d914eb683262aa"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-c6a7b1fd933e763b1675281b30077e161fa115a1",
+    "repo": "flipt-io/flipt",
+    "base_commit": "dc07fbbd64b05a6f14cc16aa5bcbade2863f9d53",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-c6a7b1fd933e763b1675281b30077e161fa115a1",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-c6a7b1fd933e763b1675281b30077e161fa115a1"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-c8d71ad7ea98d97546f01cce4ccb451dbcf37d3b",
+    "repo": "flipt-io/flipt",
+    "base_commit": "29d3f9db40c83434d0e3cc082af8baec64c391a9",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-c8d71ad7ea98d97546f01cce4ccb451dbcf37d3b",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-c8d71ad7ea98d97546f01cce4ccb451dbcf37d3b"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-cd18e54a0371fa222304742c6312e9ac37ea86c1",
+    "repo": "flipt-io/flipt",
+    "base_commit": "9e469bf851c6519616c2b220f946138b71fab047",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-cd18e54a0371fa222304742c6312e9ac37ea86c1",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-cd18e54a0371fa222304742c6312e9ac37ea86c1"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-cd2f3b0a9d4d8b8a6d3d56afab65851ecdc408e8",
+    "repo": "flipt-io/flipt",
+    "base_commit": "a91a0258e72c0f0aac3d33ae5c226a85c80ecdf8",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-cd2f3b0a9d4d8b8a6d3d56afab65851ecdc408e8",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-cd2f3b0a9d4d8b8a6d3d56afab65851ecdc408e8"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-cf06f4ebfab7fa21eed3e5838592e8e44566957f",
+    "repo": "flipt-io/flipt",
+    "base_commit": "962f8d028e1a2e1dd8a87035d7d8d85eb6665eaf",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-cf06f4ebfab7fa21eed3e5838592e8e44566957f",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-cf06f4ebfab7fa21eed3e5838592e8e44566957f"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-d966559200183b713cdf3ea5007a7e0ba86a5afb",
+    "repo": "flipt-io/flipt",
+    "base_commit": "16e240cc4b24e051ff7c1cb0b430cca67768f4bb",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-d966559200183b713cdf3ea5007a7e0ba86a5afb",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-d966559200183b713cdf3ea5007a7e0ba86a5afb"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-dae029cba7cdb98dfb1a6b416c00d324241e6063",
+    "repo": "flipt-io/flipt",
+    "base_commit": "879520526664656ad9f93925cd0b1f2220c0c3f2",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-dae029cba7cdb98dfb1a6b416c00d324241e6063",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-dae029cba7cdb98dfb1a6b416c00d324241e6063"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-db1c3b100e231c62f0c90c2ab037614f20a2a63b",
+    "repo": "flipt-io/flipt",
+    "base_commit": "6c91b1ad50c452d90c484888690eb6257ee2c20a",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-db1c3b100e231c62f0c90c2ab037614f20a2a63b",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-db1c3b100e231c62f0c90c2ab037614f20a2a63b"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-dbe263961b187e1c5d7fe34c65b000985a2da5a0",
+    "repo": "flipt-io/flipt",
+    "base_commit": "8ba3ab7d7ac8f552e61204103f5632ab8843a721",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-dbe263961b187e1c5d7fe34c65b000985a2da5a0",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-dbe263961b187e1c5d7fe34c65b000985a2da5a0"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-e2bd19dafa7166c96b082fb2a59eb54b4be0d778",
+    "repo": "flipt-io/flipt",
+    "base_commit": "0eaf98f050d86247bfe9bd7e41178865cb585060",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-e2bd19dafa7166c96b082fb2a59eb54b4be0d778",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-e2bd19dafa7166c96b082fb2a59eb54b4be0d778"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-e42da21a07a5ae35835ec54f74004ebd58713874",
+    "repo": "flipt-io/flipt",
+    "base_commit": "899e567d89a15411311ed44fb34ec218ccb06389",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-e42da21a07a5ae35835ec54f74004ebd58713874",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-e42da21a07a5ae35835ec54f74004ebd58713874"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-e50808c03e4b9d25a6a78af9c61a3b1616ea356b",
+    "repo": "flipt-io/flipt",
+    "base_commit": "5069ba6fa22fbbf208352ff341ea7a85d6eca29f",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-e50808c03e4b9d25a6a78af9c61a3b1616ea356b",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-e50808c03e4b9d25a6a78af9c61a3b1616ea356b"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-e594593dae52badf80ffd27878d2275c7f0b20e9",
+    "repo": "flipt-io/flipt",
+    "base_commit": "f9855c1e6110ab7ff24d3d278229a45776e891ae",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-e594593dae52badf80ffd27878d2275c7f0b20e9",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-e594593dae52badf80ffd27878d2275c7f0b20e9"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-e5fe37c379e1eec2dd3492c5737c0be761050b26",
+    "repo": "flipt-io/flipt",
+    "base_commit": "6fd0f9e2587f14ac1fdd1c229f0bcae0468c8daa",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-e5fe37c379e1eec2dd3492c5737c0be761050b26",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-e5fe37c379e1eec2dd3492c5737c0be761050b26"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-e88e93990e3ec1e7697754b423decc510d5dd5fe",
+    "repo": "flipt-io/flipt",
+    "base_commit": "7ee465fe8dbcf9b319c70ef7f3bfd00b3aaab6ca",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-e88e93990e3ec1e7697754b423decc510d5dd5fe",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-e88e93990e3ec1e7697754b423decc510d5dd5fe"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-e91615cf07966da41756017a7d571f9fc0fdbe80",
+    "repo": "flipt-io/flipt",
+    "base_commit": "bdf53a4ec2288975416f9292634bb120ac47eef3",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-e91615cf07966da41756017a7d571f9fc0fdbe80",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-e91615cf07966da41756017a7d571f9fc0fdbe80"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-ea9a2663b176da329b3f574da2ce2a664fc5b4a1",
+    "repo": "flipt-io/flipt",
+    "base_commit": "866ba43dd49c238c97831362cdab50630b0b9aa7",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-ea9a2663b176da329b3f574da2ce2a664fc5b4a1",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-ea9a2663b176da329b3f574da2ce2a664fc5b4a1"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-ebb3f84c74d61eee4d8c6875140b990eee62e146",
+    "repo": "flipt-io/flipt",
+    "base_commit": "9c3cab439846ad339a0a9aa73574f0d05849246e",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-ebb3f84c74d61eee4d8c6875140b990eee62e146",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-ebb3f84c74d61eee4d8c6875140b990eee62e146"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-ee02b164f6728d3227c42671028c67a4afd36918",
+    "repo": "flipt-io/flipt",
+    "base_commit": "e38e41543f08b762904ed8a08969d0b6aba67166",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-ee02b164f6728d3227c42671028c67a4afd36918",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-ee02b164f6728d3227c42671028c67a4afd36918"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-f1bc91a1b999656dbdb2495ccb57bf2105b84920",
+    "repo": "flipt-io/flipt",
+    "base_commit": "56d261e7c28e47faf537061e6ad3b306459a3e93",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-f1bc91a1b999656dbdb2495ccb57bf2105b84920",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-f1bc91a1b999656dbdb2495ccb57bf2105b84920"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-f36bd61fb1cee4669de1f00e59da462bfeae8765",
+    "repo": "flipt-io/flipt",
+    "base_commit": "54e188b64f0dda5a1ab9caf8425f94dac3d08f40",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-f36bd61fb1cee4669de1f00e59da462bfeae8765",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-f36bd61fb1cee4669de1f00e59da462bfeae8765"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-f743945d599b178293e89e784b3b2374b1026430",
+    "repo": "flipt-io/flipt",
+    "base_commit": "820f90fd26c5f8651217f2edee0e5770d5f5f011",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-f743945d599b178293e89e784b3b2374b1026430",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-f743945d599b178293e89e784b3b2374b1026430"
+  },
+  {
+    "instance_id": "instance_flipt-io__flipt-f808b4dd6e36b9dc8b011eb26b196f4e2cc64c41",
+    "repo": "flipt-io/flipt",
+    "base_commit": "d26eba77ddd985eb621c79642b55b607cf125941",
+    "dockerhub_tag": "flipt-io.flipt-flipt-io__flipt-f808b4dd6e36b9dc8b011eb26b196f4e2cc64c41",
+    "docker_image": "jefzda/sweap-images:flipt-io.flipt-flipt-io__flipt-f808b4dd6e36b9dc8b011eb26b196f4e2cc64c41"
+  }
+]

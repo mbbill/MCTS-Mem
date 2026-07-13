@@ -1,0 +1,7 @@
+{
+  "dataset": "ScaleAI/SWE-bench_Pro",
+  "repo": "flipt-io/flipt",
+  "split": "test",
+  "task_count": 85,
+  "tasks_path": "/Users/bytedance/Dev/MCTS-Mem/paper/evaluations/flipt/tasks/flipt_swebench_pro_tasks.jsonl"
+}

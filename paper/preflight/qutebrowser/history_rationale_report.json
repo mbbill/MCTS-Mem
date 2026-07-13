@@ -1,0 +1,698 @@
+{
+  "commit_count": 7034,
+  "first_date": "2014-01-19",
+  "last_date": "2026-04-13",
+  "body_count": 7034,
+  "long_body_count": 2326,
+  "rationale_keyword_count": 3000,
+  "focus_subsystems": [
+    {
+      "subsystem": "qutebrowser/config",
+      "commit_count": 839,
+      "body_count": 839,
+      "rationale_keyword_count": 228,
+      "body_pct": 100.0,
+      "rationale_pct": 27.2
+    },
+    {
+      "subsystem": "doc",
+      "commit_count": 688,
+      "body_count": 688,
+      "rationale_keyword_count": 141,
+      "body_pct": 100.0,
+      "rationale_pct": 20.5
+    },
+    {
+      "subsystem": "qutebrowser/browser",
+      "commit_count": 1599,
+      "body_count": 1599,
+      "rationale_keyword_count": 457,
+      "body_pct": 100.0,
+      "rationale_pct": 28.6
+    },
+    {
+      "subsystem": "qutebrowser/utils",
+      "commit_count": 612,
+      "body_count": 612,
+      "rationale_keyword_count": 192,
+      "body_pct": 100.0,
+      "rationale_pct": 31.4
+    },
+    {
+      "subsystem": "qutebrowser/misc",
+      "commit_count": 543,
+      "body_count": 543,
+      "rationale_keyword_count": 181,
+      "body_pct": 100.0,
+      "rationale_pct": 33.3
+    },
+    {
+      "subsystem": "qutebrowser/components",
+      "commit_count": 57,
+      "body_count": 57,
+      "rationale_keyword_count": 10,
+      "body_pct": 100.0,
+      "rationale_pct": 17.5
+    },
+    {
+      "subsystem": "scripts",
+      "commit_count": 567,
+      "body_count": 567,
+      "rationale_keyword_count": 179,
+      "body_pct": 100.0,
+      "rationale_pct": 31.6
+    },
+    {
+      "subsystem": "qutebrowser/mainwindow",
+      "commit_count": 402,
+      "body_count": 402,
+      "rationale_keyword_count": 121,
+      "body_pct": 100.0,
+      "rationale_pct": 30.1
+    },
+    {
+      "subsystem": "qutebrowser/app.py",
+      "commit_count": 229,
+      "body_count": 229,
+      "rationale_keyword_count": 76,
+      "body_pct": 100.0,
+      "rationale_pct": 33.2
+    },
+    {
+      "subsystem": "qutebrowser/completion",
+      "commit_count": 302,
+      "body_count": 302,
+      "rationale_keyword_count": 95,
+      "body_pct": 100.0,
+      "rationale_pct": 31.5
+    }
+  ],
+  "rationale_examples": [
+    {
+      "hash": "39972359df7452c34c6d28e7ede2b2f92825bbfd",
+      "date": "2026-04-01",
+      "subject": "Update hangout extensions workarounds",
+      "body": "- Avoid crash on Qt 6.11.0 on Google Mail/Meet; fixes #8914\n- Disable private profile workaround on QtWebEngine 6.11 again\n  (but extend it to 6.10.2); see #8785, #8841."
+    },
+    {
+      "hash": "05adb0af1b0dd68235afa396f03d049208b1f5fe",
+      "date": "2026-03-30",
+      "subject": "Remove old PDF.js fetch API workaround",
+      "body": "This was introduced because of a bug in PDF.js\nv1.10 (October 2017). The underlying issue seems\nto have been fixed in PDF.js v2.2.228 (July 2019),\nand now seems to cause a new issue with newer PDF.js\nversions (5.5.207, March 2026).\n\nGiven how old the affected versions are, instead\nof making the workaround version dependent,\nlet's just remove it.\n\nFixes #8885\nSee #4235"
+    },
+    {
+      "hash": "45bcc7833d11b5fdef6d75b117c897173a9af0f6",
+      "date": "2026-02-26",
+      "subject": "Drop unnecessary hasattr()",
+      "body": "See https://foss.heptapod.net/mercurial/tortoisehg/thg/-/commit/1b8a661ebcfc180c04c02c790c7471f3d19cd084\n(where we originally got that code from, in 210ce8ca7cb16e1d0ce859baa64ce56a5e1894cf).\n\nThanks to killiandesse for spotting this!\n\nCloses #8880"
+    },
+    {
+      "hash": "17db1ea9d16e46cd9caad9cc66dff1df0634f503",
+      "date": "2025-11-24",
+      "subject": "Drop Python 3.9 from tox/CI",
+      "body": "All the occurences of 3.9 are replaced by 3.10"
+    },
+    {
+      "hash": "31a5737c61c4ed09cec4ad82a3fb964aca9de3ca",
+      "date": "2025-11-22",
+      "subject": "Avoid disabling off-the-record profile Hangouts extension with Qt 6.10.1",
+      "body": "Otherwise this results in a crash, see #8785"
+    },
+    {
+      "hash": "9316d428efe87407a49f53e4edfb0a8edfcfe505",
+      "date": "2025-11-11",
+      "subject": "ci: Drop Archlinux Qt 5 images/jobs",
+      "body": "For now, Qt 5 is still tested via the Qt 5.15 PyPI wheels.\n\nSee https://github.com/qutebrowser/qutebrowser/issues/8417#issuecomment-3495979318\nhttps://lists.archlinux.org/archives/list/arch-dev-public@lists.archlinux.org/thread/U45C4RAW4IXVLO376XGFNLEGGFFXCULV/"
+    },
+    {
+      "hash": "55fb26fce1acf58eb989c75ace5009b60ff3c914",
+      "date": "2025-11-11",
+      "subject": "Revert \"fix: change fullscreen state when switching tab\"",
+      "body": "This reverts commit b89bf07d1e2b27351c559099093cc9e033346233.\n\nThis turned out to be annoying when enabling fullscreen manually and then\nswitching through tabs."
+    },
+    {
+      "hash": "25dc01988622d590030b51def7930056f58ab0ca",
+      "date": "2025-11-11",
+      "subject": "Unify librarry loading for X11/Wayland wmname",
+      "body": "libwayland-client.so is development symlink used during linking and there's no need to\nhave it installed (usually shipped in -devel/-dev packages) on user's machines. Instead\nof hardcoding library file name, use same mechanism as in libX11 which let's Python\nfigure the details and share common logic between X11 and Wayland.\n\nFixes #8771"
+    },
+    {
+      "hash": "81d7b6a74c0f395f50d482d463b31bd61606806e",
+      "date": "2025-11-10",
+      "subject": "tests: Use star-unpacking instead of itertools.chain",
+      "body": "pytest will soon deprecate using a non-collection iterable in parametrize:\nhttps://docs.pytest.org/en/latest/deprecations.html#parametrize-iterators"
+    },
+    {
+      "hash": "2f8234ee2e45f011d833b34fbdb5c85a9d6c12f5",
+      "date": "2025-11-05",
+      "subject": "doc: Correct Arch Linux links",
+      "body": "Arch hasn't been using the [community] repository for 9 months now[1],\ncorrect the links for that.\nAlso, youtube-dl has been replaced in [extra] by yt-dlp[2][3], unsure\nwhen -- I think this was in 2023?\nFinally (and the trigger for this commit), given #8332, correct the\nguidance on Arch Linux to point to pdfjs-legacy instead of pdfjs.\n\n[1]: https://archlinux.org/news/cleaning-up-old-repositories/\n[2]: https://aur.archlinux.org/packages/youtube-dl\n[3]: https://archlinux.org/packages/extra/any/yt-"
+    },
+    {
+      "hash": "afa456f396ca5efb67329072765d0d153a830469",
+      "date": "2025-10-24",
+      "subject": "ci: Skip existing artifacts when reuploading",
+      "body": "After a release failed and we want to retry,\nsome assets might already have been uploaded.\n\nSkip those instead of attempting to reupload."
+    },
+    {
+      "hash": "721ba1e036de5fe42abfb49279449255a20c51ce",
+      "date": "2025-10-22",
+      "subject": "Add PyQt 6.10 release",
+      "body": "Needs --extra-index-url due to PyQt6-WebEngine-Qt6 missing because of PyPI size limits."
+    },
+    {
+      "hash": "88415c6aa0e375363b10d538a759e529b59b2779",
+      "date": "2025-10-12",
+      "subject": "ci: Adjust Python versions",
+      "body": "Run Python 3.14 with PyQt 6.9 instead of 6.8, and remove -dev"
+    },
+    {
+      "hash": "ddfd17d749047cb0c4a7dd4a08ed36c9aee9551e",
+      "date": "2025-10-10",
+      "subject": "Fix focus issues with fullscreen notification",
+      "body": "This is conceptually similar to the release_focus\nsignal added in 6aa19eb90fb9ae8dd03f841f15cb9d922584c05c and\n6f21accfaecaa7fbde585eaa88219844ae11ea24, but without having to thread the\nsignal through to TabbedBrowser and back.\n\nWeirdly, doing self.setFocusPolicy(Qt.FocusPolicy.NoFocus) in\nFullscreenNotification.__init__ did not help, so let's just set the focus\nmanually instead.\n\nFixes #8174.\nFixes #8625."
+    },
+    {
+      "hash": "f57afa39e8c9dc4b57c95a021af8a588f6c8c822",
+      "date": "2025-10-01",
+      "subject": "webenginetab: Improve _on_navigation_request workarounds",
+      "body": "- Use QTimer.singleShot to avoid crashes with QtWebEngine 6.10:\n  https://bugreports.qt.io/browse/QTBUG-140543\n- Disable back/forward workaround for QtWebEngine >= 6.6,\n  as the underlying issue seems to be fixed there.\n\nSee https://github.com/qutebrowser/qutebrowser/issues/8694#issuecomment-3276397840\nand #8711."
+    },
+    {
+      "hash": "a13306a79fe9ce3521e93bbce29ffb534e7a498a",
+      "date": "2025-09-21",
+      "subject": "Fix exception when quitting with download prompt open",
+      "body": "If we have a pending download with a prompt and quit qutebrowser, we get:\n\n    mainwindow:closeEvent:715 Closing window 0\n    quitter:shutdown:221 Shutting down with status 0, session None...\n    prompt:shutdown:121 Shutting down with loops [<qutebrowser.utils.qtutils.EventLoop object at 0x7fa034725770>]\n    quitter:shutdown:235 Deferring shutdown stage 2\n    prompt:ask_question:179 Ending loop.exec() for <qutebrowser.utils.usertypes.Question default='/tmp/qbdl/download/' mode=<PromptMode.downlo"
+    },
+    {
+      "hash": "c6b486ce8176a5908d261e2fc86fdb23aed04b2a",
+      "date": "2025-09-21",
+      "subject": "Fix segfault with nested download prompts",
+      "body": "For an unknown reason, if a download prompt is triple-nested, Qt segfaults here:\n\n    #0  add_lazy_attrs (td=0x7ffff52e0dd1 <QtPrivate::sizedFree(void*, unsigned long)+32>) at sip_core.c:6255\n    #1  sip_add_all_lazy_attrs (td=0x7ffff52e0dd1 <QtPrivate::sizedFree(void*, unsigned long)+32>) at sip_core.c:6304\n    #2  0x00007ffff636598e in sip_api_is_py_method_12_8 (gil=gil@entry=0x7fffffff8b8c, pymc=pymc@entry=0x7fffffff8b8b \"\", sipSelfp=sipSelfp@entry=0x7fffffff8ba8, cname=cname@entry=0x0, mname"
+    },
+    {
+      "hash": "18bea329759deba637e7fdd17a49714b37ad56d5",
+      "date": "2025-09-17",
+      "subject": "Revert \"pylint: Remove unneeded suppression\"",
+      "body": "This reverts commit 7e770765a9e6b3cbf19827de1acb35a35e5b64c5."
+    },
+    {
+      "hash": "b9aec6777a8a3ac5db2cbbbb37fa0b6498094037",
+      "date": "2025-07-27",
+      "subject": "tests: Fix monkeypatching of sys.flags on Python 3.14",
+      "body": "With Python 3.14, since argparse enabled coloring by default:\nhttps://github.com/python/cpython/commit/17c5959aa3daee4b63d78e944a1d355daa651e52\nrunning test_cmdutils.py failed with a lengthy traceback finishing in:\n\n```\nINTERNALERROR> pluggy.PluggyTeardownRaisedWarning: A plugin raised an exception during an old-style hookwrapper teardown.\nINTERNALERROR> Plugin: /home/florian/proj/qutebrowser/git/tests/conftest.py, Hook: pytest_runtest_makereport\nINTERNALERROR> PluggyTeardownRaisedWarning: A plu"
+    },
+    {
+      "hash": "c79257dc8d55b5dba0eb32428067593b409f9dff",
+      "date": "2025-07-08",
+      "subject": "Remove pytest-mock pytest warning ignore",
+      "body": "Fixed in pytest-mock 3.14.1"
+    },
+    {
+      "hash": "d15052a67a9be4e6a0d7b6da55a80a58ed1bcfae",
+      "date": "2025-07-07",
+      "subject": "Add stub pyproject.toml file",
+      "body": "This keeps our setup.py around for now, while still supporting a PEP-517\ncompliant build. It's the minimum required change to make modern pyroma stop\ncomplaining, and hopefully to avoid deprecation warnings.\n\nPartially duplicates #8560\nSee #3526"
+    },
+    {
+      "hash": "e7af54898ec1445ef59bb26be9bacfed749913a0",
+      "date": "2025-06-24",
+      "subject": "Add X11/Wayland information to version info",
+      "body": "Unfortunately there is no way to get this information from Qt, so I had to\nresort to some funny low-level C-like Python programming to directly use\nlibwayland-client and Xlib. Fun was had! Hopefully this avoids having to ask\nfor this information every time someone shows a bug/crash report, as there\nare various subtleties that can be specific to the Wayland compositor in use."
+    },
+    {
+      "hash": "a45d57feee8906f619f2da89787ce1c9c4278e9c",
+      "date": "2025-06-06",
+      "subject": "tests: Adjust ignored log message for newer Chromium",
+      "body": "QtWebEngine 6.9 seems to use webengine/DawnWebGPUCache/ instead of DawnCache/"
+    },
+    {
+      "hash": "6b86a9072fb1136f3315af5635066359d98c171f",
+      "date": "2025-06-06",
+      "subject": "version: Rely on importlib.metadata.version too",
+      "body": "Packages are slowly migrating to not having a __version__ attribute anymore,\ninstead relying on importlib.metadata to query the installed version.\n\njinja2 now shows a deprecation warning when accessing the __version__\nattribute: https://github.com/pallets/jinja/pull/2098\n\nFor now we keep accessing __version__ for other packages (we still need the\nlogic for PyQt and its special version attributes anyways), but we fall back on\nimportlib.metadata.version if we can't get a version that way, and we s"
+    },
+    {
+      "hash": "3f31a0005a905a9634084367a121fa57589e6778",
+      "date": "2025-06-05",
+      "subject": "Fix mimetype for PDF.js files on Windows",
+      "body": "With windows-2022 and windows-2025 on GitHub Actions,\nwe get:\n\n    qutescheme:data_for_url:128 url: qute://pdfjs/web/viewer.mjs, path: /web/viewer.mjs, host pdfjs\n    webenginequtescheme:requestStarted:105 Returning text/plain data\n\nwhich causes:\n\n    JS: [qute://pdfjs/build/pdf.mjs:0] Failed to load module script: Expected a\n    JavaScript module script but the server responded with a MIME type of\n    \"text/plain\". Strict MIME type checking is enforced for module scripts per\n    HTML spec.\n\nIt'"
+    },
+    {
+      "hash": "422680046e45679551ceb0d08804ad4b008a284a",
+      "date": "2025-06-02",
+      "subject": "Update PDF.js version extraction for 5.3.31",
+      "body": "It's changed in this PR: https://github.com/mozilla/pdf.js/pull/19956\nto have the version string as a comment in the file, instead of the\nvariable.\n\nMaking the regex more forgiving increases the chance of matching on the\nwrong string on a past or future version. I've only tested with the\nprevious version (v5.2.133) and it seemed to still work there.\n\nChanges I made to the regex:\n\n* add the literal * to the match group of possible prefixes of pdfjsVersion\n* make the quotes around the version opti"
+    },
+    {
+      "hash": "060f4a59d6565c58d19aed0d8b7f49cc361990f9",
+      "date": "2025-06-02",
+      "subject": "mypy: cast variable only on Qt5",
+      "body": "We only have to cast these variables on Qt5. If we cast them on Qt6 mypy\nwarns of a redundant cast. If we ignore that warning mypy complains of a\nredundant ignore on Qt5.\n\nAdd a conditional on `machinery.IS_QT5` and only cast it required.\n\nBut also move that conditional out to a utility function to avoid\nduplicating code in the function doing the actual logic.\n\nI'm re-using the `_T` generic TypeVar defined above. Not sure if it's\nproper to re-use them or not. Doesn't python have a better way of\n"
+    },
+    {
+      "hash": "072b03a63168ac703d25bef75b31ac8a9963925a",
+      "date": "2025-05-29",
+      "subject": "Avoid version warnings with PyQtWebEngine-Qt5 5.15.17",
+      "body": "With PyQtWebEngine-Qt5 5.15.17 (Qt 5.15.19), we seem to run into similar issues\nlike we already did with Qt 6.5:\n\nhttps://github.com/qutebrowser/qutebrowser/issues/7624#issuecomment-1474008470\n9cb54b2099a0e884df38e9de24d58b9bef195ca1\n\nHowever, skipping the ELF test is not enough, as we also get warnings\nat runtime (as we don't have any API to get the version at runtime).\n\nWe don't care much about Qt 5 at this stage, so let's just not output\nwarnings in that case (and nothing in the code should c"
+    },
+    {
+      "hash": "aef53554364271f1a89eac0272dd91ec32f75e91",
+      "date": "2025-05-13",
+      "subject": "Revert \"flake8: Disable N808\"",
+      "body": "This reverts commit a14b986326826a9c90a6ad14031322d18de1deb5.\n\nNow allowed in pep8-naming 0.15.1."
+    },
+    {
+      "hash": "856aeb3f47b28a5f2f4f0424f476d1db3578b396",
+      "date": "2025-05-19",
+      "subject": "Avoid log spam on new QWebEngineView children",
+      "body": "With Qt 6.9, Qt creates QObjects for accessibility\ntree nodes, which result in a lot of log spam.\n\nFixes #8542"
+    },
+    {
+      "hash": "858606c18d968c8393c829965d1900a2b64dc647",
+      "date": "2025-05-13",
+      "subject": "ci: Remove QtWebKit testing",
+      "body": "It's broken in weird ways since recently (`:version` not loading,\nsegfault in test_version.py). Since nobody should be using it anyways,\nthere is no point in spending time on debugging a tricky issue.\n\nNext step is probably ripping it out completely, but that's a separate\ncan of worms.\n\nSee #4039"
+    },
+    {
+      "hash": "74c7ff2641979ec18e32e3e76fc9a1e3cb21f93d",
+      "date": "2025-05-07",
+      "subject": "tests: Properly delete webengine DownloadManager objects",
+      "body": "We create the DownloadManager with parent=qapp, which means they will stick\naround forever after the test finished.\n\nWhile we disconnect the QWebEngineProfile::downloadRequested() signal,\nwe keep the DownloadManager around, which also keeps around its download-update\ntimers.\n\nThose will then result in tests/unit/utils/usertypes/test_timer.py::test_early_timeout_check\nbeing flaky, as their _validity_check_handler slot keeps getting called in the\nbackground. Due to the globally mocked time.monoton"
+    },
+    {
+      "hash": "a4b3ca48df280b8895e00e5b8c0ffd6913bc3336",
+      "date": "2025-05-07",
+      "subject": "tests: Add sanity check for stray timer objects",
+      "body": "This makes sure the test consistently fails if there is still some timer in the\nbackground, instead of getting flaky."
+    },
+    {
+      "hash": "9f16a1f8798be39ff3bafaf878b85e81485c15be",
+      "date": "2025-05-07",
+      "subject": "tests: Properly delete mode_manager instances",
+      "body": "To fix a flaky tests/unit/utils/usertypes/test_timer.py::test_early_timeout_check\n(where a download-update timer from an earlier test fails), I looked into what\nusertypes.Timer instances where left over after a test finished.\n\nIt turns out that there were about 190 still existing \"partial-match\" and\n\"normal-inhibited\" timers when breaking in test_timer.py, even when just running\ntests in tests/unit/browser/ and tests/unit/utils/usertypes.\n\nThis is because we pass qapp as parent to the ModeManage"
+    },
+    {
+      "hash": "67e76775238b92186d459edc87d17d749d7d2f36",
+      "date": "2025-04-25",
+      "subject": "Downgrade hypothesis",
+      "body": "Skip this hypothesis version pending https://github.com/HypothesisWorks/hypothesis/issues/4375\nOur test suite is currently failing due to running python with `-b` and\nbeing configured to fail on warnings.\n\nWe'll pick it up on the next update run or so."
+    },
+    {
+      "hash": "f9933d2f3e9b3c0b98de3cfd82d3024ae38ce576",
+      "date": "2025-04-17",
+      "subject": "userscripts: Properly avoid tldextract warning",
+      "body": "The previous fix in 3dc212a81520237318f65d130def2a9229eca2d9 was insufficient,\nas the inner `getattr(extract_result, \"registered_domain\")` was always evaluated\nfirst (thus triggering the deprecation warning again).\n\nWe also cannot do:\n\n    getattr(extract_result, \"top_domain_under_public_suffix\", None) or extract_result.registered_domain\n\nas `\"\"` is a valid value for it."
+    },
+    {
+      "hash": "9e0f7ccc513845e59eacf269f83d787debdbbff3",
+      "date": "2025-04-12",
+      "subject": "tests: Make sure we don't leave stale download managers behind",
+      "body": "Speculative fix for test_early_timeout_handler in\ntests/unit/utils/usertypes/test_timer.py failing:\n\n    >  assert len(caplog.messages) == 1\n    E  AssertionError: assert 5 == 1\n\ndue to:\n\n    ------------------------------ Captured log call -------------------------------\n    WARNING  misc:usertypes.py:467 Timer download-update (id 620757000) triggered too early: interval 500 but only -609.805s passed\n    WARNING  misc:usertypes.py:467 Timer download-update (id 922746881) triggered too early: in"
+    },
+    {
+      "hash": "1d2faf2fa2b60f8dc11de906af29cbe3648b4fee",
+      "date": "2025-04-11",
+      "subject": "Revert \"tests: Try to stabilize test_auto_leave_insert_mode\"",
+      "body": "This reverts commit f6f2a1252bf1289e7c82754ce9cdc2d071c711a8.\n\nDoes more harm than good, for reasons I don't entirely understand yet."
+    },
+    {
+      "hash": "4f4ad4147a3a94e6806c136ba61c2ac989abfff1",
+      "date": "2025-04-11",
+      "subject": "Revert \"tests: Try to combat Qt 6.9 flakiness more\"",
+      "body": "This reverts commit 72041686847f6a22bc391f767fccd56a7243f425.\n\nDoesn't actually help on CI..."
+    },
+    {
+      "hash": "13b87e59686de8e0cf8aba147ad051999447a4f4",
+      "date": "2025-04-11",
+      "subject": "ci: Avoid Python 3.14 Alpha 7",
+      "body": "See https://www.riverbankcomputing.com/pipermail/pyqt/2025-April/046210.html and #8529"
+    },
+    {
+      "hash": "b16551548fb220be309b64f079cf5495083e7911",
+      "date": "2025-04-08",
+      "subject": "Remove QtWebEngine/... from default UA",
+      "body": "Good old https://webaim.org/blog/user-agent-string-history/ strikes yet again.\nLet's just masquerade as Chromium instead of the constant pointless fight."
+    },
+    {
+      "hash": "961a9390da7556617e550a06e5f0ef1a00453379",
+      "date": "2025-04-08",
+      "subject": "Remove the ua-slack site specific quirk",
+      "body": "Closes #8510"
+    },
+    {
+      "hash": "3280c8dacc39b0d95d5fc2d6e89bbec8006fede5",
+      "date": "2025-04-08",
+      "subject": "tests: Avoid CI issues with qutescheme and Qt 6.9",
+      "body": "see #8536"
+    },
+    {
+      "hash": "ab3b77cb1e99c4b6cf391a94f174c9b9f42dfbed",
+      "date": "2025-04-04",
+      "subject": "Revert \"Make private browsing asserts more useful\"",
+      "body": "This reverts commit b09a1385f5a5d0367fcf63d0662e50b39354f222."
+    },
+    {
+      "hash": "1a6d32cc3d43b7f08dcee7793bef83361fcd2be2",
+      "date": "2025-02-23",
+      "subject": "ci: Upgrade Ubuntu versions",
+      "body": "Avoid deprecated Ubuntu 20.04 which will be unsupported in April:\nhttps://github.com/actions/runner-images/issues/11101\n\nFor Qt 6.8 and auxiliary jobs (linters etc.), switch from 22.04 to 24.04."
+    },
+    {
+      "hash": "de8a2c04b80c449bbac75a36897c0c433ebbd8b6",
+      "date": "2025-02-23",
+      "subject": "bleeding: Avoid deprecated egg syntax",
+      "body": "See https://github.com/pypa/pip/issues/13157"
+    },
+    {
+      "hash": "12e6838267837e7157e6f5bffc5b1fd9d5e9136a",
+      "date": "2025-02-23",
+      "subject": "bleeding: Avoid broken gherkin-official >= 31",
+      "body": "See https://github.com/cucumber/gherkin/issues/373"
+    },
+    {
+      "hash": "d272804126de00a4a59776aa7b1808abb96ecb0e",
+      "date": "2025-01-09",
+      "subject": "Disable DocumentPictureInPicture API",
+      "body": "The DocumentPictureInPicture JS API added in Chromium 116 is not implemented in\nQtWebEngine. This results in createWindow() being called with a window type with\nrandom value, which then causes qutebrowser to bail out:\n\n    Traceback (most recent call last):\n    File \".../qutebrowser/browser/webengine/webview.py\", line 123, in createWindow\n        raise ValueError(\"Invalid wintype {}\".format(debug_type))\n    ValueError: Invalid wintype 843995690\n\nUntil this is fixed in Qt, we pass an argument to "
+    },
+    {
+      "hash": "a0bbcd6259726876bec1f03e6356691e346da25c",
+      "date": "2024-12-13",
+      "subject": "requirements: Remove index-url again",
+      "body": "Now on PyPi, partially reverts 3a956b409754f9bdd1c0d235fc79fcb01d2438ae"
+    },
+    {
+      "hash": "4a5515666e644fd1502cb3236e66a2d18c765d71",
+      "date": "2024-12-13",
+      "subject": "Revert \"js: Set eslint to ecmascript 2020\"",
+      "body": "This reverts commit 86e2573c39e4d58e9273fe6fc496b1a5420e672f.\nBreaks stuff with QtWebKit, whoops..."
+    },
+    {
+      "hash": "9e70ffeaad1df6e2861b9b1f2bd7c07a090f5feb",
+      "date": "2024-12-10",
+      "subject": "Switch to legacy PDF.js build",
+      "body": "The normal PDF.js build only officially supports the latest Chromium, so things\nmight break every once in a while with QtWebEngine (e.g. #8199, #7335).\n\nLet's instead bundle and recommend the legacy build.\n\nCloses #8332\nCloses #7721 (reworded)\nAlso see #7135"
+    },
+    {
+      "hash": "68eacd20360fa035a086734e5aaae2dba8cb841e",
+      "date": "2024-12-09",
+      "subject": "py313: Avoid deprecated pathlib.PurePath.is_reserved()",
+      "body": "Looks like the CI upgrade was the first time we tested this on Windows?\nWhoops!\n\nhttps://github.com/python/cpython/issues/88569\nhttps://docs.python.org/3/whatsnew/3.13.html#new-deprecations\nSee #8205"
+    },
+    {
+      "hash": "258e61f97cb99695d4bf5313968c3050c6647eb3",
+      "date": "2024-12-09",
+      "subject": "tests: Stabilize reloading in tests",
+      "body": "The test added in fbd148f98399090704d2cb055c928ca14f18cba2 was flaky because\nreloading didn't wait for the page load to actually finish fully, and thus the\nelement not being found on the page.\n\nFix this by providing the page path to the step, and making sure it waits for it\nto be fully loaded again.\n\nAlso undos some flaky tags done in 2018:\n12e537593179cab96c27eb184ed7719184ea205f\nc1c182d958a47c9d65da5f962890347f3f7cf3ba\n\nAs this might have been the real culprit.\nIf not, those should be re-added"
+    },
+    {
+      "hash": "d45de7512966d0b0b93f3a4086fe71dfe7852775",
+      "date": "2024-12-09",
+      "subject": "tox: Remove Python 3.13 typing-extensions handling",
+      "body": "See #8205"
+    },
+    {
+      "hash": "960d9aaaa5a496312095acf1e6cf35a0bf0573bb",
+      "date": "2024-12-09",
+      "subject": "tests: Initialize QtWebEngine spell dictionary path earlier",
+      "body": "Turns out there are various places in the tests that somehow cause Qt to start\ncaching the dict location, not just actually accessing\n.[is|set]SpellCheckEnabled() like I originally assumed.\n\nThus, move setting QTWEBENGINE_DICTIONARIES_PATH into conftest.py so it's run\nbefore any tests. However, remove the sanity check after, as that requires\ninitializing a QWebEngineProfile which we might not always want to do when\nrunning a subset of unit tests. If something goes wrong with this, chances are\nwe"
+    },
+    {
+      "hash": "4918e6d8ff3a723440b4109d92b78322bc53a953",
+      "date": "2024-12-09",
+      "subject": "macOS: Avoid deprecated file associations",
+      "body": "Based on Chromium's Info.plist.\n\nFixes #7306, see #8416 for more possible improvements."
+    },
+    {
+      "hash": "3cfefd121cbddc65c28bdf659acc2dc9b5b3ee40",
+      "date": "2024-12-09",
+      "subject": "Avoid Qt 6.8 spell check warning",
+      "body": "Due to a Qt bug, we get a misleading error even when trying to *disable*\nspell checking: https://bugreports.qt.io/browse/QTBUG-131969\n\nTo avoid that from happening, we now only call setSpellCheckEnabled() if\nthe value actually changed.\n\nSee #8242, #8330 (not the same issue but related)"
+    },
+    {
+      "hash": "e2fb1fba8b3d6ef4a0d0671f796ed65673479d51",
+      "date": "2024-12-05",
+      "subject": "Revert \"Bleeding requirements: Use pytest-bdd release\"",
+      "body": "This reverts commit 26b4ec6cef9d227a2727cdb7a45e71cf41eb4ac3."
+    },
+    {
+      "hash": "69ac04d38908a2bce4671dbe8f66da8c527291d9",
+      "date": "2024-12-04",
+      "subject": "Drop macOS 12",
+      "body": "The GHA runner is gone now: https://github.com/actions/runner-images/issues/10721\n\nCloses #8327"
+    },
+    {
+      "hash": "0144a314ad2850d2da7ebcde5d70a9f1e9b2a178",
+      "date": "2024-11-27",
+      "subject": "Respect Accept-Language set via XHR",
+      "body": "Similarly to #5998, XHR requests should be able to set their custom\nAccept-Language values - and for some odd reason, stuff breaks on websites\nsometimes when that's not respected.\n\nThere's no way for qutebrowser to know if a given header value is already set in\na request (i.e. whether we're adding or overriding). Thus we only really have\ntwo options here:\n\n1) Don't set any shared.custom_headers() for XHR requests at all.\n2) Special-case Accept-Language here, because the issue usually is triggere"
+    },
+    {
+      "hash": "a085e3caa083829865083db1726822c4b9e3bdab",
+      "date": "2024-11-10",
+      "subject": "use `unlink(missing_ok=True)`",
+      "body": "Combine the `if exists` and `unlink` in one step and avoid any race\nconditions with the file disappearing in between them.\n\nCo-Authored-By: Florian Bruhin <me@the-compiler.org>"
+    },
+    {
+      "hash": "57465a6768c85ced746da9fdc58eb83b008af340",
+      "date": "2024-11-10",
+      "subject": "Assert on unexpected config value when prompting",
+      "body": "This branch gets entered if the value of a setting linked to a feature\nis anything other than True, False or \"ask\". I think this could only\nhappen due to a programming error, for example when you add an entry to\n`_WebEnginePermissions` that was linked to a String type setting. So I\nthink putting an assert here instead of a warning should be fine and\nmore explicit. (Or should be be `utils.Unreachable`? Or `ValueError`?)"
+    },
+    {
+      "hash": "e55624703bb2be91bfb89ebbca40ebe1580443e8",
+      "date": "2024-10-28",
+      "subject": "Move config-type-to-bool thing to an abstract class",
+      "body": "Relying on `hasattr()` made me feel a bit guilty. So I've moved these\nconditionals to be backed by a class. The only class based alternative I\ncan think of is putting it on the base type and leaving all the other\nconfig variables to raise errors. But that doesn't tell the type system\nanything."
+    },
+    {
+      "hash": "fbd148f98399090704d2cb055c928ca14f18cba2",
+      "date": "2024-10-28",
+      "subject": "Support persisting clipboard prompt choices",
+      "body": "All the promptable feature permissions so far have been of type BoolAsk.\nThe prompt uses a \"yesno\" mode prompt and only results in a bool. The\npersistence logic only supports bools.\n\nPreviously I made the shared prompt support the String type clipboard\npermission setting by treating non \"ask\" values as False (you only get\nprompted if the global setting is \"none\" anyway), but saving the prompt\nresults with `:prompt-accept --save` didn't work because the persistence\ncode only supported bools.\n\nWha"
+    },
+    {
+      "hash": "f551bbbb7687142f8195b1bd5d81b8da6592f87e",
+      "date": "2024-10-26",
+      "subject": "Move new permission API check from pytest markers to BDD step",
+      "body": "For tests that do the same prompt in the same session, they are failing\non Qt6.8 and PyQWebEnginet6.7 because we can't disable the new WebEngine\nbehaviour.\n\nWe can work around this by getting a fresh instance for each test, but I\ndon't want to make more tests slower if I don't have to. So move that\nlogic into a custom \"fresh instance\" prompt that will only create one\nwhen needed."
+    },
+    {
+      "hash": "0192b58a6adbb5952094d48c22d1bec5b4536eed",
+      "date": "2024-10-20",
+      "subject": "Support 'ask' for clipboard permissions",
+      "body": "WebEngine now supports prompting for permission when a web page tries to\naccess the clipboard. Previously we only supported fixed permissions that\napplied globally.\n\nThis commit\n\n1. adds support for permission requests with the new ClipboardReadWrite\n   permission\n2. tweaks the generic JS prompt handler in browser/shared.py to handle\n   seeing a setting which isn't of type BoolAsk\n3. adds end2end tests around clipboard permissions, both the existing\n   global ones and the new per-URL ones\n\n1. th"
+    },
+    {
+      "hash": "5ad68024b2085902b24be5bec09d66e1c1b4f4c3",
+      "date": "2024-10-20",
+      "subject": "mypy: ignore pyqt attribute from the future",
+      "body": "Once pyqt 6.8 is released mypy will probably start complaining about an\nunnecessary ignore statement and we can remove it."
+    },
+    {
+      "hash": "85435c7574b02109195a3d80db6c6a4feddea6f6",
+      "date": "2024-10-16",
+      "subject": "Revert change to _count",
+      "body": "Adds a specific check for only -1 in _current_index"
+    },
+    {
+      "hash": "5691e04afc84f19e575faafafdbfe0d61d861d5b",
+      "date": "2024-10-16",
+      "subject": "Remove duplicate checking of widget existence",
+      "body": "_run_userscript handles the case different than _current_index()"
+    },
+    {
+      "hash": "cc3c1e2050ad37fb60f5c57ae9c05d7a6ec6e010",
+      "date": "2024-10-15",
+      "subject": "Enable pylint Too many positional arguments warning",
+      "body": "This re-enables the pylint too-many-positional-arguments for the main\napplication code. It's still disabled for tests because that's how you pull in\npytlint fixtures, and I don't think we want to push people into being creative\nwith fixtures just to get around that.\n\nWhen functions are called with many positional arguments the reader has to do\na bit of heavy lifting to figure out in what position a value is being passed,\nand it's easier to make mistakes. So I would like to encourage using keywor"
+    },
+    {
+      "hash": "ff5d4d35641863aaec740c5b5923ae5d90072a35",
+      "date": "2024-10-13",
+      "subject": "Avoid passing a parent to QProcess",
+      "body": "With the upgrade to MarkupSafe 3.0, something funny happened when trying to pass\nthe GUIProcess object to jinja after launching a userscript:\n\n    [...]\n    File \"[...]/qutebrowser/browser/qutescheme.py\", line 291, in qute_process\n        src = jinja.render('process.html', title=f'Process {pid}', proc=proc)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    File \"[...]/qutebrowser/utils/jinja.py\", line 123, in render\n        return environment.get_template(template"
+    },
+    {
+      "hash": "ab7d04a951adcd59b2b5f93e5180c9239a636f34",
+      "date": "2024-10-13",
+      "subject": "Fix wrong type annotation",
+      "body": "This was wrong ever since 0a835ecd926cc334f5f0347e6d0b809dcfd86d0f,\nbut due to the version conditional usage, mypy did not check it."
+    },
+    {
+      "hash": "eb8121ffd576d05c18d14747ed12dc8453ca9fa2",
+      "date": "2024-10-13",
+      "subject": "Use Callable from collections.abc as well",
+      "body": "Did run with ruff pretending to use Python 3.10,\nbecause otherwise it won't reformat those:\n\n    ruff check --select 'UP035' --fix --config 'target-version = \"py310\"' --unsafe-fixes\n\nThis is because collections.abc.Callable inside Optional[...] and Union[...] is\nbroken with Python 3.9.0 and 3.9.1:\n\nhttps://github.com/asottile/pyupgrade/issues/677\nhttps://github.com/astral-sh/ruff/issues/2690\nhttps://github.com/python/cpython/issues/87131\n\nHowever, pylint can detect problematic usages (of which w"
+    },
+    {
+      "hash": "c598cbbc7165bb0cc51a2ccabcd9de350970b8c6",
+      "date": "2024-10-15",
+      "subject": "Revert \"ci: Avoid Archlinux' pyqt6 6.1.7-3 which lacks QSignalSpy\"",
+      "body": "This reverts commit 27e446d26dcdb0653555ab6d72dc12e3d3a64173.\nArchlinux now uses a PyQt 6.8 development snapshot."
+    },
+    {
+      "hash": "b976a31ffa2c4beb9661bd67130f64b47862709e",
+      "date": "2024-10-13",
+      "subject": "Merge pull request #8321 from qutebrowser/feat/8260_drop_qt5_builds",
+      "body": "Remove support for making Qt5 builds"
+    },
+    {
+      "hash": "27e446d26dcdb0653555ab6d72dc12e3d3a64173",
+      "date": "2024-10-13",
+      "subject": "ci: Avoid Archlinux' pyqt6 6.1.7-3 which lacks QSignalSpy",
+      "body": "See https://github.com/qutebrowser/qutebrowser/issues/8242#issuecomment-2409077518"
+    },
+    {
+      "hash": "4d069b8fc3f482fb0308391e453d7d69523de753",
+      "date": "2024-10-13",
+      "subject": "Use str.removeprefix() and str.removesuffix()",
+      "body": "https://docs.python.org/3/whatsnew/3.9.html#new-string-methods-to-remove-prefixes-and-suffixes"
+    },
+    {
+      "hash": "0ab1e3b757ceaea0bd4d354d61d0bb2c84652ec2",
+      "date": "2024-10-13",
+      "subject": "Clear webengine's permissions.json on start",
+      "body": "To avoid WebEngine remembering granted permissions across restarts,\nremove their persistence file when we start up.\n\nThis is only technically required when Qt=>6.8 and PyQt<6.8. But we only\ntake action if the file exists anyway, so it's safe enough to run all\nthe time and that means less conditional code to test ;)\n\nThere are a few options for where we could do this cleanup, I'm choosing\nto do it at the latest point possible, which is right before we set\n`setPersistentStoragePath()`, since the p"
+    },
+    {
+      "hash": "52a8576d7ccdd3516ffed6f162692fc95b2b6311",
+      "date": "2024-10-09",
+      "subject": "Simplify OS version checks in nsis installer",
+      "body": "22000 is the earliest win11 build, so no need to check for that\nseparately.\nAtLeastWin11 is from https://github.com/kichik/nsis/blob/master/Include/WinVer.nsh#L552\nRemove fail label since all failures fall through."
+    },
+    {
+      "hash": "d24a4c5ab0b330d5d7c9ed32049e235999d1763a",
+      "date": "2024-10-05",
+      "subject": "Remove Qt5 switches from release building scripts etc",
+      "body": "I just searched for qt5 and deleted stuff. EZ.\nWill leave on a branch for a bit and see if I feel like testing this at\nall, otherwise maybe leave this stuff in here and make it not called.\n\nNot 100% sure that we need to remove all this stuff when we just want\nthe CI to go green. But tbh if we don't need to make Qt5 releases then\nwe don't need it. Better to be bold and pull it out than have to work\naround it in the future. And we can always revert the commit."
+    },
+    {
+      "hash": "fc9fe750331255c4cd439a6866791654d6fd948c",
+      "date": "2024-10-05",
+      "subject": "Remove qt5 nightly jobs",
+      "body": "They require maintenance, but we don't have a great need for Qt5 builds.\nSee https://github.com/qutebrowser/qutebrowser/issues/8260\n\nAll the Qt5 switches are still in tox, the build release script and the\nnsis installer."
+    },
+    {
+      "hash": "db83a82fe118c3cf4a4696901bf4f29cf6361165",
+      "date": "2024-09-17",
+      "subject": "Include platformdirs in dev requirements as a workaround",
+      "body": "See 433074c6817daa2, this is the same cause. An older version of a\npackage being included in requirements files because setuptools injects\nits vendored packages into sys.path and we use pip freeze to build lock\nfiles. Then when you install two requirements files at the same time they\nend up having conflicting versions. This at least means we include the\nlatest version, which will do until we move to a method of generating\nlock files that just works off of the raw requirements file."
+    },
+    {
+      "hash": "a05cbe4f30396cb3379b22fecfa7027c1dd6a200",
+      "date": "2024-09-06",
+      "subject": "Adjust permission tests for changes to 6.8 permission storage feature",
+      "body": "Qt have updated their permission storage feature so it respects our\nthe setting our basedir feature uses, so now all the tests that use\n\"Given I have a fresh instance\" are passing.\n\nThe remaining failing ones do pass if I make them run in a fresh\ninstance, but I am leaving them as xfail because a) opening a new\ninstance is slow b) the new upstream behaviour causes a regression in\nthe qutebrowser behavior (you don't get re-prompted where you would have\nbeen previously) so I feel like it is correc"
+    },
+    {
+      "hash": "433074c6817daa2fe25b0f9609af180ce3688dbe",
+      "date": "2024-09-03",
+      "subject": "Add importlib_resources to tests requirements file as workaround",
+      "body": "Currently the dependency update job is failing[1] because one of the\ntests installs multiple requirements files before running the tests and\nit claims they have conflicting versions of `importlib_resources` (6.4.0\nvs 6.4.4). 6.4.0 is in the pinned files and there is a 6.4.4 available.\n\nLooking though the logs the first time I see importlib_resources==6.4.0\nis when printing the requirements for the `test` requirements file.\nBut it's not mentioned at all when installing that file. Which makes me\nt"
+    },
+    {
+      "hash": "ea5d15ad2ed49329b0f2fdf6dc0511a18caa6a08",
+      "date": "2024-08-24",
+      "subject": "Remove timestamp and test path from screenshot names.",
+      "body": "Hopefully now that we have reporting in the test results, and pytest\nretaining of old directories, we don't have to encode so much\ninformation in the filenames to help you make sense of them.\n\nPreviously the png filenames looked like this:\n\n    2024-08-24T12_42_11.160556-tests_end2end_features_test_completion_bdd.py__test_deleting_an_open_tab_via_the_completion.png\n\nNow they just have the individual test name, eg:\n\n    test_deleting_an_open_tab_via_the_completion.png\n\nThe two times people will w"
+    },
+    {
+      "hash": "914227ca1c703ce28242b86b08e5e350d75ebdbf",
+      "date": "2024-08-18",
+      "subject": "Set TMPDIR to RUNNER_TEMP on CI",
+      "body": "The upload artifact action can't collect artifacts from /tmp/ in the test\nrunners. So now that we are writing the screenshots that we want to collect\nlater to the pytest `tmp_path` location we need to make sure that lives\nsomewhere the later actions can find it.\n\nPytest uses `tempfile.gettempdir()` to find the temp dir, and that respects a\nnumber of environment variables including `TMPDIR`. This commits sets TMPDIR\nto RUNNER_TEMP in in our test runners to make pytest uses the temp dir that's\nmou"
+    },
+    {
+      "hash": "0c3807b04a121f9a23fa707ce668dcd517e1ee46",
+      "date": "2024-08-17",
+      "subject": "Add pytest report section listing e2e screenshots",
+      "body": "I would like it to be obvious to contributors who run the tests locally\nthat there are screenshots of the processes under test that they can\nexamine. I don't think it's obvious that there could be useful files\nsitting round in a temp directory.\n\nThis commit adds the screenshot file paths to a user property on failed\ntests then adds a custom report section that pulls that lists those\nproperties. That way when there is errors users will get the paths to\nthe images printed out alongside the report "
+    },
+    {
+      "hash": "2fcd6eafc4e74899caca09a8a76e9b16c54b4c1e",
+      "date": "2024-08-17",
+      "subject": "Save screenshots to tmp_path, move stuff into fixtures",
+      "body": "Saving screenshots to the temp directories managed by pytest means we\ndon't have to worry about cleaning up from previous runs because pytest\nwill create a new folder for each run. Now that we aren't cleaning stuff\nup means we don't have to worry about workers clobbering each other\nbecause all they are going to do is write to files with the names of\ntests which have already been distributed amongst them.\n\nMoving to the pytest temp dirs instead of a hardcoded one also means\nthat it'll be less obv"
+    },
+    {
+      "hash": "557b2f37fdea5ee573015be820a38663af7b7031",
+      "date": "2024-05-25",
+      "subject": "Don't clobber screenshot dir when running with xdist",
+      "body": "Ohhh! I didn't realize the e2e tests where running in parallel already.\nInteresting.\n\nAnyhow, use the builtin `filelock` module to make sure different test\nprocesses in the same session don't re-create the screenshot directory.\n\nThis is based on advice here: https://pytest-xdist.readthedocs.io/en/latest/how-to.html#making-session-scoped-fixtures-execute-only-once\n\nI'm saving the lock object to the session stash because it seems the\nlock is released when the FileLock object is destroyed. So this "
+    },
+    {
+      "hash": "78b6fd5cad0d52dbfce8391a0a494b3a637a9545",
+      "date": "2024-04-26",
+      "subject": "Position e2e browser at top left corner of screen",
+      "body": "When taking screenshots of the test process running under xvfb it's\noffset from the top left corner, the default geometry of qutebrowser is\n800x600+50+50. The default size of pytest-xvfb is 800x600, which means\npart of the browser window is outside the X11 screen and doesn't get\ncaptured.\n\nThis commit duplicates the width and height from the default geometry in\nmainwindow.py but sets the x and y offsets to zero so that the browser\nwindow is fully contained within the X11 window."
+    },
+    {
+      "hash": "a3238eb494c8f3c35c6f423dcc3017902326ff01",
+      "date": "2024-04-26",
+      "subject": "upload e2e failure screenshots as artifacts",
+      "body": "This commit takes a screenshot of the active browser window when an\nend2end test fails. When running on CI a zip file of screenshots will be\nattached to the run summary as an artifact. When run locally screenshots\nwill be left in /$TMPDIR/pytest-screenshots/.\n\nThe screenshot is of the Xvfb screen that the tests are running under.\nIf there are multiple windows open it will likely only show the active\nwindow because a) we aren't running with a window manager b) the Xvfb\ndisplay is, by default, the"
+    },
+    {
+      "hash": "f3459a8f145e26ff398cf7fa0ec91187e87066f0",
+      "date": "2024-08-13",
+      "subject": "Reset PyInstaller environment on :restart",
+      "body": "Starting with PyInstaller 6.10 (6.9?), we're supposed to tell PyInstaller when\nwe restart our application (and a subprocess should outlive this process).\n\nIn their words:\n\n    The above requirement was introduced in PyInstaller 6.9, which changed the\n    way the bootloader treats a process spawned via the same executable as its\n    parent process. Whereas previously the default assumption was that it is\n    running a new instance of (the same) program, the new assumption is that the\n    spawned "
+    },
+    {
+      "hash": "aceef82b241e69a83ac9fb113049ffa8dca39026",
+      "date": "2024-07-27",
+      "subject": "mypy: Attempt to extract base class from completion categories",
+      "body": "The methods in `completionmodel.py` dealing with completion categories\nwere annotated with `QAbstractItemModel`. In mypy's latest 3.11 update\nit correctly pointed out that there is code relying on some attributes,\nlike `name`, being on the categories but `QAbstractItemModel` didn't\nimplement those attributes.\n\nThis commit adds a new base class for completion categories which\ndefines the extra attributes we expect. It also changes the type hints\nto ensure all list categories inherit from it.\n\nThe"
+    },
+    {
+      "hash": "98f85cbfcc63cb7cdeed2c6f0657e832a917e581",
+      "date": "2024-07-27",
+      "subject": "Fix more type hints",
+      "body": "New mypy 3.11 update got smarter and raise some issues, they appear to\nbe correct in all cases.\n\nThere are several `type: ignore[unreachable]` comments in conditionals\non `sys.stderr` being None, which were introduce in a comment\nspecifically to handle a case where `sys.stderr` could be None. So\npresumable the ignore comments were just to shut mypy up when it was\nmaking mistakes.\n\nIn `debug.py` it was complaining that the class handling branch was\nunreachable, because the type hint was overly re"
+    },
+    {
+      "hash": "b91e14264347f78a6e027692aeb48f869351668d",
+      "date": "2024-07-27",
+      "subject": "Remove `callback` arg to webkit print preview",
+      "body": "mypy 1.11 has new and improved support for checking partial functions,\nand it works great! It says:\n\n    qutebrowser/components/misccommands.py: note: In function \"_print_preview\":\n    qutebrowser/components/misccommands.py:74: error: Unexpected keyword argument \"callback\" for \"to_printer\" of\n    \"AbstractPrinting\"  [call-arg]\n            diag.paintRequested.connect(functools.partial(\n                                        ^\n    qutebrowser/browser/browsertab.py:269: note: \"to_printer\" of \"Abst"
+    },
+    {
+      "hash": "e2f718a5180c5fb89b4cab8d3a42242ab59ae229",
+      "date": "2024-07-27",
+      "subject": "Adjust some type hints to better match parent classes",
+      "body": "mypy 1.11 has stricter checking of the type signature overridden methods: https://github.com/python/mypy/blob/master/CHANGELOG.md#stricter-checks-for-untyped-overrides\n\nThere's a couple of places where I added type hints and had to duplicate the\ndefault kwarg value from the parent.\n\nIn `completionmodel.py` it was complaining that the type signature of\n`parent()` didn't match that of `QAbstractItemModel` and `QObject`. I've\nchanged it to be happy, and incidently made it so the positional arg is\no"
+    },
+    {
+      "hash": "b9441cad45bf5995fc1a98a57886ad98be9d0618",
+      "date": "2024-08-04",
+      "subject": "Fix crash when the renderer process terminates for an unknown reason",
+      "body": "With PyQt 6, this gets represented as\nQWebEnginePage.RenderProcessTerminationStatus(-1)\nwhich is != -1, thus leading to a KeyError.\n\nUpdating to a RendererProcessTerminationStatus\nenum value works fine on both PyQt5 and PyQt6."
+    },
+    {
+      "hash": "43fa657f55c08256c1f8fe39b9c1348f499f4831",
+      "date": "2024-07-28",
+      "subject": "Make failed subframe styling error matching more flexible",
+      "body": "In the Qt6.8.0-beta2 release for some reason the error message now looks like;\n\n    Failed to style frame: Failed to read a named property '_qutebrowser' from 'Window': Blocked a frame with origin \"http://localhost:35549\" from accessing a cross-origin frame.\n\nIt seems to have an extra \"Failed to read a named property '_qutebrowser' from\n'Window'\" before the \"Blocked a frame ...\" bit. Seems like maybe a nested\nexception situation? Not sure what's going on there but the exception is still\nbeing ca"
+    },
+    {
+      "hash": "b241b0360bc053b21b51677aca8d55b7937fc322",
+      "date": "2024-06-29",
+      "subject": "ci: Install a newer Python 3.10 for QtWebKit image",
+      "body": "Starting with the upgrade to Hypothesis 6.103.4 we got hangs when pytest exits.\nThis is caused by:\n\nhttps://github.com/HypothesisWorks/hypothesis/pull/4013\n\ncombined with:\n\nhttps://github.com/python/cpython/issues/102126\n\nwhich was fixed in Python 3.10.11, but the latest 3.10 packaged by Archlinux was\n3.10.10.\n\nThus, we instead build a newer 3.10 from the AUR.\nThis bumps the build time up to about 20 minutes on my machine, which is\nprobably acceptable since those are nightly builds only anyways."
+    },
+    {
+      "hash": "b78fc5765abebffa2fd3ef94b012c6e5f422c9c0",
+      "date": "2024-06-27",
+      "subject": "ci: Drop macOS 11",
+      "body": "Will be dropped on GitHub Actions tomorrow:\nhttps://github.blog/changelog/2024-05-20-actions-upcoming-changes-to-github-hosted-macos-runners/\n\nFor unit tests, we now run them on macOS 13 instead, thus testing on all three\nmacOS versions we currently support.\n\nFor releases, this forces us to now support macOS 12 as the oldest supported\nversion and drop macOS 11 support. Thus, we should not have a v3.2.2 release.\n\nNot backporting this commit so CI fails there rather than silently bumping up\nrequir"
+    }
+  ],
+  "commit_count_all": 25833,
+  "commit_count_with_body": 7034,
+  "body_pct": 27.2,
+  "long_body_pct": 9.0,
+  "rationale_keyword_pct": 11.6,
+  "parse_note": "Corrected parse includes empty-body commits; previous commit_count field counted only non-empty-body commits."
+}

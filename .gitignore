@@ -160,3 +160,7 @@ paper/evaluations/*/cutoffs/
 paper/evaluations/*/datasets/
 paper/evaluations/*/conditions/
 paper/evaluations/*/extraction/
+
+# Python bytecode (paper eval scripts)
+__pycache__/
+*.pyc

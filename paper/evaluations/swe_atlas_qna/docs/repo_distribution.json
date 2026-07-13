@@ -1,0 +1,103 @@
+{
+  "total_qna_tasks": 124,
+  "distinct_repos": 11,
+  "per_repo": {
+    "kovidgoyal/kitty": 26,
+    "paperless-ngx/paperless-ngx": 15,
+    "simple-login/app": 15,
+    "secdev/scapy": 14,
+    "foxcpp/maddy": 10,
+    "automattic/wp-calypso": 8,
+    "grafana/grafana": 8,
+    "trufflesecurity/trufflehog": 8,
+    "drakkan/sftpgo": 7,
+    "grafana/k6": 7,
+    "minio/minio": 6
+  },
+  "per_category": {
+    "Architecture & system design": 44,
+    "Root-cause analysis": 37,
+    "Code Onboarding": 28,
+    "Security": 11,
+    "API & library usage / integration": 4
+  },
+  "per_language": {
+    "go": 38,
+    "ts": 31,
+    "python": 29,
+    "c": 26
+  },
+  "per_repo_category": {
+    "automattic/wp-calypso": {
+      "Root-cause analysis": 5,
+      "Code Onboarding": 3
+    },
+    "drakkan/sftpgo": {
+      "Security": 3,
+      "Root-cause analysis": 2,
+      "Architecture & system design": 1,
+      "Code Onboarding": 1
+    },
+    "foxcpp/maddy": {
+      "Code Onboarding": 4,
+      "Root-cause analysis": 3,
+      "Security": 2,
+      "Architecture & system design": 1
+    },
+    "grafana/grafana": {
+      "Code Onboarding": 3,
+      "Architecture & system design": 3,
+      "Root-cause analysis": 2
+    },
+    "grafana/k6": {
+      "Root-cause analysis": 4,
+      "Code Onboarding": 3
+    },
+    "kovidgoyal/kitty": {
+      "Architecture & system design": 20,
+      "Root-cause analysis": 4,
+      "Code Onboarding": 2
+    },
+    "minio/minio": {
+      "Root-cause analysis": 3,
+      "Code Onboarding": 2,
+      "Security": 1
+    },
+    "paperless-ngx/paperless-ngx": {
+      "Architecture & system design": 9,
+      "Root-cause analysis": 4,
+      "API & library usage / integration": 1,
+      "Code Onboarding": 1
+    },
+    "secdev/scapy": {
+      "Architecture & system design": 5,
+      "API & library usage / integration": 3,
+      "Code Onboarding": 3,
+      "Root-cause analysis": 3
+    },
+    "simple-login/app": {
+      "Code Onboarding": 6,
+      "Root-cause analysis": 4,
+      "Security": 3,
+      "Architecture & system design": 2
+    },
+    "trufflesecurity/trufflehog": {
+      "Root-cause analysis": 3,
+      "Architecture & system design": 3,
+      "Security": 2
+    }
+  },
+  "per_repo_base_commit_coverage": {
+    "automattic/wp-calypso": "8/8",
+    "drakkan/sftpgo": "7/7",
+    "foxcpp/maddy": "10/10",
+    "grafana/grafana": "8/8",
+    "grafana/k6": "7/7",
+    "kovidgoyal/kitty": "26/26",
+    "minio/minio": "6/6",
+    "paperless-ngx/paperless-ngx": "15/15",
+    "secdev/scapy": "14/14",
+    "simple-login/app": "15/15",
+    "trufflesecurity/trufflehog": "8/8"
+  }
+}

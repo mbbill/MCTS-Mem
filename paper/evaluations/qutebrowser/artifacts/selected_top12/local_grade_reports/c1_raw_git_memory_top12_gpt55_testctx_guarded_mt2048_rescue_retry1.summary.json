@@ -1,0 +1,1263 @@
+{
+  "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1",
+  "total_predictions": 12,
+  "nonempty_predictions": 9,
+  "resolved": 1,
+  "resolved_ids": [
+    "instance_qutebrowser__qutebrowser-ed19d7f58b2664bb310c7cb6b52c5b9a06ea60b2-v059c6fdc75567943479b23ebca7c07b5e9a7f34c"
+  ],
+  "status_counts": {
+    "empty_patch": 3,
+    "resolved": 1,
+    "unresolved": 8
+  },
+  "results": [
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-0aa57e4f7243024fa4bba8853306691b5dbd77b3-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-0aa57e4f7243024fa4bba8853306691b5dbd77b3-v5149fcda2a9a6fe1d35dfed1bade1444a11ef",
+      "status": "unresolved",
+      "resolved": false,
+      "fail_to_pass": {
+        "selector_count": 4,
+        "chunk_count": 1,
+        "passed": false,
+        "chunks": [
+          {
+            "name": "pytest_fail_to_pass_000_retry_offscreen",
+            "returncode": 1,
+            "elapsed_seconds": 5.668482065200806,
+            "log": "/grader/pytest_fail_to_pass_000_retry_offscreen.log",
+            "selector_count": 4,
+            "retry_of": "pytest_fail_to_pass_000",
+            "effective_returncode": 1
+          }
+        ]
+      },
+      "pass_to_pass": {
+        "selector_count": 33,
+        "chunk_count": 1,
+        "passed": true,
+        "chunks": [
+          {
+            "name": "pytest_pass_to_pass_000_retry_offscreen",
+            "returncode": 0,
+            "elapsed_seconds": 4.7007365226745605,
+            "log": "/grader/pytest_pass_to_pass_000_retry_offscreen.log",
+            "selector_count": 33,
+            "retry_of": "pytest_pass_to_pass_000",
+            "effective_returncode": 0
+          }
+        ]
+      },
+      "setup": {
+        "passed": true,
+        "commands": [
+          {
+            "name": "setup_00",
+            "returncode": 0,
+            "elapsed_seconds": 0.4616520404815674,
+            "log": "/grader/setup_00.log"
+          },
+          {
+            "name": "setup_01",
+            "returncode": 0,
+            "elapsed_seconds": 0.057268619537353516,
+            "log": "/grader/setup_01.log"
+          },
+          {
+            "name": "setup_02",
+            "returncode": 0,
+            "elapsed_seconds": 0.11323952674865723,
+            "log": "/grader/setup_02.log"
+          },
+          {
+            "name": "setup_03",
+            "returncode": 0,
+            "elapsed_seconds": 0.10439276695251465,
+            "log": "/grader/setup_03.log"
+          }
+        ]
+      },
+      "pytest_config_normalized": [
+        "tox.ini"
+      ],
+      "preflight_pytest": {
+        "name": "preflight_pytest",
+        "returncode": 0,
+        "elapsed_seconds": 0.7923529148101807,
+        "log": "/grader/preflight_pytest.log"
+      },
+      "patch_check": {
+        "name": "patch_check",
+        "returncode": 0,
+        "elapsed_seconds": 0.029977798461914062,
+        "log": "/grader/patch_check.log"
+      },
+      "patch_apply": {
+        "name": "patch_apply",
+        "returncode": 0,
+        "elapsed_seconds": 0.030466556549072266,
+        "log": "/grader/patch_apply.log"
+      },
+      "elapsed_seconds": 27.997190713882446,
+      "docker_returncode": 0,
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1"
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c",
+      "status": "unresolved",
+      "resolved": false,
+      "fail_to_pass": {
+        "selector_count": 4,
+        "chunk_count": 1,
+        "passed": false,
+        "chunks": [
+          {
+            "name": "pytest_fail_to_pass_000",
+            "returncode": 1,
+            "elapsed_seconds": 14.731327295303345,
+            "log": "/grader/pytest_fail_to_pass_000.log",
+            "selector_count": 4,
+            "effective_returncode": 1
+          }
+        ]
+      },
+      "pass_to_pass": {
+        "selector_count": 54,
+        "chunk_count": 1,
+        "passed": false,
+        "chunks": [
+          {
+            "name": "pytest_pass_to_pass_000",
+            "returncode": 1,
+            "elapsed_seconds": 33.76075339317322,
+            "log": "/grader/pytest_pass_to_pass_000.log",
+            "selector_count": 54,
+            "effective_returncode": 1
+          }
+        ]
+      },
+      "setup": {
+        "passed": true,
+        "commands": [
+          {
+            "name": "setup_00",
+            "returncode": 0,
+            "elapsed_seconds": 0.40222644805908203,
+            "log": "/grader/setup_00.log"
+          },
+          {
+            "name": "setup_01",
+            "returncode": 0,
+            "elapsed_seconds": 0.05729103088378906,
+            "log": "/grader/setup_01.log"
+          },
+          {
+            "name": "setup_02",
+            "returncode": 0,
+            "elapsed_seconds": 0.22071051597595215,
+            "log": "/grader/setup_02.log"
+          },
+          {
+            "name": "setup_03",
+            "returncode": 0,
+            "elapsed_seconds": 0.21237421035766602,
+            "log": "/grader/setup_03.log"
+          }
+        ]
+      },
+      "pytest_config_normalized": [
+        "tox.ini"
+      ],
+      "preflight_pytest": {
+        "name": "preflight_pytest",
+        "returncode": 0,
+        "elapsed_seconds": 0.6525413990020752,
+        "log": "/grader/preflight_pytest.log"
+      },
+      "patch_check": {
+        "name": "patch_check",
+        "returncode": 0,
+        "elapsed_seconds": 0.02857065200805664,
+        "log": "/grader/patch_check.log"
+      },
+      "patch_apply": {
+        "name": "patch_apply",
+        "returncode": 0,
+        "elapsed_seconds": 0.028772830963134766,
+        "log": "/grader/patch_apply.log"
+      },
+      "elapsed_seconds": 50.15070176124573,
+      "docker_returncode": 0,
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1"
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-1943fa072ec3df5a87e18a23b0916f134c131016-vafb3e8e01b31319c66c4e666b8a3b1d8ba55db24",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-1943fa072ec3df5a87e18a23b0916f134c131016-vafb3e8e01b31319c66c4e666b8a3b1d8ba55d",
+      "status": "unresolved",
+      "resolved": false,
+      "fail_to_pass": {
+        "selector_count": 4,
+        "chunk_count": 1,
+        "passed": false,
+        "chunks": [
+          {
+            "name": "pytest_fail_to_pass_000",
+            "returncode": 1,
+            "elapsed_seconds": 23.48157572746277,
+            "log": "/grader/pytest_fail_to_pass_000.log",
+            "selector_count": 4,
+            "effective_returncode": 1
+          }
+        ]
+      },
+      "pass_to_pass": {
+        "selector_count": 14,
+        "chunk_count": 1,
+        "passed": true,
+        "chunks": [
+          {
+            "name": "pytest_pass_to_pass_000",
+            "returncode": 0,
+            "elapsed_seconds": 58.081767559051514,
+            "log": "/grader/pytest_pass_to_pass_000.log",
+            "selector_count": 14,
+            "effective_returncode": 0
+          }
+        ]
+      },
+      "setup": {
+        "passed": true,
+        "commands": [
+          {
+            "name": "setup_00",
+            "returncode": 0,
+            "elapsed_seconds": 0.3580911159515381,
+            "log": "/grader/setup_00.log"
+          },
+          {
+            "name": "setup_01",
+            "returncode": 0,
+            "elapsed_seconds": 0.056025028228759766,
+            "log": "/grader/setup_01.log"
+          },
+          {
+            "name": "setup_02",
+            "returncode": 0,
+            "elapsed_seconds": 0.15065789222717285,
+            "log": "/grader/setup_02.log"
+          },
+          {
+            "name": "setup_03",
+            "returncode": 0,
+            "elapsed_seconds": 0.14326882362365723,
+            "log": "/grader/setup_03.log"
+          }
+        ]
+      },
+      "pytest_config_normalized": [
+        "tox.ini"
+      ],
+      "preflight_pytest": {
+        "name": "preflight_pytest",
+        "returncode": 0,
+        "elapsed_seconds": 0.5982131958007812,
+        "log": "/grader/preflight_pytest.log"
+      },
+      "patch_check": {
+        "name": "patch_check",
+        "returncode": 0,
+        "elapsed_seconds": 0.028220653533935547,
+        "log": "/grader/patch_check.log"
+      },
+      "patch_apply": {
+        "name": "patch_apply",
+        "returncode": 0,
+        "elapsed_seconds": 0.028369665145874023,
+        "log": "/grader/patch_apply.log"
+      },
+      "elapsed_seconds": 82.95942234992981,
+      "docker_returncode": 0,
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1"
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-322834d0e6bf17e5661145c9f085b41215c280e8-v488d33dd1b2540b234cbb0468af6b6614941ce8f",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-322834d0e6bf17e5661145c9f085b41215c280e8-v488d33dd1b2540b234cbb0468af6b6614941c",
+      "status": "unresolved",
+      "resolved": false,
+      "fail_to_pass": {
+        "selector_count": 24,
+        "chunk_count": 1,
+        "passed": false,
+        "chunks": [
+          {
+            "name": "pytest_fail_to_pass_000",
+            "returncode": 4,
+            "elapsed_seconds": 8.26309847831726,
+            "log": "/grader/pytest_fail_to_pass_000.log",
+            "selector_count": 24,
+            "effective_returncode": 4
+          }
+        ]
+      },
+      "pass_to_pass": {
+        "selector_count": 0,
+        "chunk_count": 0,
+        "passed": true,
+        "chunks": []
+      },
+      "setup": {
+        "passed": true,
+        "commands": [
+          {
+            "name": "setup_00",
+            "returncode": 0,
+            "elapsed_seconds": 0.43216371536254883,
+            "log": "/grader/setup_00.log"
+          },
+          {
+            "name": "setup_01",
+            "returncode": 0,
+            "elapsed_seconds": 0.05868840217590332,
+            "log": "/grader/setup_01.log"
+          },
+          {
+            "name": "setup_02",
+            "returncode": 0,
+            "elapsed_seconds": 0.2279829978942871,
+            "log": "/grader/setup_02.log"
+          },
+          {
+            "name": "setup_03",
+            "returncode": 0,
+            "elapsed_seconds": 0.05483603477478027,
+            "log": "/grader/setup_03.log"
+          }
+        ]
+      },
+      "pytest_config_normalized": [
+        "tox.ini"
+      ],
+      "preflight_pytest": {
+        "name": "preflight_pytest",
+        "returncode": 0,
+        "elapsed_seconds": 0.7721853256225586,
+        "log": "/grader/preflight_pytest.log"
+      },
+      "patch_check": {
+        "name": "patch_check",
+        "returncode": 0,
+        "elapsed_seconds": 0.027668476104736328,
+        "log": "/grader/patch_check.log"
+      },
+      "patch_apply": {
+        "name": "patch_apply",
+        "returncode": 0,
+        "elapsed_seconds": 0.029512405395507812,
+        "log": "/grader/patch_apply.log"
+      },
+      "elapsed_seconds": 9.897138595581055,
+      "docker_returncode": 0,
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1"
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-3d01c201b8aa54dd71d4f801b1dd12feb4c0a08a-v5fc38aaf22415ab0b70567368332beee7955b367",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-3d01c201b8aa54dd71d4f801b1dd12feb4c0a08a-v5fc38aaf22415ab0b70567368332beee7955b",
+      "status": "unresolved",
+      "resolved": false,
+      "fail_to_pass": {
+        "selector_count": 12,
+        "chunk_count": 1,
+        "passed": false,
+        "chunks": [
+          {
+            "name": "pytest_fail_to_pass_000",
+            "returncode": 1,
+            "elapsed_seconds": 8.54934048652649,
+            "log": "/grader/pytest_fail_to_pass_000.log",
+            "selector_count": 12,
+            "effective_returncode": 1
+          }
+        ]
+      },
+      "pass_to_pass": {
+        "selector_count": 371,
+        "chunk_count": 5,
+        "passed": true,
+        "chunks": [
+          {
+            "name": "pytest_pass_to_pass_000",
+            "returncode": 0,
+            "elapsed_seconds": 10.615793943405151,
+            "log": "/grader/pytest_pass_to_pass_000.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_001",
+            "returncode": 0,
+            "elapsed_seconds": 3.8173208236694336,
+            "log": "/grader/pytest_pass_to_pass_001.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_002",
+            "returncode": 0,
+            "elapsed_seconds": 4.065185308456421,
+            "log": "/grader/pytest_pass_to_pass_002.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_003",
+            "returncode": 1,
+            "elapsed_seconds": 48.33350467681885,
+            "log": "/grader/pytest_pass_to_pass_003.log",
+            "selector_count": 80,
+            "effective_returncode": 0,
+            "teardown_xio_ignored": true
+          },
+          {
+            "name": "pytest_pass_to_pass_004",
+            "returncode": 0,
+            "elapsed_seconds": 7.763561725616455,
+            "log": "/grader/pytest_pass_to_pass_004.log",
+            "selector_count": 51,
+            "effective_returncode": 0
+          }
+        ]
+      },
+      "setup": {
+        "passed": true,
+        "commands": [
+          {
+            "name": "setup_00",
+            "returncode": 0,
+            "elapsed_seconds": 0.407696008682251,
+            "log": "/grader/setup_00.log"
+          },
+          {
+            "name": "setup_01",
+            "returncode": 0,
+            "elapsed_seconds": 0.060585737228393555,
+            "log": "/grader/setup_01.log"
+          },
+          {
+            "name": "setup_02",
+            "returncode": 0,
+            "elapsed_seconds": 0.14146113395690918,
+            "log": "/grader/setup_02.log"
+          },
+          {
+            "name": "setup_03",
+            "returncode": 0,
+            "elapsed_seconds": 0.1336970329284668,
+            "log": "/grader/setup_03.log"
+          }
+        ]
+      },
+      "pytest_config_normalized": [
+        "tox.ini"
+      ],
+      "preflight_pytest": {
+        "name": "preflight_pytest",
+        "returncode": 0,
+        "elapsed_seconds": 0.5103316307067871,
+        "log": "/grader/preflight_pytest.log"
+      },
+      "patch_check": {
+        "name": "patch_check",
+        "returncode": 0,
+        "elapsed_seconds": 0.02652907371520996,
+        "log": "/grader/patch_check.log"
+      },
+      "patch_apply": {
+        "name": "patch_apply",
+        "returncode": 0,
+        "elapsed_seconds": 0.02576589584350586,
+        "log": "/grader/patch_apply.log"
+      },
+      "elapsed_seconds": 84.50647115707397,
+      "docker_returncode": 0,
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1"
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-3e21c8214a998cb1058defd15aabb24617a76402-v5fc38aaf22415ab0b70567368332beee7955b367",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-3e21c8214a998cb1058defd15aabb24617a76402-v5fc38aaf22415ab0b70567368332beee7955b",
+      "status": "unresolved",
+      "resolved": false,
+      "fail_to_pass": {
+        "selector_count": 1869,
+        "chunk_count": 24,
+        "passed": false,
+        "chunks": [
+          {
+            "name": "pytest_fail_to_pass_000",
+            "returncode": 4,
+            "elapsed_seconds": 6.53628396987915,
+            "log": "/grader/pytest_fail_to_pass_000.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_001",
+            "returncode": 4,
+            "elapsed_seconds": 3.649841785430908,
+            "log": "/grader/pytest_fail_to_pass_001.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_002",
+            "returncode": 4,
+            "elapsed_seconds": 3.768367290496826,
+            "log": "/grader/pytest_fail_to_pass_002.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_003",
+            "returncode": 4,
+            "elapsed_seconds": 3.663417339324951,
+            "log": "/grader/pytest_fail_to_pass_003.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_004",
+            "returncode": 4,
+            "elapsed_seconds": 3.6933646202087402,
+            "log": "/grader/pytest_fail_to_pass_004.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_005",
+            "returncode": 4,
+            "elapsed_seconds": 3.6889097690582275,
+            "log": "/grader/pytest_fail_to_pass_005.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_006",
+            "returncode": 4,
+            "elapsed_seconds": 3.6574792861938477,
+            "log": "/grader/pytest_fail_to_pass_006.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_007",
+            "returncode": 4,
+            "elapsed_seconds": 3.6890156269073486,
+            "log": "/grader/pytest_fail_to_pass_007.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_008",
+            "returncode": 4,
+            "elapsed_seconds": 3.6400327682495117,
+            "log": "/grader/pytest_fail_to_pass_008.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_009",
+            "returncode": 4,
+            "elapsed_seconds": 3.782916784286499,
+            "log": "/grader/pytest_fail_to_pass_009.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_010",
+            "returncode": 4,
+            "elapsed_seconds": 3.6654911041259766,
+            "log": "/grader/pytest_fail_to_pass_010.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_011",
+            "returncode": 4,
+            "elapsed_seconds": 3.785388231277466,
+            "log": "/grader/pytest_fail_to_pass_011.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_012",
+            "returncode": 4,
+            "elapsed_seconds": 3.673107624053955,
+            "log": "/grader/pytest_fail_to_pass_012.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_013",
+            "returncode": 4,
+            "elapsed_seconds": 3.645352602005005,
+            "log": "/grader/pytest_fail_to_pass_013.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_014",
+            "returncode": 4,
+            "elapsed_seconds": 3.7202260494232178,
+            "log": "/grader/pytest_fail_to_pass_014.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_015",
+            "returncode": 4,
+            "elapsed_seconds": 3.740558624267578,
+            "log": "/grader/pytest_fail_to_pass_015.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_016",
+            "returncode": 4,
+            "elapsed_seconds": 3.6881816387176514,
+            "log": "/grader/pytest_fail_to_pass_016.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_017",
+            "returncode": 4,
+            "elapsed_seconds": 3.7175869941711426,
+            "log": "/grader/pytest_fail_to_pass_017.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_018",
+            "returncode": 4,
+            "elapsed_seconds": 3.647207021713257,
+            "log": "/grader/pytest_fail_to_pass_018.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_019",
+            "returncode": 4,
+            "elapsed_seconds": 3.70062518119812,
+            "log": "/grader/pytest_fail_to_pass_019.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_020",
+            "returncode": 4,
+            "elapsed_seconds": 3.6441564559936523,
+            "log": "/grader/pytest_fail_to_pass_020.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_021",
+            "returncode": 4,
+            "elapsed_seconds": 3.658261775970459,
+            "log": "/grader/pytest_fail_to_pass_021.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_022",
+            "returncode": 4,
+            "elapsed_seconds": 3.6894381046295166,
+            "log": "/grader/pytest_fail_to_pass_022.log",
+            "selector_count": 80,
+            "effective_returncode": 4
+          },
+          {
+            "name": "pytest_fail_to_pass_023",
+            "returncode": 4,
+            "elapsed_seconds": 3.5782015323638916,
+            "log": "/grader/pytest_fail_to_pass_023.log",
+            "selector_count": 29,
+            "effective_returncode": 4
+          }
+        ]
+      },
+      "pass_to_pass": {
+        "selector_count": 0,
+        "chunk_count": 0,
+        "passed": true,
+        "chunks": []
+      },
+      "setup": {
+        "passed": true,
+        "commands": [
+          {
+            "name": "setup_00",
+            "returncode": 0,
+            "elapsed_seconds": 0.4192490577697754,
+            "log": "/grader/setup_00.log"
+          },
+          {
+            "name": "setup_01",
+            "returncode": 0,
+            "elapsed_seconds": 0.04749441146850586,
+            "log": "/grader/setup_01.log"
+          },
+          {
+            "name": "setup_02",
+            "returncode": 0,
+            "elapsed_seconds": 0.17723655700683594,
+            "log": "/grader/setup_02.log"
+          },
+          {
+            "name": "setup_03",
+            "returncode": 0,
+            "elapsed_seconds": 0.17016220092773438,
+            "log": "/grader/setup_03.log"
+          }
+        ]
+      },
+      "pytest_config_normalized": [
+        "tox.ini"
+      ],
+      "preflight_pytest": {
+        "name": "preflight_pytest",
+        "returncode": 0,
+        "elapsed_seconds": 0.5748534202575684,
+        "log": "/grader/preflight_pytest.log"
+      },
+      "patch_check": {
+        "name": "patch_check",
+        "returncode": 0,
+        "elapsed_seconds": 0.026391983032226562,
+        "log": "/grader/patch_check.log"
+      },
+      "patch_apply": {
+        "name": "patch_apply",
+        "returncode": 0,
+        "elapsed_seconds": 0.02658867835998535,
+        "log": "/grader/patch_apply.log"
+      },
+      "elapsed_seconds": 93.11973428726196,
+      "docker_returncode": 0,
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1"
+    },
+    {
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1",
+      "instance_id": "instance_qutebrowser__qutebrowser-46e6839e21d9ff72abb6c5d49d5abaa5a8da8a81-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-46e6839e21d9ff72abb6c5d49d5abaa5a8da8a81-v2ef375ac784985212b1805e1d0431dc8f1b3c",
+      "status": "empty_patch",
+      "resolved": false,
+      "fail_to_pass": {
+        "selector_count": 4
+      },
+      "pass_to_pass": {
+        "selector_count": 159
+      },
+      "elapsed_seconds": 0.0
+    },
+    {
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1",
+      "instance_id": "instance_qutebrowser__qutebrowser-e34dfc68647d087ca3175d9ad3f023c30d8c9746-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-e34dfc68647d087ca3175d9ad3f023c30d8c9746-v363c8a7e5ccdf6968fc7ab84a2053ac780366",
+      "status": "empty_patch",
+      "resolved": false,
+      "fail_to_pass": {
+        "selector_count": 11
+      },
+      "pass_to_pass": {
+        "selector_count": 236
+      },
+      "elapsed_seconds": 0.0
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-ed19d7f58b2664bb310c7cb6b52c5b9a06ea60b2-v059c6fdc75567943479b23ebca7c07b5e9a7f34c",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-ed19d7f58b2664bb310c7cb6b52c5b9a06ea60b2-v059c6fdc75567943479b23ebca7c07b5e9a7f",
+      "status": "resolved",
+      "resolved": true,
+      "fail_to_pass": {
+        "selector_count": 5,
+        "chunk_count": 1,
+        "passed": true,
+        "chunks": [
+          {
+            "name": "pytest_fail_to_pass_000",
+            "returncode": 1,
+            "elapsed_seconds": 9.591050148010254,
+            "log": "/grader/pytest_fail_to_pass_000.log",
+            "selector_count": 5,
+            "effective_returncode": 0,
+            "teardown_xio_ignored": true
+          }
+        ]
+      },
+      "pass_to_pass": {
+        "selector_count": 274,
+        "chunk_count": 4,
+        "passed": true,
+        "chunks": [
+          {
+            "name": "pytest_pass_to_pass_000",
+            "returncode": 0,
+            "elapsed_seconds": 14.259672164916992,
+            "log": "/grader/pytest_pass_to_pass_000.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_001",
+            "returncode": 1,
+            "elapsed_seconds": 9.929305076599121,
+            "log": "/grader/pytest_pass_to_pass_001.log",
+            "selector_count": 80,
+            "effective_returncode": 0,
+            "teardown_xio_ignored": true
+          },
+          {
+            "name": "pytest_pass_to_pass_002",
+            "returncode": 0,
+            "elapsed_seconds": 5.979875564575195,
+            "log": "/grader/pytest_pass_to_pass_002.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_003",
+            "returncode": 1,
+            "elapsed_seconds": 5.295583248138428,
+            "log": "/grader/pytest_pass_to_pass_003.log",
+            "selector_count": 34,
+            "effective_returncode": 0,
+            "teardown_xio_ignored": true
+          }
+        ]
+      },
+      "setup": {
+        "passed": true,
+        "commands": [
+          {
+            "name": "setup_00",
+            "returncode": 0,
+            "elapsed_seconds": 0.42208003997802734,
+            "log": "/grader/setup_00.log"
+          },
+          {
+            "name": "setup_01",
+            "returncode": 0,
+            "elapsed_seconds": 0.05977749824523926,
+            "log": "/grader/setup_01.log"
+          },
+          {
+            "name": "setup_02",
+            "returncode": 0,
+            "elapsed_seconds": 0.2290503978729248,
+            "log": "/grader/setup_02.log"
+          },
+          {
+            "name": "setup_03",
+            "returncode": 0,
+            "elapsed_seconds": 0.05704689025878906,
+            "log": "/grader/setup_03.log"
+          }
+        ]
+      },
+      "pytest_config_normalized": [
+        "tox.ini"
+      ],
+      "preflight_pytest": {
+        "name": "preflight_pytest",
+        "returncode": 0,
+        "elapsed_seconds": 0.6698365211486816,
+        "log": "/grader/preflight_pytest.log"
+      },
+      "patch_check": {
+        "name": "patch_check",
+        "returncode": 0,
+        "elapsed_seconds": 0.02863764762878418,
+        "log": "/grader/patch_check.log"
+      },
+      "patch_apply": {
+        "name": "patch_apply",
+        "returncode": 0,
+        "elapsed_seconds": 0.02849102020263672,
+        "log": "/grader/patch_apply.log"
+      },
+      "elapsed_seconds": 46.615185260772705,
+      "docker_returncode": 0,
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1"
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-f7753550f2c1dcb2348e4779fd5287166754827e-v059c6fdc75567943479b23ebca7c07b5e9a7f34c",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-f7753550f2c1dcb2348e4779fd5287166754827e-v059c6fdc75567943479b23ebca7c07b5e9a7f",
+      "status": "unresolved",
+      "resolved": false,
+      "fail_to_pass": {
+        "selector_count": 26,
+        "chunk_count": 1,
+        "passed": false,
+        "chunks": [
+          {
+            "name": "pytest_fail_to_pass_000",
+            "returncode": 1,
+            "elapsed_seconds": 19.61348819732666,
+            "log": "/grader/pytest_fail_to_pass_000.log",
+            "selector_count": 26,
+            "effective_returncode": 1
+          }
+        ]
+      },
+      "pass_to_pass": {
+        "selector_count": 1821,
+        "chunk_count": 23,
+        "passed": true,
+        "chunks": [
+          {
+            "name": "pytest_pass_to_pass_000",
+            "returncode": 0,
+            "elapsed_seconds": 4.6063783168792725,
+            "log": "/grader/pytest_pass_to_pass_000.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_001",
+            "returncode": 0,
+            "elapsed_seconds": 6.280897617340088,
+            "log": "/grader/pytest_pass_to_pass_001.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_002",
+            "returncode": 0,
+            "elapsed_seconds": 4.76357364654541,
+            "log": "/grader/pytest_pass_to_pass_002.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_003",
+            "returncode": 0,
+            "elapsed_seconds": 4.609952688217163,
+            "log": "/grader/pytest_pass_to_pass_003.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_004",
+            "returncode": 0,
+            "elapsed_seconds": 4.5407702922821045,
+            "log": "/grader/pytest_pass_to_pass_004.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_005",
+            "returncode": 0,
+            "elapsed_seconds": 4.558311939239502,
+            "log": "/grader/pytest_pass_to_pass_005.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_006",
+            "returncode": 0,
+            "elapsed_seconds": 4.603531837463379,
+            "log": "/grader/pytest_pass_to_pass_006.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_007",
+            "returncode": 0,
+            "elapsed_seconds": 4.540587425231934,
+            "log": "/grader/pytest_pass_to_pass_007.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_008",
+            "returncode": 0,
+            "elapsed_seconds": 4.5952746868133545,
+            "log": "/grader/pytest_pass_to_pass_008.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_009",
+            "returncode": 0,
+            "elapsed_seconds": 4.5093958377838135,
+            "log": "/grader/pytest_pass_to_pass_009.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_010",
+            "returncode": 0,
+            "elapsed_seconds": 4.5737035274505615,
+            "log": "/grader/pytest_pass_to_pass_010.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_011",
+            "returncode": 0,
+            "elapsed_seconds": 4.957823991775513,
+            "log": "/grader/pytest_pass_to_pass_011.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_012",
+            "returncode": 0,
+            "elapsed_seconds": 5.143122673034668,
+            "log": "/grader/pytest_pass_to_pass_012.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_013",
+            "returncode": 0,
+            "elapsed_seconds": 5.0746119022369385,
+            "log": "/grader/pytest_pass_to_pass_013.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_014",
+            "returncode": 0,
+            "elapsed_seconds": 5.057509899139404,
+            "log": "/grader/pytest_pass_to_pass_014.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_015",
+            "returncode": 0,
+            "elapsed_seconds": 4.414370536804199,
+            "log": "/grader/pytest_pass_to_pass_015.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_016",
+            "returncode": 0,
+            "elapsed_seconds": 4.415711879730225,
+            "log": "/grader/pytest_pass_to_pass_016.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_017",
+            "returncode": 0,
+            "elapsed_seconds": 4.424746513366699,
+            "log": "/grader/pytest_pass_to_pass_017.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_018",
+            "returncode": 0,
+            "elapsed_seconds": 4.419728994369507,
+            "log": "/grader/pytest_pass_to_pass_018.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_019",
+            "returncode": 0,
+            "elapsed_seconds": 4.406839370727539,
+            "log": "/grader/pytest_pass_to_pass_019.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_020",
+            "returncode": 0,
+            "elapsed_seconds": 4.4056291580200195,
+            "log": "/grader/pytest_pass_to_pass_020.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_021",
+            "returncode": 0,
+            "elapsed_seconds": 4.520674467086792,
+            "log": "/grader/pytest_pass_to_pass_021.log",
+            "selector_count": 80,
+            "effective_returncode": 0
+          },
+          {
+            "name": "pytest_pass_to_pass_022",
+            "returncode": 0,
+            "elapsed_seconds": 5.724522113800049,
+            "log": "/grader/pytest_pass_to_pass_022.log",
+            "selector_count": 61,
+            "effective_returncode": 0
+          }
+        ]
+      },
+      "setup": {
+        "passed": true,
+        "commands": [
+          {
+            "name": "setup_00",
+            "returncode": 0,
+            "elapsed_seconds": 0.4513685703277588,
+            "log": "/grader/setup_00.log"
+          },
+          {
+            "name": "setup_01",
+            "returncode": 0,
+            "elapsed_seconds": 0.05508089065551758,
+            "log": "/grader/setup_01.log"
+          },
+          {
+            "name": "setup_02",
+            "returncode": 0,
+            "elapsed_seconds": 0.22878694534301758,
+            "log": "/grader/setup_02.log"
+          },
+          {
+            "name": "setup_03",
+            "returncode": 0,
+            "elapsed_seconds": 0.22728848457336426,
+            "log": "/grader/setup_03.log"
+          }
+        ]
+      },
+      "pytest_config_normalized": [
+        "tox.ini"
+      ],
+      "preflight_pytest": {
+        "name": "preflight_pytest",
+        "returncode": 0,
+        "elapsed_seconds": 0.795560359954834,
+        "log": "/grader/preflight_pytest.log"
+      },
+      "patch_check": {
+        "name": "patch_check",
+        "returncode": 0,
+        "elapsed_seconds": 0.030267715454101562,
+        "log": "/grader/patch_check.log"
+      },
+      "patch_apply": {
+        "name": "patch_apply",
+        "returncode": 0,
+        "elapsed_seconds": 0.030957698822021484,
+        "log": "/grader/patch_apply.log"
+      },
+      "elapsed_seconds": 130.67778635025024,
+      "docker_returncode": 0,
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1"
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-fd6790fe8c02b144ab2464f1fc8ab3d02ce3c476-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-fd6790fe8c02b144ab2464f1fc8ab3d02ce3c476-v2ef375ac784985212b1805e1d0431dc8f1b3c",
+      "status": "unresolved",
+      "resolved": false,
+      "fail_to_pass": {
+        "selector_count": 6,
+        "chunk_count": 1,
+        "passed": false,
+        "chunks": [
+          {
+            "name": "pytest_fail_to_pass_000",
+            "returncode": 1,
+            "elapsed_seconds": 27.6975519657135,
+            "log": "/grader/pytest_fail_to_pass_000.log",
+            "selector_count": 6,
+            "effective_returncode": 1
+          }
+        ]
+      },
+      "pass_to_pass": {
+        "selector_count": 68,
+        "chunk_count": 1,
+        "passed": false,
+        "chunks": [
+          {
+            "name": "pytest_pass_to_pass_000",
+            "returncode": 4,
+            "elapsed_seconds": 4.692498445510864,
+            "log": "/grader/pytest_pass_to_pass_000.log",
+            "selector_count": 68,
+            "effective_returncode": 4
+          }
+        ]
+      },
+      "setup": {
+        "passed": true,
+        "commands": [
+          {
+            "name": "setup_00",
+            "returncode": 0,
+            "elapsed_seconds": 0.41686296463012695,
+            "log": "/grader/setup_00.log"
+          },
+          {
+            "name": "setup_01",
+            "returncode": 0,
+            "elapsed_seconds": 0.06425285339355469,
+            "log": "/grader/setup_01.log"
+          },
+          {
+            "name": "setup_02",
+            "returncode": 0,
+            "elapsed_seconds": 0.23317646980285645,
+            "log": "/grader/setup_02.log"
+          },
+          {
+            "name": "setup_03",
+            "returncode": 0,
+            "elapsed_seconds": 0.2239820957183838,
+            "log": "/grader/setup_03.log"
+          }
+        ]
+      },
+      "pytest_config_normalized": [
+        "tox.ini"
+      ],
+      "preflight_pytest": {
+        "name": "preflight_pytest",
+        "returncode": 0,
+        "elapsed_seconds": 0.6782634258270264,
+        "log": "/grader/preflight_pytest.log"
+      },
+      "patch_check": {
+        "name": "patch_check",
+        "returncode": 0,
+        "elapsed_seconds": 0.029209136962890625,
+        "log": "/grader/patch_check.log"
+      },
+      "patch_apply": {
+        "name": "patch_apply",
+        "returncode": 0,
+        "elapsed_seconds": 0.0308992862701416,
+        "log": "/grader/patch_apply.log"
+      },
+      "elapsed_seconds": 34.11478042602539,
+      "docker_returncode": 0,
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1"
+    },
+    {
+      "condition": "c1_raw_git_memory_top12_gpt55_testctx_guarded_mt2048_rescue_retry1",
+      "instance_id": "instance_qutebrowser__qutebrowser-ff1c025ad3210506fc76e1f604d8c8c27637d88e-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "docker_image": "jefzda/sweap-images:qutebrowser.qutebrowser-qutebrowser__qutebrowser-ff1c025ad3210506fc76e1f604d8c8c27637d88e-v363c8a7e5ccdf6968fc7ab84a2053ac780366",
+      "status": "empty_patch",
+      "resolved": false,
+      "fail_to_pass": {
+        "selector_count": 785
+      },
+      "pass_to_pass": {
+        "selector_count": 752
+      },
+      "elapsed_seconds": 0.0
+    }
+  ]
+}

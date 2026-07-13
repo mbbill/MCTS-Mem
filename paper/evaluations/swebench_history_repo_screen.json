@@ -1,0 +1,2876 @@
+{
+  "dataset": "ScaleAI/SWE-bench_Pro",
+  "split": "test",
+  "task_count": 731,
+  "repo_count": 11,
+  "scoring": {
+    "core_patterns": [
+      "compat",
+      "deprecation",
+      "legacy",
+      "migration",
+      "regression",
+      "schema",
+      "upgrade"
+    ],
+    "support_patterns": [
+      "api",
+      "config",
+      "database",
+      "refactor",
+      "rename_move",
+      "serialization",
+      "state",
+      "version"
+    ],
+    "strict_issue_specificity": [
+      "compatibility_bug",
+      "regression_bug"
+    ],
+    "refactor_issue_specificity": [
+      "refactoring_enh",
+      "technical_debt_enh"
+    ],
+    "design_history_definition": "core history signal or compat/regression tag, plus either >=2 core signals, a strict/refactor issue tag, or supporting design evidence such as API/config/database/state."
+  },
+  "ranking": [
+    {
+      "repo": "ansible/ansible",
+      "task_count": 96,
+      "core_history_count": 49,
+      "design_history_count": 44,
+      "design_history_rate": 0.4583333333333333,
+      "avg_weighted_score": 5.78125,
+      "top_terms": [
+        [
+          "config",
+          45
+        ],
+        [
+          "version",
+          39
+        ],
+        [
+          "state",
+          23
+        ],
+        [
+          "api",
+          22
+        ],
+        [
+          "compat",
+          18
+        ],
+        [
+          "deprecation",
+          14
+        ],
+        [
+          "legacy",
+          13
+        ],
+        [
+          "serialization",
+          6
+        ],
+        [
+          "migration",
+          3
+        ],
+        [
+          "regression",
+          2
+        ]
+      ],
+      "top_examples": [
+        {
+          "instance_id": "instance_ansible__ansible-6cc97447aac5816745278f3735af128afb255c81-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "short_id": "6cc97447",
+          "title": "ansible-core: Inconsistent behavior with unset values, deprecations, `None` overrides in templar, legacy YAML constructors, lookup messages,",
+          "score": 19.5,
+          "core_hits": [
+            "legacy",
+            "deprecation",
+            "compat"
+          ],
+          "support_hits": [
+            "config"
+          ],
+          "issue_specificity": [
+            "compatibility_bug",
+            "edge_case_bug",
+            "code_quality_enh",
+            "refactoring_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "devops_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+          "short_id": "395e5e20",
+          "title": "Standardize `PlayIterator` state representation with a public type and preserve backward compatibility",
+          "score": 19.0,
+          "core_hits": [
+            "migration",
+            "legacy",
+            "deprecation",
+            "compat"
+          ],
+          "support_hits": [
+            "version",
+            "state"
+          ],
+          "issue_specificity": [
+            "core_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_ansible__ansible-ed6581e4db2f1bec5a772213c3e186081adc162d-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "short_id": "ed6581e4",
+          "title": "check finder type before passing path ### Summary When I try to load an Ansible collection module using the collection loader on Python 3, i",
+          "score": 19.0,
+          "core_hits": [
+            "legacy",
+            "deprecation",
+            "compat"
+          ],
+          "support_hits": [
+            "version",
+            "config"
+          ],
+          "issue_specificity": [
+            "compatibility_bug",
+            "dev_ops_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "infrastructure_knowledge",
+            "devops_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_ansible__ansible-f327e65d11bb905ed9f15996024f857a95592629-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+          "short_id": "f327e65d",
+          "title": "Collection Name Validation Accepts Python Keywords",
+          "score": 16.0,
+          "core_hits": [
+            "legacy",
+            "compat"
+          ],
+          "support_hits": [],
+          "issue_specificity": [
+            "technical_debt_enh",
+            "refactoring_enh",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "devops_knowledge",
+            "infrastructure_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_ansible__ansible-c616e54a6e23fa5616a1d56d243f69576164ef9b-v1055803c3a812189a1133297f7f5468579283f86",
+          "short_id": "c616e54a",
+          "title": "`module_common` fails to resolve `module_utils` from collections (redirects, package `__init__` relative imports) and shows confusing errors",
+          "score": 15.5,
+          "core_hits": [
+            "legacy",
+            "deprecation"
+          ],
+          "support_hits": [
+            "version"
+          ],
+          "issue_specificity": [
+            "major_bug",
+            "integration_bug",
+            "regression_bug",
+            "refactoring_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "infrastructure_knowledge",
+            "devops_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_ansible__ansible-5640093f1ca63fd6af231cc8a7fb7d40e1907b8c-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+          "short_id": "5640093f",
+          "title": "`module_defaults` of the underlying module are not applied when invoked via action plugins (`gather_facts`, `package`, `service`)",
+          "score": 15.0,
+          "core_hits": [
+            "legacy"
+          ],
+          "support_hits": [
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "regression_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "infrastructure_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_ansible__ansible-b8025ac160146319d2b875be3366b60c852dd35d-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "short_id": "b8025ac1",
+          "title": "Support custom TLS cipher suites in get_url and lookup(\u2018url\u2019) to avoid SSL handshake failures ## Description Some HTTPS endpoints require sp",
+          "score": 15.0,
+          "core_hits": [
+            "deprecation",
+            "compat"
+          ],
+          "support_hits": [
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "major_bug",
+            "integration_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "devops_knowledge",
+            "networking_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_ansible__ansible-984216f52e76b904e5b0fa0fb956ab4f1e0a7751-v1055803c3a812189a1133297f7f5468579283f86",
+          "short_id": "984216f5",
+          "title": "Title Plugin Redirection and Deprecation Handling Is Inconsistent",
+          "score": 13.5,
+          "core_hits": [
+            "legacy",
+            "deprecation"
+          ],
+          "support_hits": [
+            "version"
+          ],
+          "issue_specificity": [
+            "major_bug",
+            "regression_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "devops_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        }
+      ]
+    },
+    {
+      "repo": "flipt-io/flipt",
+      "task_count": 85,
+      "core_history_count": 43,
+      "design_history_count": 42,
+      "design_history_rate": 0.49411764705882355,
+      "avg_weighted_score": 6.317647058823529,
+      "top_terms": [
+        [
+          "config",
+          67
+        ],
+        [
+          "api",
+          37
+        ],
+        [
+          "version",
+          30
+        ],
+        [
+          "schema",
+          20
+        ],
+        [
+          "database",
+          17
+        ],
+        [
+          "compat",
+          17
+        ],
+        [
+          "state",
+          17
+        ],
+        [
+          "serialization",
+          14
+        ],
+        [
+          "migration",
+          5
+        ],
+        [
+          "deprecation",
+          4
+        ]
+      ],
+      "top_examples": [
+        {
+          "instance_id": "instance_flipt-io__flipt-af7a0be46d15f0b63f16a868d13f3b48a838e7ce",
+          "short_id": "af7a0be4",
+          "title": "Inconsistent tracing configuration caused by reliance on `tracing.jaeger.enabled`",
+          "score": 20.5,
+          "core_hits": [
+            "legacy",
+            "deprecation",
+            "compat",
+            "schema"
+          ],
+          "support_hits": [
+            "config",
+            "state",
+            "serialization"
+          ],
+          "issue_specificity": [
+            "dev_ops_enh"
+          ],
+          "issue_categories": [
+            "infrastructure_knowledge",
+            "devops_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_flipt-io__flipt-9f8127f225a86245fa35dca4885c2daef824ee55",
+          "short_id": "9f8127f2",
+          "title": "**Feature request: Support `CockroachDB` as a first-class database backend**",
+          "score": 16.5,
+          "core_hits": [
+            "migration",
+            "compat",
+            "schema"
+          ],
+          "support_hits": [
+            "api",
+            "config",
+            "database"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "integration_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge",
+            "infrastructure_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_flipt-io__flipt-b4bb5e13006a729bc0eed8fe6ea18cff54acdacb",
+          "short_id": "b4bb5e13",
+          "title": "OCI manifest version not configurable, causing incompatibility with AWS ECR and other registries",
+          "score": 15.0,
+          "core_hits": [
+            "compat",
+            "schema"
+          ],
+          "support_hits": [
+            "version",
+            "config"
+          ],
+          "issue_specificity": [
+            "compatibility_bug",
+            "integration_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "devops_knowledge",
+            "infrastructure_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_flipt-io__flipt-b433bd05ce405837804693bebd5f4b88d87133c8",
+          "short_id": "b433bd05",
+          "title": "Missing OTLP exporter support for tracing",
+          "score": 15.0,
+          "core_hits": [
+            "legacy",
+            "deprecation",
+            "schema"
+          ],
+          "support_hits": [
+            "config",
+            "serialization"
+          ],
+          "issue_specificity": [
+            "integration_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "devops_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_flipt-io__flipt-756f00f79ba8abf9fe53f3c6c818123b42eb7355",
+          "short_id": "756f00f7",
+          "title": "Configuration refactoring to separate warnings from Config and deprecate ui.enabled",
+          "score": 14.0,
+          "core_hits": [
+            "deprecation"
+          ],
+          "support_hits": [
+            "version",
+            "refactor",
+            "config",
+            "database"
+          ],
+          "issue_specificity": [
+            "refactoring_enh",
+            "code_quality_enh",
+            "scalability_enh",
+            "technical_debt_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "infrastructure_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_flipt-io__flipt-1737085488ecdcd3299c8e61af45a8976d457b7e",
+          "short_id": "17370854",
+          "title": "[Bug]: import metadata issue",
+          "score": 14.0,
+          "core_hits": [
+            "regression"
+          ],
+          "support_hits": [
+            "version",
+            "api",
+            "config",
+            "serialization"
+          ],
+          "issue_specificity": [
+            "major_bug",
+            "data_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "devops_knowledge",
+            "cloud_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_flipt-io__flipt-40007b9d97e3862bcef8c20ae6c87b22ea0627f0",
+          "short_id": "40007b9d",
+          "title": "Add team membership check to GitHub authentication method",
+          "score": 12.5,
+          "core_hits": [
+            "compat",
+            "schema"
+          ],
+          "support_hits": [
+            "version",
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "api_feat",
+            "security_feat",
+            "integration_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "security_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_flipt-io__flipt-65581fef4aa807540cb933753d085feb0d7e736f",
+          "short_id": "65581fef",
+          "title": "Lack of anonymous telemetry prevents understanding user adoption",
+          "score": 11.5,
+          "core_hits": [
+            "schema"
+          ],
+          "support_hits": [
+            "version",
+            "api",
+            "config",
+            "state",
+            "serialization"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "integration_feat",
+            "analytics_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "ds_knowledge",
+            "devops_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        }
+      ]
+    },
+    {
+      "repo": "qutebrowser/qutebrowser",
+      "task_count": 79,
+      "core_history_count": 34,
+      "design_history_count": 34,
+      "design_history_rate": 0.43037974683544306,
+      "avg_weighted_score": 5.556962025316456,
+      "top_terms": [
+        [
+          "config",
+          43
+        ],
+        [
+          "version",
+          34
+        ],
+        [
+          "api",
+          20
+        ],
+        [
+          "compat",
+          14
+        ],
+        [
+          "state",
+          13
+        ],
+        [
+          "rename_move",
+          7
+        ],
+        [
+          "legacy",
+          6
+        ],
+        [
+          "refactor",
+          6
+        ],
+        [
+          "migration",
+          4
+        ],
+        [
+          "deprecation",
+          3
+        ]
+      ],
+      "top_examples": [
+        {
+          "instance_id": "instance_qutebrowser__qutebrowser-8d05f0282a271bfd45e614238bd1b555c58b3fc1-v35616345bb8052ea303186706cec663146f0f184",
+          "short_id": "8d05f028",
+          "title": "Configuration Migration Crashes When Settings Have Invalid Data Structures",
+          "score": 23.0,
+          "core_hits": [
+            "migration",
+            "legacy",
+            "schema"
+          ],
+          "support_hits": [
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "edge_case_bug",
+            "data_bug",
+            "compatibility_bug",
+            "regression_bug"
+          ],
+          "issue_categories": [
+            "desktop_knowledge",
+            "back_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_qutebrowser__qutebrowser-fcfa069a06ade76d91bac38127f3235c13d78eb1-v5fc38aaf22415ab0b70567368332beee7955b367",
+          "short_id": "fcfa069a",
+          "title": "Add major/minor user version infrastructure.",
+          "score": 17.0,
+          "core_hits": [
+            "migration",
+            "compat",
+            "schema"
+          ],
+          "support_hits": [
+            "version",
+            "database"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "technical_debt_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_qutebrowser__qutebrowser-394bfaed6544c952c6b3463751abab3176ad4997-vafb3e8e01b31319c66c4e666b8a3b1d8ba55db24",
+          "short_id": "394bfaed",
+          "title": "Refactor QtWebEngine version detection to use multiple sources including ELF parsing",
+          "score": 15.0,
+          "core_hits": [
+            "legacy",
+            "compat"
+          ],
+          "support_hits": [
+            "version",
+            "config"
+          ],
+          "issue_specificity": [
+            "refactoring_enh",
+            "code_quality_enh",
+            "technical_debt_enh"
+          ],
+          "issue_categories": [
+            "desktop_knowledge",
+            "back_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "short_id": "5fdc83e5",
+          "title": "**Title:**",
+          "score": 14.5,
+          "core_hits": [
+            "migration",
+            "legacy"
+          ],
+          "support_hits": [
+            "api",
+            "config",
+            "serialization"
+          ],
+          "issue_specificity": [
+            "code_quality_enh",
+            "refactoring_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_qutebrowser__qutebrowser-233cb1cc48635130e5602549856a6fa4ab4c087f-v35616345bb8052ea303186706cec663146f0f184",
+          "short_id": "233cb1cc",
+          "title": "Add `overlay` option for `scrolling.bar` and gate it by platform/Qt",
+          "score": 12.5,
+          "core_hits": [
+            "migration",
+            "legacy"
+          ],
+          "support_hits": [
+            "version",
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "ui_ux_feat",
+            "customization_feat",
+            "integration_feat"
+          ],
+          "issue_categories": [
+            "desktop_knowledge",
+            "ui_ux_knowledge",
+            "performance_knowledge",
+            "front_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_qutebrowser__qutebrowser-0833b5f6f140d04200ec91605f88704dd18e2970-v059c6fdc75567943479b23ebca7c07b5e9a7f34c",
+          "short_id": "0833b5f6",
+          "title": "Error signal in WebKit `NetworkReply` uses deprecated `error` instead of `errorOccurred`.",
+          "score": 12.0,
+          "core_hits": [
+            "legacy",
+            "deprecation"
+          ],
+          "support_hits": [],
+          "issue_specificity": [
+            "code_quality_enh",
+            "refactoring_enh",
+            "technical_debt_enh"
+          ],
+          "issue_categories": [
+            "desktop_knowledge",
+            "ui_ux_knowledge",
+            "back_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_qutebrowser__qutebrowser-6b320dc18662580e1313d2548fdd6231d2a97e6d-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "short_id": "6b320dc1",
+          "title": "Fix incorrect parsing of hue percentages in `QtColor`.",
+          "score": 11.0,
+          "core_hits": [
+            "compat"
+          ],
+          "support_hits": [
+            "version",
+            "config"
+          ],
+          "issue_specificity": [
+            "compatibility_bug",
+            "edge_case_bug",
+            "ui_ux_bug"
+          ],
+          "issue_categories": [
+            "ui_ux_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_qutebrowser__qutebrowser-50efac08f623644a85441bbe02ab9347d2b71a9d-v9f8e9d96c85c85a605e382f1510bd08563afc566",
+          "short_id": "50efac08",
+          "title": "Incorrect dark mode threshold key emitted for `colors.webpage.darkmode.threshold.text` on Qt 6.4",
+          "score": 11.0,
+          "core_hits": [],
+          "support_hits": [
+            "version",
+            "config"
+          ],
+          "issue_specificity": [
+            "minor_bug",
+            "edge_case_bug",
+            "regression_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "ui_ux_knowledge",
+            "performance_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        }
+      ]
+    },
+    {
+      "repo": "gravitational/teleport",
+      "task_count": 76,
+      "core_history_count": 27,
+      "design_history_count": 26,
+      "design_history_rate": 0.34210526315789475,
+      "avg_weighted_score": 4.901315789473684,
+      "top_terms": [
+        [
+          "config",
+          34
+        ],
+        [
+          "api",
+          32
+        ],
+        [
+          "version",
+          14
+        ],
+        [
+          "database",
+          14
+        ],
+        [
+          "state",
+          13
+        ],
+        [
+          "legacy",
+          9
+        ],
+        [
+          "compat",
+          8
+        ],
+        [
+          "migration",
+          5
+        ],
+        [
+          "serialization",
+          4
+        ],
+        [
+          "rename_move",
+          4
+        ]
+      ],
+      "top_examples": [
+        {
+          "instance_id": "instance_gravitational__teleport-b5d8169fc0a5e43fee2616c905c6d32164654dc6",
+          "short_id": "b5d8169f",
+          "title": "OSS users lose connection to leaf clusters after root cluster upgrade to Teleport 6.0",
+          "score": 17.0,
+          "core_hits": [
+            "migration",
+            "legacy",
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "api"
+          ],
+          "issue_specificity": [
+            "code_quality_enh",
+            "refactoring_enh",
+            "security_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "security_knowledge",
+            "api_knowledge",
+            "authentication_authorization_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_gravitational__teleport-53814a2d600ccd74c1e9810a567563432b98386e-vce94f93ad1030e3136852817f2423c1b3ac37bc4",
+          "short_id": "53814a2d",
+          "title": "Unable to connect to databases in trusted clusters due to missing Database CA",
+          "score": 15.0,
+          "core_hits": [
+            "migration",
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "database"
+          ],
+          "issue_specificity": [
+            "major_bug",
+            "regression_bug",
+            "integration_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "infrastructure_knowledge",
+            "security_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_gravitational__teleport-c782838c3a174fdff80cafd8cd3b1aa4dae8beb2",
+          "short_id": "c782838c",
+          "title": "`ClusterConfig` caching issues with Pre-v7 Remote Clusters.",
+          "score": 14.0,
+          "core_hits": [
+            "migration",
+            "legacy"
+          ],
+          "support_hits": [
+            "version",
+            "api",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "minor_bug",
+            "integration_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "web_knowledge",
+            "cloud_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_gravitational__teleport-4d0117b50dc8cdb91c94b537a4844776b224cd3d",
+          "short_id": "4d0117b5",
+          "title": "DynamoDB Event Fields Stored as JSON Strings Prevent Efficient Field-Level Queries",
+          "score": 13.5,
+          "core_hits": [
+            "migration",
+            "legacy",
+            "compat"
+          ],
+          "support_hits": [
+            "serialization"
+          ],
+          "issue_specificity": [
+            "integration_feat",
+            "security_feat",
+            "performance_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge",
+            "infrastructure_knowledge",
+            "performance_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_gravitational__teleport-0415e422f12454db0c22316cf3eaa5088d6b6322",
+          "short_id": "0415e422",
+          "title": "Multi-Device U2F Authentication Restricted to Single Token Selection",
+          "score": 13.5,
+          "core_hits": [
+            "legacy",
+            "compat"
+          ],
+          "support_hits": [
+            "config"
+          ],
+          "issue_specificity": [
+            "major_bug",
+            "compatibility_bug",
+            "customization_feat"
+          ],
+          "issue_categories": [
+            "full_stack_knowledge",
+            "security_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_gravitational__teleport-007235446f85b1cbaef92664c3b3867517250f21",
+          "short_id": "00723544",
+          "title": "scp regression on 6.0.0-rc.1.",
+          "score": 13.5,
+          "core_hits": [
+            "regression"
+          ],
+          "support_hits": [
+            "version"
+          ],
+          "issue_specificity": [
+            "regression_bug",
+            "edge_case_bug",
+            "major_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "infrastructure_knowledge",
+            "networking_knowledge",
+            "authentication_authorization_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_gravitational__teleport-cb712e3f0b06dadc679f895daef8072cae400c26-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+          "short_id": "cb712e3f",
+          "title": "Direct Dial nodes report wildcard address `[::]:3022` and are unreachable",
+          "score": 12.5,
+          "core_hits": [],
+          "support_hits": [
+            "version",
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "major_bug",
+            "regression_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "api_knowledge",
+            "back_end_knowledge",
+            "networking_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_gravitational__teleport-37c3724d0d6637e959e39408ee351565d73afe71-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+          "short_id": "37c3724d",
+          "title": "Marshal binary values as `[]byte` to ensure Firestore compatibility",
+          "score": 12.0,
+          "core_hits": [
+            "legacy",
+            "compat"
+          ],
+          "support_hits": [],
+          "issue_specificity": [
+            "data_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        }
+      ]
+    },
+    {
+      "repo": "element-hq/element-web",
+      "task_count": 56,
+      "core_history_count": 22,
+      "design_history_count": 22,
+      "design_history_rate": 0.39285714285714285,
+      "avg_weighted_score": 6.892857142857143,
+      "top_terms": [
+        [
+          "config",
+          48
+        ],
+        [
+          "state",
+          45
+        ],
+        [
+          "api",
+          26
+        ],
+        [
+          "rename_move",
+          14
+        ],
+        [
+          "legacy",
+          12
+        ],
+        [
+          "version",
+          9
+        ],
+        [
+          "compat",
+          7
+        ],
+        [
+          "migration",
+          5
+        ],
+        [
+          "upgrade",
+          3
+        ],
+        [
+          "refactor",
+          3
+        ]
+      ],
+      "top_examples": [
+        {
+          "instance_id": "instance_element-hq__element-web-d06cf09bf0b3d4a0fbe6bd32e4115caea2083168-vnan",
+          "short_id": "d06cf09b",
+          "title": "Legacy ReactDOM.render usage in secondary trees causes maintenance overhead and prevents adoption of modern APIs",
+          "score": 24.0,
+          "core_hits": [
+            "migration",
+            "legacy",
+            "compat",
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "api",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "ui_ux_enh",
+            "code_quality_enh",
+            "refactoring_enh",
+            "performance_enh"
+          ],
+          "issue_categories": [
+            "front_end_knowledge",
+            "ui_ux_knowledge",
+            "performance_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_element-hq__element-web-b7fea97bb68c6628a644580076f840109132f074-vnan",
+          "short_id": "b7fea97b",
+          "title": "Inconsistent Button Container Styling Across Encryption Settings Panels",
+          "score": 17.0,
+          "core_hits": [
+            "migration",
+            "legacy"
+          ],
+          "support_hits": [
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "regression_bug",
+            "refactoring_enh",
+            "code_quality_enh"
+          ],
+          "issue_categories": [
+            "front_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_element-hq__element-web-ad26925bb6628260cfe0fcf90ec0a8cba381f4a4-vnan",
+          "short_id": "ad26925b",
+          "title": "Refactor Pill component logic",
+          "score": 16.5,
+          "core_hits": [
+            "deprecation"
+          ],
+          "support_hits": [
+            "version",
+            "refactor",
+            "rename_move",
+            "api",
+            "config",
+            "state",
+            "serialization"
+          ],
+          "issue_specificity": [
+            "code_quality_enh",
+            "refactoring_enh",
+            "ui_ux_enh"
+          ],
+          "issue_categories": [
+            "front_end_knowledge",
+            "ui_ux_knowledge",
+            "web_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_element-hq__element-web-44b98896a79ede48f5ad7ff22619a39d5f6ff03c-vnan",
+          "short_id": "44b98896",
+          "title": "Integration Manager settings placement and behavior inconsistencies",
+          "score": 16.0,
+          "core_hits": [
+            "migration",
+            "legacy"
+          ],
+          "support_hits": [
+            "version",
+            "rename_move",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "code_quality_enh",
+            "refactoring_enh"
+          ],
+          "issue_categories": [
+            "front_end_knowledge",
+            "ui_ux_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_element-hq__element-web-9a31cd0fa849da810b4fac6c6c015145e850b282-vnan",
+          "short_id": "9a31cd0f",
+          "title": "Issue Title: Allow setting room join rule to \"knock\" ## What would you like to do? Add a feature-flagged \u201cAsk to join\u201d (Knock) join rule to ",
+          "score": 15.5,
+          "core_hits": [
+            "compat",
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "rename_move",
+            "api",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "ui_ux_feat",
+            "localization_feat"
+          ],
+          "issue_categories": [
+            "front_end_knowledge",
+            "web_knowledge",
+            "ui_ux_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_element-hq__element-web-53a9b6447bd7e6110ee4a63e2ec0322c250f08d1-vnan",
+          "short_id": "53a9b644",
+          "title": "`MessageEditHistoryDialog` crashes when diffing complex edited message content",
+          "score": 13.5,
+          "core_hits": [
+            "legacy",
+            "compat"
+          ],
+          "support_hits": [
+            "config"
+          ],
+          "issue_specificity": [
+            "critical_bug",
+            "data_bug",
+            "edge_case_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "front_end_knowledge",
+            "ui_ux_knowledge",
+            "accessibility_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_element-hq__element-web-5e8488c2838ff4268f39db4a8cca7d74eecf5a7e-vnan",
+          "short_id": "5e8488c2",
+          "title": "Unverified device notifications not consistent for existing vs. new sessions",
+          "score": 12.5,
+          "core_hits": [
+            "upgrade"
+          ],
+          "support_hits": [
+            "api",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "critical_bug",
+            "compatibility_bug",
+            "integration_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "authentication_authorization_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_element-hq__element-web-459df4583e01e4744a52d45446e34183385442d6-vnan",
+          "short_id": "459df458",
+          "title": "Starting a voice broadcast while listening to another does not stop active playback",
+          "score": 12.5,
+          "core_hits": [
+            "legacy"
+          ],
+          "support_hits": [
+            "rename_move",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "major_bug",
+            "regression_bug",
+            "edge_case_bug",
+            "integration_bug"
+          ],
+          "issue_categories": [
+            "front_end_knowledge",
+            "ui_ux_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        }
+      ]
+    },
+    {
+      "repo": "future-architect/vuls",
+      "task_count": 62,
+      "core_history_count": 20,
+      "design_history_count": 20,
+      "design_history_rate": 0.3225806451612903,
+      "avg_weighted_score": 4.306451612903226,
+      "top_terms": [
+        [
+          "version",
+          33
+        ],
+        [
+          "config",
+          28
+        ],
+        [
+          "database",
+          12
+        ],
+        [
+          "state",
+          9
+        ],
+        [
+          "api",
+          8
+        ],
+        [
+          "legacy",
+          4
+        ],
+        [
+          "refactor",
+          4
+        ],
+        [
+          "schema",
+          3
+        ],
+        [
+          "compat",
+          3
+        ],
+        [
+          "serialization",
+          2
+        ]
+      ],
+      "top_examples": [
+        {
+          "instance_id": "instance_future-architect__vuls-3f8de0268376e1f0fa6d9d61abb0d9d3d580ea7d",
+          "short_id": "3f8de026",
+          "title": "`vuls report` fails to parse legacy scan results due to incompatible `listenPorts` field format",
+          "score": 19.0,
+          "core_hits": [
+            "legacy",
+            "schema"
+          ],
+          "support_hits": [
+            "version",
+            "config"
+          ],
+          "issue_specificity": [
+            "regression_bug",
+            "major_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "infrastructure_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_future-architect__vuls-139f3a81b66c47e6d8f70ce6c4afe7a9196a6ea8",
+          "short_id": "139f3a81",
+          "title": "Upgrade Vuls library scanning to Trivy 0.30.x, expand package-manager support (PNPM & .NET deps), and align imports/APIs with trivy/pkg/fana",
+          "score": 17.5,
+          "core_hits": [
+            "legacy",
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "refactor",
+            "api",
+            "config",
+            "database"
+          ],
+          "issue_specificity": [
+            "code_quality_enh",
+            "technical_debt_enh",
+            "scalability_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "devops_knowledge",
+            "security_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_future-architect__vuls-d576b6c6c15e56c47cc3e26f5878867677d4a9ea",
+          "short_id": "d576b6c6",
+          "title": "oval.major(\\\"\\\") must return an empty string for empty input",
+          "score": 11.0,
+          "core_hits": [
+            "compat"
+          ],
+          "support_hits": [
+            "version",
+            "api"
+          ],
+          "issue_specificity": [
+            "technical_debt_enh",
+            "refactoring_enh",
+            "code_quality_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_future-architect__vuls-5af1a227339e46c7abf3f2815e4c636a0c01098e",
+          "short_id": "5af1a227",
+          "title": "Issue Title: Incorrect detection of running kernel package versions when multiple variants are installed",
+          "score": 9.5,
+          "core_hits": [
+            "legacy"
+          ],
+          "support_hits": [
+            "version"
+          ],
+          "issue_specificity": [
+            "compatibility_bug",
+            "edge_case_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "infrastructure_knowledge",
+            "devops_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_future-architect__vuls-e52fa8d6ed1d23e36f2a86e5d3efe9aa057a1b0d",
+          "short_id": "e52fa8d6",
+          "title": "Schema version mismatches in the Vuls2 database are not handled explicitly.",
+          "score": 8.5,
+          "core_hits": [
+            "schema"
+          ],
+          "support_hits": [
+            "version",
+            "config",
+            "database"
+          ],
+          "issue_specificity": [
+            "core_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_future-architect__vuls-6eff6a9329a65cc412e79b8f82444dfa3d0f0b5a",
+          "short_id": "6eff6a93",
+          "title": "Scan summary omits OS End\u2011of\u2011Life (EOL) warnings; no EOL lookup or centralized version parsing.",
+          "score": 8.5,
+          "core_hits": [
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "security_feat",
+            "security_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "security_knowledge",
+            "database_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_future-architect__vuls-1832b4ee3a20177ad313d806983127cb6e53f5cf",
+          "short_id": "1832b4ee",
+          "title": "Improving Encapsulation in Client Functions",
+          "score": 8.5,
+          "core_hits": [
+            "legacy"
+          ],
+          "support_hits": [
+            "version",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "integration_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "infrastructure_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_future-architect__vuls-bff6b7552370b55ff76d474860eead4ab5de785a-v1151a6325649aaf997cd541ebe533b53fddf1b07",
+          "short_id": "bff6b755",
+          "title": "Strict parsing of updatable package lines in Amazon Linux repoquery output",
+          "score": 8.5,
+          "core_hits": [],
+          "support_hits": [
+            "version",
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "compatibility_bug",
+            "major_bug",
+            "edge_case_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "security_knowledge",
+            "infrastructure_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        }
+      ]
+    },
+    {
+      "repo": "internetarchive/openlibrary",
+      "task_count": 91,
+      "core_history_count": 20,
+      "design_history_count": 17,
+      "design_history_rate": 0.18681318681318682,
+      "avg_weighted_score": 3.2142857142857144,
+      "top_terms": [
+        [
+          "api",
+          27
+        ],
+        [
+          "config",
+          12
+        ],
+        [
+          "state",
+          11
+        ],
+        [
+          "serialization",
+          10
+        ],
+        [
+          "legacy",
+          9
+        ],
+        [
+          "database",
+          9
+        ],
+        [
+          "refactor",
+          8
+        ],
+        [
+          "compat",
+          7
+        ],
+        [
+          "schema",
+          5
+        ],
+        [
+          "version",
+          5
+        ]
+      ],
+      "top_examples": [
+        {
+          "instance_id": "instance_internetarchive__openlibrary-757fcf46c70530739c150c57b37d6375f155dc97-ve8c8d62a2b60610a3c4631f5f23ed866bada9818",
+          "short_id": "757fcf46",
+          "title": "Title **Refactor `build_marc()` into `expand_record()` and relocate to `catalog/utils` for clarity and reuse** ### Problem / Opportunity The",
+          "score": 16.0,
+          "core_hits": [
+            "deprecation",
+            "compat"
+          ],
+          "support_hits": [
+            "version",
+            "refactor",
+            "rename_move",
+            "api"
+          ],
+          "issue_specificity": [
+            "refactoring_enh",
+            "code_quality_enh",
+            "documentation_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "web_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_internetarchive__openlibrary-bb152d23c004f3d68986877143bb0f83531fe401-ve8c8d62a2b60610a3c4631f5f23ed866bada9818",
+          "short_id": "bb152d23",
+          "title": "Inconsistent Handling and Archival of Book Cover Images in Open Library\u2019s Coverstore System",
+          "score": 15.0,
+          "core_hits": [
+            "legacy",
+            "deprecation",
+            "schema"
+          ],
+          "support_hits": [
+            "database",
+            "state"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "integration_feat",
+            "performance_enh",
+            "dev_ops_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge",
+            "devops_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_internetarchive__openlibrary-25858f9f0c165df25742acf8309ce909773f0cdd-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+          "short_id": "25858f9f",
+          "title": "Enhancement: Refactor Solr Utility Logic to Improve Maintainability",
+          "score": 13.5,
+          "core_hits": [
+            "schema"
+          ],
+          "support_hits": [
+            "version",
+            "refactor",
+            "config",
+            "state",
+            "serialization"
+          ],
+          "issue_specificity": [
+            "code_quality_enh",
+            "refactoring_enh",
+            "dev_ops_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "devops_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_internetarchive__openlibrary-a48fd6ba9482c527602bc081491d9e8ae6e8226c-vfa6ff903cb27f336e17654595dd900fa943dcd91",
+          "short_id": "a48fd6ba",
+          "title": "Remove legacy XML parsing of solr output",
+          "score": 13.5,
+          "core_hits": [
+            "legacy"
+          ],
+          "support_hits": [
+            "refactor"
+          ],
+          "issue_specificity": [
+            "compatibility_bug",
+            "integration_bug",
+            "major_bug",
+            "regression_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "database_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_internetarchive__openlibrary-fad4a40acf5ff5f06cd7441a5c7baf41a7d81fe4-vfa6ff903cb27f336e17654595dd900fa943dcd91",
+          "short_id": "fad4a40a",
+          "title": "Refactor openlibrary/catalog/get_ia.py to use requests instead of urllib",
+          "score": 13.0,
+          "core_hits": [
+            "migration",
+            "compat"
+          ],
+          "support_hits": [
+            "refactor",
+            "api"
+          ],
+          "issue_specificity": [
+            "refactoring_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "web_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_internetarchive__openlibrary-d109cc7e6e161170391f98f9a6fa1d02534c18e4-ve8c8d62a2b60610a3c4631f5f23ed866bada9818",
+          "short_id": "d109cc7e",
+          "title": "Add ability to annotate individual list seeds with public notes",
+          "score": 12.5,
+          "core_hits": [
+            "legacy",
+            "compat"
+          ],
+          "support_hits": [
+            "version",
+            "api",
+            "database"
+          ],
+          "issue_specificity": [
+            "core_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "web_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_internetarchive__openlibrary-77c16d530b4d5c0f33d68bead2c6b329aee9b996-ve8c8d62a2b60610a3c4631f5f23ed866bada9818",
+          "short_id": "77c16d53",
+          "title": "Refactor TOC parsing and rendering logic",
+          "score": 10.5,
+          "core_hits": [
+            "legacy"
+          ],
+          "support_hits": [
+            "refactor",
+            "database",
+            "serialization"
+          ],
+          "issue_specificity": [
+            "refactoring_enh",
+            "code_quality_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "web_knowledge",
+            "ui_ux_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_internetarchive__openlibrary-acdddc590d0b3688f8f6386f43709049622a6e19-vfa6ff903cb27f336e17654595dd900fa943dcd91",
+          "short_id": "acdddc59",
+          "title": "Solr updater fails to reflect subsequent edits due to data inconsistency",
+          "score": 10.0,
+          "core_hits": [
+            "compat"
+          ],
+          "support_hits": [
+            "version",
+            "api",
+            "database",
+            "state"
+          ],
+          "issue_specificity": [
+            "data_bug",
+            "integration_bug",
+            "edge_case_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge",
+            "infrastructure_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        }
+      ]
+    },
+    {
+      "repo": "protonmail/webclients",
+      "task_count": 65,
+      "core_history_count": 19,
+      "design_history_count": 15,
+      "design_history_rate": 0.23076923076923078,
+      "avg_weighted_score": 4.469230769230769,
+      "top_terms": [
+        [
+          "api",
+          30
+        ],
+        [
+          "state",
+          25
+        ],
+        [
+          "config",
+          22
+        ],
+        [
+          "rename_move",
+          8
+        ],
+        [
+          "legacy",
+          7
+        ],
+        [
+          "compat",
+          6
+        ],
+        [
+          "version",
+          5
+        ],
+        [
+          "serialization",
+          4
+        ],
+        [
+          "refactor",
+          4
+        ],
+        [
+          "migration",
+          3
+        ]
+      ],
+      "top_examples": [
+        {
+          "instance_id": "instance_protonmail__webclients-f080ffc38e2ad7bddf2e93e5193e82c20c7a11e7",
+          "short_id": "f080ffc3",
+          "title": "Inconsistent placement of the logo and app switcher disrupts the layout structure across views ##Description: The layout currently places th",
+          "score": 17.5,
+          "core_hits": [
+            "migration",
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "refactor",
+            "rename_move",
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "ui_ux_enh",
+            "code_quality_enh",
+            "refactoring_enh"
+          ],
+          "issue_categories": [
+            "front_end_knowledge",
+            "web_knowledge",
+            "ui_ux_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_protonmail__webclients-2f2f6c311c6128fe86976950d3c0c2db07b03921",
+          "short_id": "2f2f6c31",
+          "title": "Migration logic for legacy drive shares with outdated encryption",
+          "score": 17.5,
+          "core_hits": [
+            "migration",
+            "legacy",
+            "compat"
+          ],
+          "support_hits": [
+            "api"
+          ],
+          "issue_specificity": [
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "security_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_protonmail__webclients-369fd37de29c14c690cb3b1c09a949189734026f",
+          "short_id": "369fd37d",
+          "title": "Users cannot add or manage public holiday calendars in Calendar Settings",
+          "score": 12.5,
+          "core_hits": [
+            "migration"
+          ],
+          "support_hits": [
+            "api",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "refactoring_enh",
+            "code_quality_enh",
+            "technical_debt_enh"
+          ],
+          "issue_categories": [
+            "front_end_knowledge",
+            "ui_ux_knowledge",
+            "web_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_protonmail__webclients-dfe5604193d63bfcb91ce60d62db2f805c43bf11",
+          "short_id": "dfe56041",
+          "title": "Move-to-folder logic is tightly coupled to useMoveToFolder, hurting reuse, testability, and causing incorrect undo state for scheduled items",
+          "score": 12.0,
+          "core_hits": [
+            "regression"
+          ],
+          "support_hits": [
+            "rename_move",
+            "api",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "refactoring_enh"
+          ],
+          "issue_categories": [
+            "front_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_protonmail__webclients-b9387af4cdf79c2cb2a221dea33d665ef789512e",
+          "short_id": "b9387af4",
+          "title": "Add missing metric for download mechanism performance tracking",
+          "score": 11.0,
+          "core_hits": [
+            "compat",
+            "schema"
+          ],
+          "support_hits": [
+            "api",
+            "state"
+          ],
+          "issue_specificity": [
+            "analytics_feat"
+          ],
+          "issue_categories": [
+            "front_end_knowledge",
+            "web_knowledge",
+            "api_knowledge",
+            "performance_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_protonmail__webclients-6e1873b06df6529a469599aa1d69d3b18f7d9d37",
+          "short_id": "6e1873b0",
+          "title": "New EO (External/Outside Encryption) Sender Experience ## Description There is a need to improve the user experience when sending encrypted ",
+          "score": 10.0,
+          "core_hits": [
+            "legacy"
+          ],
+          "support_hits": [
+            "rename_move",
+            "api",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "ui_ux_enh"
+          ],
+          "issue_categories": [
+            "front_end_knowledge",
+            "ui_ux_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_protonmail__webclients-2dce79ea4451ad88d6bfe94da22e7f2f988efa60",
+          "short_id": "2dce79ea",
+          "title": "Mail Interface Lacks Clear Sender Verification Visual Indicators",
+          "score": 9.5,
+          "core_hits": [
+            "deprecation",
+            "compat"
+          ],
+          "support_hits": [
+            "api"
+          ],
+          "issue_specificity": [
+            "ui_ux_feat"
+          ],
+          "issue_categories": [
+            "front_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_protonmail__webclients-0d0267c4438cf378bda90bc85eed3a3615871ac4",
+          "short_id": "0d0267c4",
+          "title": "Standardize ShareLink property naming for password flags",
+          "score": 9.0,
+          "core_hits": [
+            "legacy"
+          ],
+          "support_hits": [
+            "api",
+            "state"
+          ],
+          "issue_specificity": [
+            "refactoring_enh"
+          ],
+          "issue_categories": [
+            "front_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        }
+      ]
+    },
+    {
+      "repo": "navidrome/navidrome",
+      "task_count": 57,
+      "core_history_count": 13,
+      "design_history_count": 13,
+      "design_history_rate": 0.22807017543859648,
+      "avg_weighted_score": 4.842105263157895,
+      "top_terms": [
+        [
+          "api",
+          35
+        ],
+        [
+          "database",
+          17
+        ],
+        [
+          "config",
+          14
+        ],
+        [
+          "refactor",
+          10
+        ],
+        [
+          "state",
+          8
+        ],
+        [
+          "version",
+          7
+        ],
+        [
+          "serialization",
+          6
+        ],
+        [
+          "schema",
+          4
+        ],
+        [
+          "compat",
+          4
+        ],
+        [
+          "rename_move",
+          3
+        ]
+      ],
+      "top_examples": [
+        {
+          "instance_id": "instance_navidrome__navidrome-5001518260732e36d9a42fb8d4c054b28afab310",
+          "short_id": "50015182",
+          "title": "**Title:** Inefficient and Unstructured Storage of User-Specific Properties",
+          "score": 18.0,
+          "core_hits": [
+            "migration",
+            "schema"
+          ],
+          "support_hits": [
+            "refactor",
+            "rename_move",
+            "api",
+            "database"
+          ],
+          "issue_specificity": [
+            "refactoring_enh",
+            "code_quality_enh",
+            "technical_debt_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge",
+            "api_knowledge",
+            "authentication_authorization_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_navidrome__navidrome-eebfbc5381a1e506ff17b5f1371d1ad83d5fd642",
+          "short_id": "eebfbc53",
+          "title": "[Bug]: After upgrade, all albums are missing due to \\\"Skipping unreadable directory\\",
+          "score": 18.0,
+          "core_hits": [
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "refactor",
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "regression_bug",
+            "critical_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "infrastructure_knowledge",
+            "devops_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_navidrome__navidrome-f7d4fcdcc1a59d1b4f835519efb402897757e371",
+          "short_id": "f7d4fcdc",
+          "title": "**Subsonic API exposes integer fields as `int` instead of `int32`, violating API specification**",
+          "score": 15.0,
+          "core_hits": [
+            "compat",
+            "schema"
+          ],
+          "support_hits": [
+            "api",
+            "serialization"
+          ],
+          "issue_specificity": [
+            "compatibility_bug",
+            "minor_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_navidrome__navidrome-669c8f4c49a7ef51ac9a53c725097943f67219eb",
+          "short_id": "669c8f4c",
+          "title": "**Issue #3292: Refactor Slice Utilities to Use Go 1.23 Iterators**",
+          "score": 15.0,
+          "core_hits": [
+            "legacy",
+            "deprecation"
+          ],
+          "support_hits": [
+            "refactor",
+            "api"
+          ],
+          "issue_specificity": [
+            "refactoring_enh",
+            "code_quality_enh",
+            "performance_enh",
+            "technical_debt_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "performance_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_navidrome__navidrome-bf2bcb12799b21069f137749e0c331f761d1f693",
+          "short_id": "bf2bcb12",
+          "title": "**Title:** [Bug]: Unset timestamp fields cause internal errors after upgrade from 0.50.2 to 0.51.0",
+          "score": 11.0,
+          "core_hits": [
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "database"
+          ],
+          "issue_specificity": [
+            "major_bug",
+            "data_bug",
+            "regression_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge",
+            "infrastructure_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_navidrome__navidrome-3982ba725883e71d4e3e618c61d5140eeb8d850a",
+          "short_id": "3982ba72",
+          "title": "**Title:**",
+          "score": 10.5,
+          "core_hits": [],
+          "support_hits": [
+            "refactor",
+            "api",
+            "database"
+          ],
+          "issue_specificity": [
+            "refactoring_enh",
+            "code_quality_enh",
+            "regression_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge",
+            "infrastructure_knowledge",
+            "performance_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_navidrome__navidrome-5e549255201e622c911621a7b770477b1f5a89be",
+          "short_id": "5e549255",
+          "title": "Albums need multi-genre support and the \u201cstarred\u201d API should be unified via filters",
+          "score": 9.5,
+          "core_hits": [
+            "legacy",
+            "compat"
+          ],
+          "support_hits": [
+            "api"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "api_feat",
+            "customization_feat",
+            "ui_ux_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "database_knowledge",
+            "ui_ux_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_navidrome__navidrome-0130c6dc13438b48cf0fdfab08a89e357b5517c9",
+          "short_id": "0130c6dc",
+          "title": "Album Model Lacks Tracking for Available Image Files",
+          "score": 9.5,
+          "core_hits": [
+            "migration",
+            "schema"
+          ],
+          "support_hits": [
+            "database"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "analytics_feat",
+            "integration_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge",
+            "api_knowledge",
+            "infrastructure_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        }
+      ]
+    },
+    {
+      "repo": "NodeBB/NodeBB",
+      "task_count": 44,
+      "core_history_count": 12,
+      "design_history_count": 12,
+      "design_history_rate": 0.2727272727272727,
+      "avg_weighted_score": 7.125,
+      "top_terms": [
+        [
+          "rename_move",
+          34
+        ],
+        [
+          "api",
+          32
+        ],
+        [
+          "database",
+          25
+        ],
+        [
+          "config",
+          25
+        ],
+        [
+          "version",
+          15
+        ],
+        [
+          "state",
+          11
+        ],
+        [
+          "upgrade",
+          4
+        ],
+        [
+          "deprecation",
+          3
+        ],
+        [
+          "refactor",
+          3
+        ],
+        [
+          "compat",
+          3
+        ]
+      ],
+      "top_examples": [
+        {
+          "instance_id": "instance_NodeBB__NodeBB-18c45b44613aecd53e9f60457b9812049ab2998d-v0495b863a912fbff5749c67e860612b91825407c",
+          "short_id": "18c45b44",
+          "title": "Lack of API Support for Managing Group Invitations Limits Extensibility",
+          "score": 21.5,
+          "core_hits": [
+            "deprecation",
+            "compat",
+            "schema"
+          ],
+          "support_hits": [
+            "rename_move",
+            "api",
+            "config",
+            "database",
+            "state"
+          ],
+          "issue_specificity": [
+            "refactoring_enh",
+            "code_quality_enh"
+          ],
+          "issue_categories": [
+            "full_stack_knowledge",
+            "api_knowledge",
+            "authentication_authorization_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_NodeBB__NodeBB-b398321a5eb913666f903a794219833926881a8f-vd59a5728dfc977f44533186ace531248c2917516",
+          "short_id": "b398321a",
+          "title": "Add Privileged Chat Functionality",
+          "score": 21.0,
+          "core_hits": [
+            "upgrade",
+            "schema"
+          ],
+          "support_hits": [
+            "version",
+            "rename_move",
+            "api",
+            "config",
+            "database",
+            "state"
+          ],
+          "issue_specificity": [
+            "ui_ux_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "desktop_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_NodeBB__NodeBB-a5afad27e52fd336163063ba40dcadc80233ae10-vd59a5728dfc977f44533186ace531248c2917516",
+          "short_id": "a5afad27",
+          "title": "Chat Allow/Deny List",
+          "score": 17.0,
+          "core_hits": [
+            "migration",
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "rename_move",
+            "api",
+            "config",
+            "database",
+            "state"
+          ],
+          "issue_specificity": [
+            "api_feat",
+            "code_quality_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "web_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_NodeBB__NodeBB-76c6e30282906ac664f2c9278fc90999b27b1f48-vd59a5728dfc977f44533186ace531248c2917516",
+          "short_id": "76c6e302",
+          "title": "Plugin activation accepts invalid plugin identifiers without validation",
+          "score": 13.0,
+          "core_hits": [
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "rename_move",
+            "api",
+            "config",
+            "database",
+            "state"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "customization_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_NodeBB__NodeBB-f48ed3658aab7be0f1165d4c1f89af48d7865189-v0495b863a912fbff5749c67e860612b91825407c",
+          "short_id": "f48ed365",
+          "title": "Feature Request: Refactor Link Analysis with a Dedicated `DirectedGraph` Class",
+          "score": 11.5,
+          "core_hits": [
+            "deprecation"
+          ],
+          "support_hits": [
+            "refactor",
+            "rename_move",
+            "api",
+            "config",
+            "database"
+          ],
+          "issue_specificity": [
+            "api_feat",
+            "core_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_NodeBB__NodeBB-00c70ce7b0541cfc94afe567921d7668cdc8f4ac-vnan",
+          "short_id": "00c70ce7",
+          "title": "Bug Report: Cache and Slug Handling Issues",
+          "score": 11.5,
+          "core_hits": [
+            "upgrade"
+          ],
+          "support_hits": [
+            "version",
+            "rename_move",
+            "api",
+            "config",
+            "database"
+          ],
+          "issue_specificity": [
+            "integration_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "database_knowledge",
+            "performance_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_NodeBB__NodeBB-bd80d36e0dcf78cd4360791a82966078b3a07712-v4fbcfae8b15e4ce5d132c408bca69ebb9cf146ed",
+          "short_id": "bd80d36e",
+          "title": "**Title: Users cannot Confirm Email When `requireEmailAddress` is enabled**",
+          "score": 11.0,
+          "core_hits": [
+            "regression"
+          ],
+          "support_hits": [
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "integration_bug",
+            "ui_ux_bug",
+            "regression_bug",
+            "major_bug"
+          ],
+          "issue_categories": [
+            "authentication_authorization_knowledge",
+            "ui_ux_knowledge",
+            "back_end_knowledge",
+            "security_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_NodeBB__NodeBB-f2082d7de85eb62a70819f4f3396dd85626a0c0a-vd59a5728dfc977f44533186ace531248c2917516",
+          "short_id": "f2082d7d",
+          "title": "Migrate Socket Methods to Write API",
+          "score": 11.0,
+          "core_hits": [
+            "legacy",
+            "deprecation"
+          ],
+          "support_hits": [
+            "rename_move",
+            "api"
+          ],
+          "issue_specificity": [
+            "api_feat",
+            "core_feat",
+            "integration_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "web_knowledge",
+            "authentication_authorization_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        }
+      ]
+    },
+    {
+      "repo": "tutao/tutanota",
+      "task_count": 20,
+      "core_history_count": 11,
+      "design_history_count": 11,
+      "design_history_rate": 0.55,
+      "avg_weighted_score": 7.175,
+      "top_terms": [
+        [
+          "api",
+          20
+        ],
+        [
+          "config",
+          17
+        ],
+        [
+          "state",
+          7
+        ],
+        [
+          "version",
+          5
+        ],
+        [
+          "migration",
+          3
+        ],
+        [
+          "rename_move",
+          3
+        ],
+        [
+          "compat",
+          2
+        ],
+        [
+          "database",
+          2
+        ],
+        [
+          "serialization",
+          2
+        ],
+        [
+          "deprecation",
+          1
+        ]
+      ],
+      "top_examples": [
+        {
+          "instance_id": "instance_tutao__tutanota-8513a9e8114a8b42e64f4348335e0f23efa054c4-vee878bb72091875e912c52fc32bc60ec3760227b",
+          "short_id": "8513a9e8",
+          "title": "Device Configuration Overwrite on Load",
+          "score": 20.5,
+          "core_hits": [
+            "migration",
+            "schema"
+          ],
+          "support_hits": [
+            "version",
+            "rename_move",
+            "api",
+            "config",
+            "database",
+            "state",
+            "serialization"
+          ],
+          "issue_specificity": [
+            "code_quality_enh",
+            "ui_ux_enh",
+            "refactoring_enh"
+          ],
+          "issue_categories": [
+            "front_end_knowledge",
+            "full_stack_knowledge",
+            "ui_ux_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_tutao__tutanota-51818218c6ae33de00cbea3a4d30daac8c34142e-vc4e41fd0029957297843cb9dec4a25c7c756f029",
+          "short_id": "51818218",
+          "title": "**Title: Attachments fail to open in Desktop client (error dialog shown) ### Description In the Tutanota desktop client, attempting to open ",
+          "score": 11.0,
+          "core_hits": [],
+          "support_hits": [
+            "version",
+            "api"
+          ],
+          "issue_specificity": [
+            "regression_bug",
+            "ui_ux_bug",
+            "compatibility_bug"
+          ],
+          "issue_categories": [
+            "desktop_knowledge",
+            "ui_ux_knowledge",
+            "full_stack_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_tutao__tutanota-db90ac26ab78addf72a8efaff3c7acc0fbd6d000-vbc0d9ba8f0071fbe982809910959a6ff8884dbbf",
+          "short_id": "db90ac26",
+          "title": "Login Session Creation Returns Incomplete Data and Fails to Reuse Offline Storage",
+          "score": 10.0,
+          "core_hits": [],
+          "support_hits": [
+            "api",
+            "config",
+            "database",
+            "state"
+          ],
+          "issue_specificity": [
+            "major_bug",
+            "edge_case_bug",
+            "regression_bug"
+          ],
+          "issue_categories": [
+            "authentication_authorization_knowledge",
+            "back_end_knowledge",
+            "security_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_tutao__tutanota-1e516e989b3c0221f4af6b297d9c0e4c43e4adc3-vbc0d9ba8f0071fbe982809910959a6ff8884dbbf",
+          "short_id": "1e516e98",
+          "title": "Subscription Pricing Utility Uses Deprecated Function-Based API",
+          "score": 9.0,
+          "core_hits": [
+            "deprecation"
+          ],
+          "support_hits": [
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "code_quality_enh",
+            "refactoring_enh"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "authentication_authorization_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_tutao__tutanota-da4edb7375c10f47f4ed3860a591c5e6557f7b5c-vbc0d9ba8f0071fbe982809910959a6ff8884dbbf",
+          "short_id": "da4edb73",
+          "title": "Blob read token request requires unnecessary `archiveDataType` in owned archive scenarios",
+          "score": 8.5,
+          "core_hits": [
+            "compat"
+          ],
+          "support_hits": [
+            "api",
+            "config",
+            "state"
+          ],
+          "issue_specificity": [
+            "minor_bug",
+            "edge_case_bug",
+            "integration_bug"
+          ],
+          "issue_categories": [
+            "back_end_knowledge",
+            "api_knowledge",
+            "authentication_authorization_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_tutao__tutanota-f3ffe17af6e8ab007e8d461355057ad237846d9d-vbc0d9ba8f0071fbe982809910959a6ff8884dbbf",
+          "short_id": "f3ffe17a",
+          "title": "Entropy Management Logic Scattered Across Multiple Classes Creates Coupling Issues",
+          "score": 8.5,
+          "core_hits": [
+            "migration"
+          ],
+          "support_hits": [
+            "refactor",
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "integration_feat",
+            "core_feat"
+          ],
+          "issue_categories": [
+            "back_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b",
+          "short_id": "f373ac38",
+          "title": "Owner-encrypted session key is not propagated through loaders and cache, causing Mail details to fail decryption",
+          "score": 8.5,
+          "core_hits": [
+            "legacy"
+          ],
+          "support_hits": [
+            "version",
+            "api",
+            "state"
+          ],
+          "issue_specificity": [
+            "major_bug",
+            "integration_bug"
+          ],
+          "issue_categories": [
+            "api_knowledge",
+            "security_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        },
+        {
+          "instance_id": "instance_tutao__tutanota-12a6cbaa4f8b43c2f85caca0787ab55501539955-vc4e41fd0029957297843cb9dec4a25c7c756f029",
+          "short_id": "12a6cbaa",
+          "title": "Unable to import contacts encoded as vCard 4.0",
+          "score": 8.5,
+          "core_hits": [
+            "migration"
+          ],
+          "support_hits": [
+            "version",
+            "api",
+            "config"
+          ],
+          "issue_specificity": [
+            "core_feat",
+            "integration_feat"
+          ],
+          "issue_categories": [
+            "api_knowledge",
+            "back_end_knowledge"
+          ],
+          "core_history": true,
+          "design_history": true
+        }
+      ]
+    }
+  ]
+}

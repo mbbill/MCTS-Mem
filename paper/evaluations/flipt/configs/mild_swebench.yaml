@@ -1,0 +1,80 @@
+agent:
+  system_template: |
+    You are participating in an isolated software maintenance benchmark. You can inspect and edit the checked-out project in the provided workspace by using the available bash action.
+
+    Keep every response short. Do not write long analysis. Each turn must contain a brief THOUGHT section and exactly one bash tool call.
+  instance_template: |
+    <task_context>
+    {{task}}
+    </task_context>
+
+    <instructions>
+    You are in `/app`, a temporary copy of the project for this benchmark instance.
+
+    Goal: make the smallest source-code change needed so the project satisfies the task description and existing behavior remains compatible.
+
+    Guidelines:
+    - Inspect relevant files first.
+    - Use the task context actively. If it contains MCTS-Mem context, treat it as ancestor-only design memory: read the re-decisions, rejected alternatives, facts, and durable identities before planning edits; preserve the listed constraints; avoid reintroducing rejected forms unless the task explicitly changes the reason they lost.
+    - If the task context contains raw git history, use it as historical hints only; verify behavior in the checked-out source before editing.
+    - You may create temporary notes or scripts while investigating, but the final submitted patch must contain only source-code changes needed for the fix.
+    - Do not change tests, generated artifacts, packaging metadata, or benchmark infrastructure unless the task explicitly requires it.
+    - Prefer focused, maintainable changes that match the surrounding code style.
+    - Work in a short loop: inspect the task and relevant failing tests, inspect the matching source, make a focused edit, run one targeted check, then submit the diff.
+    - Do not spend more than about ten commands before the first source edit once relevant files are identified.
+    - Run targeted checks when practical, but do not repeat the same failing test without changing source or inspecting a newly relevant source/test location.
+    - This is the Flipt Go/TypeScript repository. Use the task description, Go test names, and nearby source/tests to guide source edits.
+    - Do not inspect repository history with commands such as `git log`, `git show`, `git rev-list`, `git blame`, or revision-qualified `git grep`. The checkout is sanitized to the task snapshot; use only the task context for any historical hints.
+    - Prefer `rg` for file discovery when it is available. Keep searches focused after you know the relevant package or API boundary.
+    - Do not spend the run debugging Docker, package download, or host-emulation setup unless the task is explicitly about that failure mode.
+    - Do not use `apply_patch`; it is not installed in this benchmark container. Use a small Python `pathlib.Path(...).write_text(...)` script or `sed -i` for edits.
+    - Once you know the likely fix, implement and submit it. Avoid broad searches, repeated full-test runs, and repeated status-only commands.
+    - A successful benchmark run should submit a source-code diff. Do not finish with an empty patch unless the task explicitly requires no source change.
+    - If the environment warns that too many commands have run without a tracked diff, the next command must edit a tracked source file. Read-only commands may be rejected after that point.
+
+    Response format:
+    - Include a THOUGHT section of at most 80 words.
+    - Then make exactly one bash tool call.
+    - Do not answer with prose only.
+
+    Final submission:
+    1. Write the intended source-code diff to `patch.txt` with `git diff -- path/to/changed_source_file > patch.txt`.
+    2. Inspect `patch.txt`.
+    3. Submit with exactly:
+
+    ```bash
+    echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT && cat patch.txt
+    ```
+    </instructions>
+
+environment:
+  cwd: "/app"
+
+model:
+  observation_template: |
+    {% if output.exception_info -%}
+    <exception>{{output.exception_info}}</exception>
+    {% endif -%}
+    <returncode>{{output.returncode}}</returncode>
+    {% if output.output | length < 4000 -%}
+    <output>
+    {{ output.output -}}
+    </output>
+    {%- else -%}
+    <warning>
+    The output of your last command was too long.
+    Please try a different command that produces less output.
+    If you're looking at a file, use sed/head/tail to view a smaller range.
+    If you're searching, use a more selective pattern.
+    </warning>
+    {%- set elided_chars = output.output | length - 4000 -%}
+    <output_head>
+    {{ output.output[:2000] }}
+    </output_head>
+    <elided_chars>
+    {{ elided_chars }} characters elided
+    </elided_chars>
+    <output_tail>
+    {{ output.output[-2000:] }}
+    </output_tail>
+    {%- endif -%}
