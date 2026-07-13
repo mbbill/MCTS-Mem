@@ -3,7 +3,7 @@
   Facts and Moves are never edited, every entry carries a provenance tag, and no node is a
   bare module-map entry.
 
-- It ships as the Node CLI (`mcts-mem`, with `lint`/`view`/`show`/`uncertain`).
+- It ships as the Node CLI (`mcts-mem`, with `lint`, `view`, `show`, `uncertain`, and `serve`).
 
 - The README is the specification; each rule is cited by its ID rather than restated in a
   separate grammar document.
@@ -31,6 +31,14 @@
   swallowing the `## Facts` and `## Moves` headings, R-append silently disabled under a
   symlinked root, R-pair over-matching on a commit hash, and `show` calling a unique match
   ambiguous (sourced).
+
+- 2026-06-23 correction: the Python-stdlib-only premise no longer holds — the Python linter was
+  retired, the Node CLI is the single implementation, and the build-only validation extras were
+  deliberately not carried forward because they were unused (code).
+
+- 2026-06-23 statement: `R-altnest` rejects an `.alt/` member that has its own `.alt/`, while
+  permitting a rejected branch's ordinary child node to keep its own `.alt/`; this makes
+  alternatives a flat rival set without erasing sub-decisions inside rejected designs (code).
 
 ## Moves
 

@@ -13,6 +13,10 @@
   open Agent Skills format, any compatible agent places them in its own skills directory
   (sourced).
 
+- 2026-06-23 statement: npm version 0.2.0 shipped the browser viewer (`serve`) and the flat-alt
+  linter rule (`R-altnest`), and npm version 0.2.1 fixed `--version` so the published CLI reports
+  the package version from package.json (code).
+
 ## Moves
 
 - 2026-06-19 replaced [[host-subdirectory]]: the product is a shareable methodology for any

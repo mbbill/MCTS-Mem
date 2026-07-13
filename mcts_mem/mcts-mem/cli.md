@@ -1,8 +1,8 @@
-- The tool is a zero-dependency Node CLI (`mcts-mem`) with four subcommands — `lint`, `view`,
-  `show`, and `uncertain` — all built on one shared `tree.js` parser.
+- The tool is a zero-dependency Node CLI (`mcts-mem`) with five subcommands — `lint`, `view`,
+  `show`, `uncertain`, and `serve` — all built on one shared tree parser/model.
 
-- `lint` is the load-bearing command; `view` and `show` render for people, while an agent
-  reads a tree straight from the filesystem.
+- `lint` is the load-bearing command; `view` and `show` render for people, `serve` opens a local
+  browser viewer, and an agent reads a tree straight from the filesystem.
 
 ## Facts
 
@@ -17,6 +17,15 @@
 - 2026-06-19 rationale: the most common operation, reading a tree, must never require
   `npx mcts-mem`, which would reintroduce a dependency into the zero-install path the skills
   promise (sourced).
+
+- 2026-06-23 statement: `serve` binds a local HTTP viewer on 127.0.0.1 and keeps the process
+  alive instead of returning an exit code, while every non-server command still exits normally
+  (code).
+
+- 2026-06-23 pitfall: the CLI version string was hardcoded after the 0.2.0 release, so
+  `mcts-mem --version` printed 0.1.0 even though npm had installed the newer package; the CLI now
+  reads package.json at runtime and the dispatch test asserts equality with the package version
+  (code).
 
 ## Moves
 
