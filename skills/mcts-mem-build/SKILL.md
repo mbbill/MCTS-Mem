@@ -333,6 +333,20 @@ only for a why that has no move to carry it. Never file a fact that restates an 
 Repository/process observations (commit shapes, renames, file counts, "now functional") are
 never facts.
 
+### Record density is a quality signal
+
+The map is not a changelog. A typical 10–20 commit window should emit only a handful of records;
+a dense window must be dense because the history is genuinely full of design decisions, not
+because the mapper wrote down every edit. **Do not record** TODO churn, scaffolding, tiny
+refactors, style-only cleanups, file shuffles, trivial fixups, typo/comment/log changes, null
+checks, guard additions, one-off crash fixes with no mechanism-specific lesson, or implementation
+details a competent rebuilder would freely rediscover. If a window emits records for most commits,
+or multiple records per ordinary bug-fix commit, treat that as a mapper-quality smell: re-read the
+records and prune until each one changes a future design decision. High density is allowed only
+when the diff shows many real branch points (new runtime backend, serialization format change,
+ownership model replacement, cross-thread architecture change, capability removal/replacement,
+measurement-backed choice). The reduce should receive design evidence, not noise to filter later.
+
 ### When the why cannot be recovered
 
 A decision can be real and its reason unfindable — not in the code, not in any message, doc, or
