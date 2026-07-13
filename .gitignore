@@ -152,7 +152,6 @@ vite.config.ts.timestamp-*
 # Paper working data (regenerable / downloaded): cloned repos, eval run
 # outputs and workdirs, generated condition payloads, source PDFs.
 paper/repos/
-paper/sources/*.pdf
 paper/evaluations/*/results/
 paper/evaluations/*/tmp/
 paper/evaluations/*/logs/
