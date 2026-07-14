@@ -30,10 +30,12 @@
   },
   "files": [
     "bin",
-    "src"
+    "src",
+    "web-viewer"
   ],
   "scripts": {
+    "build:viewer": "npm --prefix viewer run build",
     "test": "node --test 'tests/*.test.js'",
-    "prepublishOnly": "node --test 'tests/*.test.js'"
+    "prepublishOnly": "npm test && npm --prefix viewer test && npm run build:viewer"
   }
 }

@@ -52,6 +52,11 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+          cache-dependency-path: viewer/package-lock.json
+
+      - name: Install viewer dependencies
+        run: npm ci --prefix viewer
 
       - name: Check tag matches package.json version
         # A mis-tagged push (tag vX but package.json still vY) must not publish

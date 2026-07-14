@@ -1,5 +1,5 @@
 // `mcts-mem serve` — a tiny zero-dependency web server (node:http only). It
-// serves the built viewer (viewer/dist) and a live tree API. The tree is read
+// serves the built viewer (web-viewer/) and a live tree API. The tree is read
 // from disk on every /api/tree request, so edits show up on a browser reload.
 //
 // The request handler is split out (createHandler) so it can be unit-tested with
@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 import { treeJson, nodeJson } from './api.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const DEFAULT_DIST = path.join(here, '..', 'viewer', 'dist');
+const DEFAULT_DIST = path.join(here, '..', 'web-viewer');
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',

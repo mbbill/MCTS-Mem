@@ -150,6 +150,15 @@ npx mcts-mem lint mcts_mem
 Use `view` to scan the tree, `show` to read one decision in full, `uncertain` to find
 entries that still need better evidence, and `lint` after any edit.
 
+To explore the tree in a browser, run:
+
+```sh
+npx mcts-mem serve mcts_mem
+```
+
+Then open `http://localhost:4173`. The viewer reads the tree from disk on each request,
+so reload the page after editing the tree. Use `--port N` to choose another port.
+
 For a repository without a tree, use the `mcts-mem-build` skill to reconstruct the first
 version from git history, design docs, old branches, and author input. The skills are
 installed below. After that, use `mcts-mem-use` before non-trivial changes so the agent
