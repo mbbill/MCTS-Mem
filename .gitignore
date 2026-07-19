@@ -164,3 +164,6 @@ paper/evaluations/*/extraction/
 # Python bytecode (paper eval scripts)
 __pycache__/
 *.pyc
+
+# diagram regeneration source (HTML + fonts), kept local, not committed
+.diagram-src/

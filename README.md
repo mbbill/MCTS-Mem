@@ -1,334 +1,404 @@
 # MCTS-Mem
 
-*MCTS-Mem is a structured, checkable record of **why** a codebase is the way it is — the
-decisions that currently hold, the alternatives they replaced, and the evidence behind each.
-This README builds the idea up from the problem it solves, one step at a time.*
+### A Structured Memory of Why a Codebase Is Built the Way It Is
 
-## The problem: documentation goes wrong and nothing tells you
+A codebase tells us how a project works today. Git tells us how the code changed over time.
 
-Every project writes things down — design docs, wikis, comments, decision records. On a good
-team these are kept next to the code and updated as it changes. And yet anyone who has worked on
-a long-lived project has hit the same thing: the writing drifts. A design doc describes an
-approach the code dropped a year ago. Two wiki pages disagree. A note explains a rule that no
-longer applies. The knowledge becomes stale, or wrong, or missing, or quietly
-self-contradictory — and usually you find out only after it has already misled someone.
+However, neither reliably tells us why the project ended up with its current design.
 
-Why does this happen to documentation but, most of the time, not to code? Because code has a
-compiler. Compiling is a mechanical consistency check: if the code contradicts itself, it does
-not build, and someone fixes it before it ships. Documentation has no such check. Nothing
-verifies that two documents agree, that a claim still matches the code, or that a decision
-written down last year is still the one in force. Inconsistency in prose is *undetectable*, so
-it accumulates in silence. That is the root problem, and it is why written project knowledge is
-so often untrustworthy.
+Why did the team choose QuickJS instead of V8? Was the previous cache replaced because it was slow, incorrect, or difficult to maintain? Which alternatives were tested? Which constraints still apply?
 
-## Why retrieval (RAG) does not fix it
+MCTS-Mem records this information as a structured design tree:
 
-The modern reflex is to pour all that text into a retrieval system and let an AI pull up whatever
-looks relevant. But retrieval solves a different problem than the one above. RAG optimizes
-*recall accuracy* — finding the passages most similar to your query. It says nothing about
-whether those passages are current, correct, or complete.
+- the decision currently in force;
+- the alternatives it replaced;
+- the facts that supported the decision;
+- and the provenance of each fact.
 
-The failure is structural, not incidental. Suppose you ask about approach A. Retrieval returns
-the text about A. But the things you most need to know are often that A was *replaced* by B, or
-that A *contradicts* C — and B and C are not worded like a question about A, so similarity search
-never returns them. The model answers confidently from A alone, never learning that A is dead.
-Graph-based retrieval (GraphRAG and similar) adds links between pieces of text, but it is still
-not a strict, checkable structure that can say "these two claims are inconsistent," so it does
-not close the gap either.
+The tree consists of Markdown files, lives next to the code, and has a linter that checks its internal consistency.
 
-The lesson: the fix for undetectable inconsistency cannot be better search over unstructured
-text. It has to be knowledge structured well enough to be *checked* — the way code is checked by
-compiling.
+This README explains the motivation behind MCTS-Mem, how the tree works, and how to build and maintain one for an existing project.
 
-## Why that is normally impossible — and why software is the exception
+## 1. A brief definition of design memory
 
-Here is the hard part. General knowledge cannot be structured this way. What people know is a
-tangle: every fact relates to many others through contradiction, dependency, and exception, and
-there is no ground truth to anchor any of it. You cannot build a consistency checker for
-"everything a team knows." This is why decades of knowledge-management and design-rationale
-systems struggled.
+When working on a software project, we usually see the result of its design history rather than the history itself.
 
-Software is the exception, for one specific reason: **code compiles.** Because it compiles, the
-codebase is, by construction, a self-consistent state. And in a disciplined project, so is every
-commit in its history — each one is a working, checkable state of the system. So a project's
-history is not a heap of notes. It is a state machine, walked step by step from the empty initial
-state to what ships today, through a long chain of self-consistent states you can check out and
-verify one at a time.
+For example, suppose a rendering engine currently uses QuickJS. The code can tell us that QuickJS is the active implementation. It may not tell us that the project previously:
 
-That backbone is what makes software's knowledge structurable where general knowledge is not.
+1. used V8;
+2. replaced V8 because it added too much binary size;
+3. tried JavaScriptCore;
+4. replaced JavaScriptCore because the engine also had to run outside Apple platforms.
 
-## Decisions drive the transitions, and facts drive the decisions
+The missing information is the project’s design memory.
 
-What moves the system from one state to the next? A **decision** — to refactor this, replace
-that, add this capability. And no decision happens for no reason; behind each is a **fact** that
-forced it: a bug, a new requirement, a benchmark result, a port that failed, a review that
-rejected an approach.
+![The exec-engine decision node: quickjs is the current choice, with v8 and jsc kept beside it as rejected alternatives and the reason each lost](assets/diagrams/design-memory.png)
 
-So the history has a precise shape: a verifiable sequence of states, with an evidenced decision
-at each step between them. A version of the software that compiles is one traversal of the space
-of possible designs; the result it reaches — its performance, its feature set, its failures — is
-reviewed, found wanting somewhere, and that review drives the next decisions, which move you to a
-neighboring point in the space. Development *is* a search, and its steps are decisions backed by
-facts.
+In other words, design memory includes both the branch that survived and the branches that did not.
 
-## Recording the search as a tree
+This distinction matters because a rejected design can remain technically plausible. Without the reason it was rejected, a new engineer or coding agent may propose it again.
 
-If the valuable thing is this sequence of decisions and the facts behind them, then record it
-directly:
+## 2. Why project reasoning gets lost
 
-- the **live node** is the decision that currently holds;
-- beside it, a **`.alt/`** folder keeps the alternatives it replaced, each frozen with the dated
-  reason it lost;
-- its **facts** are the dated evidence that drove the choice.
+A software project contains two related bodies of knowledge.
 
-This flattens the whole decision history into a tree you can walk. And because the backbone is
-the git history, the tree can be *reconstructed after the fact*: mine the commits, the diffs, and
-the design docs, and turn every real design change into a decision record. (That is what the
-`mcts-mem-build` skill does; on a large real-world engine it recovers on the order of a thousand
-decision nodes from the history alone.)
+The first is the implementation. Git records changes to it, tests exercise it, and compilers check many kinds of inconsistency.
 
-The tree grows by **decisions, not commits.** A single decision that took ten commits to land is
-one node; a refactor that removes one mechanism and adds another is a decision even in a single
-commit. The project's own rate of re-deciding sets the resolution — a natural boundary that keeps
-the tree small and high-signal instead of mirroring the file layout.
+The second is the reasoning behind the implementation. This information is usually distributed across:
 
-## Why this is Monte Carlo Tree Search
+- design documents and RFCs;
+- issues and pull requests;
+- commit messages;
+- benchmark notes;
+- chat conversations;
+- code comments;
+- and the memories of the people who made the decisions.
 
-Try a design, build it, measure it, keep or reject it, let the result steer the next attempt —
-searching a space too large to enumerate by sampling expensive outcomes and using them to decide
-where to look next. That is the shape of **Monte Carlo Tree Search**, whose four steps are:
-**select** a promising node, **expand** it with a candidate move, **roll out** from there to get
-a value, and **backpropagate** that value up the tree so the next selection is better-informed.
+The main problem is that this second body of knowledge has no equivalent of a compiler.
 
-People object that this "isn't real MCTS" because no algorithm is running the search. That
-misreads the algorithm. Nothing in MCTS requires the rollout or the evaluation to be computed by
-a machine. A board-game engine mechanizes rollouts only because, in a game, a rollout is cheap.
-In software the rollout is *building and measuring* a design — a benchmark, a test suite, a
-production incident, a review — which costs days, so people and AI perform it instead of a coded
-simulator. The structure is identical:
+A design document can continue describing an implementation that disappeared two years ago. Two RFCs can disagree without producing an error. A benchmark can be corrected while the decision based on the original result remains unchanged in a wiki.
 
-- a **node** is a design decision;
-- **selection** is choosing which decision to push forward or reopen — exploiting what works, or
-  exploring an alternative that might be better;
-- **expansion** is trying an option: a new approach, a refactor, a rewrite;
-- the **rollout** is implementing that option far enough to get a real signal;
-- **backpropagation** is the resulting fact updating your confidence in that branch and the ones
-  above it.
+Nothing fails when the explanation drifts away from the code.
 
-And precisely because each rollout costs days rather than milliseconds, you can afford very few,
-and throwing their results away is ruinous. Persisting the tree so no expensive rollout is ever
-paid for twice is the whole point — that is the **Mem**. MCTS-Mem is the memory of this search:
-the value estimates (facts), the branch that won (the live tree), and the branches that lost
-(`.alt/`), so every future decision starts from everything the project already learned. (Letting
-an agent drive the loop itself — pick an untried branch, build it, measure, write the result
-back — is a direction the project points at, not something it ships today.)
+As a result, stale reasoning often looks just as trustworthy as current reasoning.
 
-## What the structure gives you that search cannot
+A related problem is that some reasoning is never written down at all. An architectural rule may survive only as a team convention, a constraint may hold only because one engineer remembers it, and a requirement may live in a chat thread rather than in any enforced form. This unwritten intent behaves like debt: the project depends on it, yet no document records it and no check enforces it.
 
-Now the payoff returns to the original problem. Because the winning decision *owns* its rejected
-alternatives, reaching a decision means reaching — by construction — both the current design and
-the reasons the tempting alternatives are dead. The contradicting fact is structurally adjacent,
-not filed under different words.
+### 2.1 The limitation of chronological decision logs
 
-Concretely: a bug appears in cache invalidation. A search for "stale endpoint cache" may surface
-an old note that per-endpoint caches were fast, and miss the later fact that they were abandoned
-because a write through another endpoint left stale entries — that fact is not worded like the
-query. In an MCTS-Mem tree, the live cache decision owns the rejected per-endpoint alternative
-and the reason it lost, so a reader following the decision reaches the tempting old branch *and*
-the reason it is dead. That is structure doing what similarity search cannot.
+Architecture Decision Records, or ADRs, are probably the closest existing format to MCTS-Mem.
 
-## Checking the tree like a compiler
+An ADR usually records a decision, its context, and its consequences. This works well when the project makes the decision for the first time.
 
-The last piece closes the loop with the problem we started from. The tree is not just folders; it
-is a grammar with a checker:
+It becomes harder to use after the same part of the system has been reconsidered several times.
 
-- every decision is backed by dated facts;
-- every fact and re-decision ends in a **provenance tag** — `(code)` (checkable against the code),
-  `(sourced)` (backed by a human record: commit, doc, chat, author), or `(uncertain)` (an
-  unbacked reading of intent);
-- the two halves of every replacement state the same reason, verbatim, so they cannot drift
-  apart;
-- the log is **append-only**, enforced against git — a benchmark later found wrong is corrected by
-  *adding* a new dated fact, never by editing the old one away.
+Suppose the execution engine changed like this:
 
-`npx mcts-mem lint` checks all of this the way a compiler checks code. It cannot check truth — a
-benchmark can still be wrong, a source stale — but it makes *inconsistency detectable*, which is
-exactly what documentation lacked at the start. Uncertainty no longer hides inside confident
-prose: every unbacked inference is tagged `(uncertain)` and greppable. And reconstruction can be
-incremental — rebuild from the code, record the decisions whose reason cannot yet be recovered as
-`(uncertain)`, and slot in the real reason later when an RFC or an old thread turns up. The record
-fills in over time and can be trusted at each step, because at each step it still passes the
-check.
+```text
+V8 → JavaScriptCore → QuickJS
+```
 
-## Concepts
+The explanation may now be spread across three ADRs written years apart. To understand the current decision, a reader has to:
 
-An MCTS-Mem tree is a directory of Markdown files; the shape is the model.
+1. find all three records;
+2. reconstruct their order;
+3. determine which statements remain valid;
+4. identify why each alternative lost.
 
-- **Node** (`<name>.md`) — one design decision. Its **Items** (top, no heading) state what is true
-  of the current design; **`## Facts`** log the dated evidence; **`## Moves`** log re-decisions.
-- **Child node** (`<name>/`) — a finer decision made under the parent, all in force at once (a
-  cache node's children might decide invalidation, key format, memory budget).
-- **Sibling node** — a neighboring decision under the same parent, readable on its own.
-- **Main tree** — ignore every `.alt/` and what remains is the current design.
-- **`.alt/` directory** — rejected and superseded alternatives, each a frozen node with the reason
-  it lost. A flat set: rivals for one decision are siblings, never nested.
-- **`.fact/` directory** — evidence too big for one line (a recovered design note, a measurement
-  table).
-- **Provenance tag** — every fact and move ends in `(code)`, `(sourced)`, or `(uncertain)`.
-- **Lint** — `npx mcts-mem lint <path>` checks the grammar and internal consistency.
+MCTS-Mem organizes the same information around the decision instead of the date.
 
-## A small example
+V8, JavaScriptCore, and QuickJS all appear at the execution-engine node. Dates still preserve the sequence, but the reader does not have to reconstruct the relationship from a chronological log.
 
-This is not from a real project; it shows the shape. A service once cached each endpoint
-separately, then moved to one resource-keyed cache because invalidation kept leaking through
-endpoint-specific behavior.
+### 2.2 The limitation of similarity-based retrieval
+
+Another approach is to place all project documentation in a retrieval system and ask an LLM to find the relevant passages.
+
+This is useful, but retrieval solves a somewhat different problem.
+
+Most RAG systems retrieve text based on similarity. The passages that look most similar to a query are not necessarily the ones that explain the current decision.
+
+For example, searching for “V8” may retrieve:
+
+- V8 build instructions;
+- V8 bindings;
+- V8 heap configuration;
+- old V8 debugging notes.
+
+All of these passages may be outdated.
+
+The most important fact may instead say:
+
+> QuickJS replaced the previous engine because it reduced the application bundle by 40 MB.
+
+That passage may not rank highly for a query about V8.
+
+The opposite problem occurs with a common dependency such as zlib. Searching for “zlib” may return dozens of call sites while burying the single decision that explains why the project chose it.
+
+![Retrieval by matching text versus by decision: RAG returns scattered V8 and zlib text matches, while MCTS-Mem returns the one decision node with its alternatives and facts](assets/diagrams/rag-vs-decision.png)
+
+RAG can help find the source material. MCTS-Mem gives that material a structure once we know which decision it belongs to.
+
+## 3. A codebase as a design search
+
+The name MCTS-Mem comes from viewing software development as a search over possible designs.
+
+A team selects a problem, tries an approach, implements enough of it to learn something, and then keeps or rejects it. A benchmark, test, failed port, production incident, or review supplies the result.
+
+That result changes what the team tries next.
+
+This resembles the four common steps of Monte Carlo Tree Search:
+
+1. **Select** a decision worth investigating.
+2. **Expand** it with a candidate design.
+3. **Roll out** the candidate by implementing and evaluating it.
+4. **Backpropagate** the result so that future choices start with better information.
+
+Figure 1 shows one turn of this loop on real software. Because the project already exists, the tree is not empty: the current design is a full path from root to a leaf. Measuring that path produces a fact that re-opens a decision partway down, a new branch replaces the rest of the path, and the replaced part is kept as an alternative.
+
+![One turn of the loop on an already-evolved tree: the live path is measured, a fact re-opens a decision, part of the path becomes a frozen alternative, and a new branch grows before the cycle repeats](assets/diagrams/mcts-loop.png)
+
+There is an important caveat here.
+
+MCTS-Mem does not run a conventional MCTS algorithm over a repository. The name describes the shape of the design process and the information preserved from it.
+
+In a board game, a program can run millions of inexpensive simulations. In software, one meaningful rollout may require days of implementation, a hardware port, or a benchmark campaign.
+
+This makes software rollouts sparse and expensive.
+
+If a team rejected V8 only after completing a costly integration, the next engineer should not have to repeat that integration to rediscover the same limitation. MCTS-Mem is the memory of that search.
+
+In practice, someone already holds this search in memory: the experienced architect. Much of their value comes from lessons carried across earlier projects, and each lesson is the outcome of a past search, a record of which approach worked and which did not. That memory acts as an informal MCTS tree, and it lets a senior engineer avoid costly detours that a newcomer would repeat. It also leaves when that person leaves. Writing the search down turns one individual's memory into something the whole project keeps and an agent can consult.
+
+This also clarifies where extra capability helps. A more capable model can search the design space faster. A recorded search reduces how much searching is required in the first place, because every rejected branch already carries the reason it failed.
+
+## 4. How the tree represents design history
+
+An MCTS-Mem tree is a directory of Markdown files.
+
+Each node represents a design decision.
+
+- The **live node** records the choice currently in force.
+- A sibling **`.alt/` directory** contains rejected or superseded alternatives.
+- **Facts** record observations and rationale.
+- **Moves** record re-decisions such as `replaced`, `replaced by`, `dropped`, and `revived`.
+- A **`.fact/` directory** can hold supporting material that is too large for a short entry.
+
+If we ignore every `.alt/` directory, the remaining tree describes the current design.
+
+Opening an `.alt/` directory reveals the nearby parts of the search that did not survive.
+
+### 4.1 A small example
+
+Suppose a rendering engine begins with Skia for rasterization and V8 for JavaScript execution.
+
+Later, the team replaces V8 twice and replaces Skia once.
+
+![Three states of the design tree as the execution engine and rasterizer are re-decided, with each replaced choice moving into a flat .alt set](assets/diagrams/tree-evolution.png)
+
+The alternatives remain flat.
+
+V8 and JavaScriptCore are both alternatives to the live execution-engine decision, even though the project tried them at different times. The dated move records preserve their order.
+
+The example is illustrative. Skity is a real rasterizer used by Lynx; the rest of the history is invented to demonstrate the format.
+
+### 4.2 What the files look like
+
+The tree above might have this directory structure:
 
 ```text
 mcts_mem/
-  service.md
-  service/
-    request-cache.md
-    request-cache.alt/
-      per-endpoint-cache.md
-    request-cache.fact/
-      cache-benchmark.md
+  render-engine.md
+  render-engine/
+    exec-engine.md
+    exec-engine.alt/
+      v8.md
+      jsc.md
 ```
 
-The live decision, `mcts_mem/service/request-cache.md`:
+The live `exec-engine.md` node could look like this:
 
 ```md
-- Responses are cached by resource id, with one invalidation path shared by every
-  endpoint that exposes the resource.
+- JavaScript runs through QuickJS.
 
 ## Facts
 
-- 2024-05-02 benchmark: endpoint-local caches gave faster hit paths, but used more
-  memory and left stale entries after writes that reached the same resource through a
-  different endpoint (sourced).
+- 2026-05-12 rationale: QuickJS supports every target platform and fits the bundle budget. (sourced)
 
 ## Moves
 
-- 2024-05-03 replaced [[per-endpoint-cache]]: per-endpoint caches made invalidation depend
-  on endpoint-specific behavior; a resource-keyed cache keeps invalidation at the data
-  boundary, even though it gives up a few hit-path shortcuts (sourced).
+- 2026-02-08 (ab12cd34) replaced [[v8]]: the V8 build added 40 MB to the application bundle. (code)
+- 2026-05-12 (cd34ef56) replaced [[jsc]]: JavaScriptCore did not support the project's non-Apple targets. (sourced)
 ```
 
-The rejected alternative, `mcts_mem/service/request-cache.alt/per-endpoint-cache.md`, is frozen
-with the same reason on its own side:
+The frozen V8 alternative records the other side of the replacement:
 
 ```md
-- Each endpoint owns its own response cache and invalidates it from endpoint handlers.
+- JavaScript runs through V8.
 
 ## Moves
 
-- 2024-05-03 replaced by [[request-cache]]: per-endpoint caches made invalidation depend
-  on endpoint-specific behavior; a resource-keyed cache keeps invalidation at the data
-  boundary, even though it gives up a few hit-path shortcuts (sourced).
+- 2026-02-08 (ab12cd34) replaced by [[exec-engine]]: the V8 build added 40 MB to the application bundle. (code)
 ```
 
-The current design reads cleanly without losing the old one; the losing branch is kept so a
-future change can inspect why it lost; the replacement reason is copied on both sides so lint
-catches drift; the fact is dated and tagged so a later reader knows what kind of evidence it was.
+The live node says that QuickJS replaced V8. The frozen node says that V8 was replaced by the live execution-engine decision.
 
-## What it enables
+Both sides repeat the reason word for word. The linter reports an error if the two explanations diverge.
 
-- **Give an AI the full history, not just the current code.** Ask an agent to design a new
-  renderer with only the code in hand, and it will confidently re-propose approaches this project
-  already tried and rejected — it has no way to know they are dead. With the decision tree and its
-  `.alt/` branches in context, its proposal starts from everything already learned, not from zero.
-- **Guide a rewrite or a port.** Rewriting from language A to B, the tree is the map of pitfalls
-  already paid for: here is what was tried, here is where it broke, here is the reason not to walk
-  into it again.
-- **Self-evolving software (research direction).** With the loop closed, an agent could keep
-  exploring untried branches — build, measure, write the result back — so the tree's accumulating
-  value estimates steer future search toward the good region. This is where the project points,
-  not what it ships today.
+## 5. Provenance and uncertainty
 
-## Quickstart
+Every fact and move ends with one of three provenance tags:
 
-For a repository that already has `mcts_mem/`:
+- `(code)` means the claim can be checked against code, a test, a binary, or another project artifact.
+- `(sourced)` means a human record backs the claim, such as a commit, issue, document, paper, chat log, or author statement.
+- `(uncertain)` means the project contains no stronger evidence for the interpretation.
+
+These tags describe the source of a claim.
+
+They do not guarantee that the claim is correct. A sourced statement can be mistaken, and a code-backed benchmark can use the wrong workload. However, the tag tells the next reader what kind of evidence is available.
+
+This is particularly useful when reconstructing an old project.
+
+Git may show that a team replaced one implementation with another without explaining why. Instead of inventing a plausible rationale, MCTS-Mem records the decision and marks the missing explanation `(uncertain)`.
+
+For example:
+
+```text
+- 2021-08-14 rationale: the project replaced the endpoint-local cache, but no surviving record explains why. (uncertain)
+```
+
+If an old RFC later supplies the explanation, we append a new sourced fact.
+
+The record is append-only for the same reason. If a benchmark turns out to be wrong, we add a dated correction rather than rewriting the original result to make the history look cleaner than it was.
+
+## 6. What the linter checks
+
+An MCTS-Mem tree can be checked with:
 
 ```sh
-npx mcts-mem view mcts_mem --depth 2
-npx mcts-mem view mcts_mem --alt --depth 2
-npx mcts-mem show request-cache mcts_mem
-npx mcts-mem uncertain mcts_mem
 npx mcts-mem lint mcts_mem
 ```
 
-Use `view` to scan the tree, `show` to read one decision in full, `uncertain` to find entries
-that still need better evidence, and `lint` after any edit. To explore the tree in a browser:
+The linter verifies that:
+
+- node links resolve;
+- both sides of a replacement exist;
+- paired replacement reasons match;
+- facts and moves have provenance tags;
+- committed history remains append-only;
+- entries follow the expected Markdown structure;
+- and nodes record real decisions instead of merely copying the source tree.
+
+A clean lint result means the design memory is internally consistent under these rules.
+
+It does not mean every claim is true.
+
+The linter cannot determine whether a benchmark was designed correctly, whether an old document is reliable, or whether the team drew the right conclusion from a failed prototype. Those questions still require engineering judgment.
+
+The linter therefore plays a narrower role. It checks the structure of the reasoning without pretending that structure can replace evaluation.
+
+## 7. Building a tree from an existing project
+
+Creating a design tree for a new project is relatively straightforward. Most interesting projects are not new, though. They already have years of history spread across commits and documents.
+
+The `mcts-mem-build` skill reconstructs that history in stages.
+
+![The build skill in stages: from current code, git history, and design docs through skeleton, commit mining, marking gaps uncertain, recovering rationale from documents, and linting, to a lint-clean tree](assets/diagrams/build-pipeline.png)
+
+The process starts from the current code because that is the branch that survived.
+
+It then walks backward through git history to find re-decisions: runtime replacements, serialization changes, architecture rewrites, abandoned subsystems, and other meaningful branch points.
+
+Not every commit becomes a node.
+
+A formatting change, routine bug fix, or implementation detail that any competent engineer would handle in much the same way usually stays out of the tree. MCTS-Mem grows with the number of design decisions, not the number of commits.
+
+Commits also leave gaps. A diff can prove that a change happened without recording why. Those gaps become `(uncertain)` entries until an RFC, issue, discussion, or author provides stronger evidence.
+
+This lets reconstruction proceed incrementally. The tree can remain structurally valid even when some historical explanations are still missing.
+
+## 8. Reading and maintaining the tree
+
+The `mcts-mem-use` skill handles the ongoing workflow.
+
+Before making a non-trivial change, read the relevant live node and its alternatives. This shows which approaches the project already tried and which constraints shaped the current design.
+
+After the project makes a new decision, update the tree in the same change as the code.
+
+![The maintain workflow: before a change read the live node and its alternatives, implement and test during the change, record a re-decision after, and run mcts-mem lint before completion](assets/diagrams/maintain-workflow.png)
+
+The command-line tools provide several ways to inspect the tree:
 
 ```sh
+npx mcts-mem view mcts_mem --alt --depth 2
+npx mcts-mem show exec-engine mcts_mem
+npx mcts-mem uncertain mcts_mem
+npx mcts-mem lint mcts_mem
 npx mcts-mem serve mcts_mem
 ```
 
-Then open `http://localhost:4173`. The viewer reads the tree from disk on each request, so reload
-after editing. Use `--port N` to choose another port.
+`view` prints an overview of the tree. The `--alt` flag includes rejected alternatives.
 
-For a repository without a tree, use the `mcts-mem-build` skill to reconstruct the first version
-from git history, design docs, old branches, and author input. After that, use the `mcts-mem-use`
-skill before non-trivial changes so the agent reads the relevant decisions and records a
-re-decision when a decision changes. The build and use workflows are agent skills, not CLI
-subcommands: the CLI handles inspection and linting; the skills tell an agent how to build and
-maintain the tree.
+`show` displays one decision together with its facts and moves.
 
-## What lint checks
+`uncertain` lists decisions whose rationale still lacks supporting evidence.
 
-`npx mcts-mem lint <path>` checks consistency, not truth. It verifies that:
+`lint` checks the grammar and internal consistency.
 
-- cross-references resolve to real nodes;
-- replacement pairs agree on the same reason, verbatim;
-- committed Facts and Moves were corrected append-only, not edited or deleted (checked against git
-  `HEAD`);
-- every Fact and Move carries a provenance tag;
-- entries use the expected shape;
-- `.alt/` members end as replaced, removed, or otherwise frozen;
-- no node merely names a component without recording a decision, fact, alternative, or child.
+`serve` opens the interactive browser view at `http://localhost:4173` by default.
 
-The compact entry shape:
+The two skills live at:
 
-```md
-- YYYY-MM-DD kind: claim (code).
-- YYYY-MM-DD (abc12345) replaced [[old-node]]: reason (sourced).
-- YYYY-MM-DD (abc12345) replaced by [[new-node]]: same reason (sourced).
+```text
+skills/mcts-mem-build/SKILL.md
+skills/mcts-mem-use/SKILL.md
 ```
 
-A clean lint means the tree is structurally sound under these rules. It cannot catch a bad
-benchmark method, a stale source, or a wrong interpretation — that stays engineering judgment.
-The value is that uncertainty is visible and the record cannot quietly contradict itself.
+They use the open [Agent Skills](https://agentskills.io) format and can be copied into an agent’s skills directory.
 
-## Installation
+## 9. What this enables
 
-There is no global install. Run the CLI with `npx`:
+The immediate benefit is that a person or agent can understand a design without reconstructing its history from scratch.
 
-```sh
-npx mcts-mem --help
-```
+However, a structured design memory also supports several broader workflows.
 
-The memory workflow lives in two agent skills:
+### 9.1 Rewrites and ports
 
-- `skills/mcts-mem-build/SKILL.md`
-- `skills/mcts-mem-use/SKILL.md`
+A rewrite preserves behavior while changing the implementation. It can also revive old mistakes, because the original constraints are no longer visible in the code.
 
-Copy both folders under `skills/` into your agent's skills directory. For Claude Code, that is
-`~/.claude/skills/` (personal) or `.claude/skills/` (project-local). The skills use the open
-[Agent Skills](https://agentskills.io) format, so the same files work with any agent that supports
-it.
+The tree provides a map of the design searches the project has already paid for: what was tried, where it failed, and which facts still constrain the rewrite.
 
-## When it's worth it
+### 9.2 Large refactors
 
-MCTS-Mem pays off for long-lived systems, projects with repeated rewrites or ports,
-performance-sensitive or high-stakes design choices, teams where knowledge leaves with people, and
-codebases maintained by agents that need context before acting.
+Before changing a subsystem, an engineer can inspect its node and alternatives.
 
-It is not worth it for throwaway projects, code almost entirely forced by a spec, decisions with
-no meaningful alternatives, or teams that will not keep the tree current. A stale tree is worse
-than no tree, because it gives false confidence — the linter checks structure, but upkeep is still
-a discipline.
+This reduces the chance of reintroducing an approach that looks attractive locally but previously failed under a broader constraint.
 
-## Further reading
+### 9.3 Reviving an old alternative
 
-[`rationale.md`](rationale.md) is the longer argument: why project history looks like a search,
-how MCTS-Mem lowers the cost of future change, why this is not just ADRs plus retrieval, and where
-the MCTS analogy helps and where it stops.
+A rejected option does not have to remain rejected forever.
+
+Suppose V8 lost because binary size mattered. If the product later moves from mobile devices to servers, that constraint may disappear.
+
+Because the V8 alternative remains in the tree with the fact that killed it, the team can reconsider the decision deliberately instead of rediscovering the entire history.
+
+### 9.4 Agent-driven design search
+
+A longer-term research direction is to let an agent close more of the loop itself:
+
+1. select an unresolved design branch;
+2. implement an alternative;
+3. run tests or benchmarks;
+4. evaluate the result;
+5. record the new fact in the tree.
+
+MCTS-Mem does not currently automate this complete process. It provides the memory that such a process would need.
+
+## 10. When MCTS-Mem is useful
+
+MCTS-Mem is most likely to pay off for:
+
+- long-lived systems with several generations of architecture;
+- performance-sensitive projects whose decisions depend on measurements;
+- projects undergoing repeated rewrites or platform ports;
+- teams that lose important context when experienced engineers leave;
+- and codebases maintained by agents that need more than the current implementation.
+
+It is probably unnecessary for a throwaway prototype or a small project whose implementation follows a complete and stable specification.
+
+The main failure mode is drift.
+
+If the code changes while the tree remains frozen, a reader may trust an explanation that no longer describes the system. A stale structured memory can create more confidence than an obviously incomplete collection of notes.
+
+The practical rule is to record a re-decision in the same change that implements it, and lint the tree during review.
+
+## 11. Conclusion
+
+Code preserves the design that survived. Git preserves a sequence of edits. Documents preserve selected explanations.
+
+MCTS-Mem focuses on the search connecting them: the live decisions, the rejected alternatives, and the evidence gathered along the way.
+
+The format is intentionally small. It consists of Markdown files, directory structure, provenance tags, paired moves, and a linter.
+
+The goal is not to model everything a project knows. It is to give the reasoning behind important design choices a durable, inspectable, and checkable place to live.
+
+For a longer discussion of the design and the limits of the MCTS analogy, see [`rationale.md`](rationale.md).
